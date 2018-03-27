@@ -1,5 +1,4 @@
 export const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1Ijoic2NvdHRkb3RqcyIsImEiOiJjamY5ZGo0aGcyNnRiMndxaHAxbW5ta2JwIn0.QHJifSEn4saTkV07SSJd-A';
-export const UPDATE_EXAMPLE = 'UPDATE_EXAMPLE';
 export const UPDATE_LATITUDE = 'UPDATE_LATITUDE';
 export const UPDATE_LONGITUDE = 'UPDATE_LONGITUDE';
 export const UPDATE_ZOOM = 'UPDATE_ZOOM';
