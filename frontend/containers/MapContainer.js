@@ -20,10 +20,6 @@ const mapDispatchToProps = dispatch => ( {
 	updateZoom: zoom => dispatch(updateZoom(zoom)),
 } );
 
-// http://leafletjs.com/reference-1.3.0.html#map-methods-for-modifying-map-state
-// L.setView([lat, lng], <Zoom>)
-// this.refs.map.leafletElement.setView // ?
-
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
