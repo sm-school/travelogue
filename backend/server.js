@@ -20,7 +20,7 @@ const api = require('./api.js');
 
 express()
 	.use( bodyParser.json() )
-	.use( express.static('static') )
+	.use( express.static('backend/static') )
 	.use( '/api', api )
 	.listen( process.env.TRAVELOGUE_PORT, () => {
 		console.log(`Starting Travelogue on port ${process.env.TRAVELOGUE_PORT}.`);
