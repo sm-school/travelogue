@@ -1,6 +1,6 @@
 import {
 	UPDATE_EXAMPLE,
-} from '../actions/types';
+} from '../../constants';
 
 const example = (state = [], action) => {
 	switch (action.type) {
