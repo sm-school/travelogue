@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './frontend/index.js',
+  entry: './frontend/src/index.js',
   devtool: 'source-map',
   output: {
     filename: 'bundle.js',
@@ -17,7 +17,7 @@ module.exports = {
         test: /\.js$/,
         exclude: /(node_modules)/,
         loader: require.resolve('eslint-loader'),
-        options={
+        options:{
           fix:false
         }
       }, {
