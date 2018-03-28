@@ -2,7 +2,7 @@ import {
 	UPDATE_LATITUDE,
 	UPDATE_LONGITUDE,
 	UPDATE_ZOOM,
-} from '../../constants';
+} from '../constants/action-types';
 
 const map = (state = {
 	latitude: 51.5261053,

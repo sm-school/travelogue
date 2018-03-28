@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 
-import { MAPBOX_ACCESS_TOKEN } from '../../constants';
+import { MAPBOX_ACCESS_TOKEN } from '../constants/action-types';
 
 function MapFrame ({ latitude, longitude, zoom, updateLatitude, updateLongitude, updateZoom }) {
 	const position = [ latitude, longitude ];
