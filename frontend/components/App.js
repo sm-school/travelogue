@@ -5,6 +5,7 @@ import MapContainer from '../containers/MapContainer';
 function App () {
 	return (
 		<div className="app">
+			<h1>Travelogue</h1>
 			<MapContainer />
 		</div>
 	);
