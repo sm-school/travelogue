@@ -16,10 +16,7 @@ module.exports = {
       }, {
         test: /\.js$/,
         exclude: /(node_modules)/,
-        loader: require.resolve('eslint-loader'),
-        options:{
-          fix:false
-        }
+        loader: require.resolve('eslint-loader')
       }, {
         test: /\.scss$/,
         use: [
