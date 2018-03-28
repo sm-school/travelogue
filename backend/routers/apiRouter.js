@@ -1,12 +1,10 @@
 'use strict';
 
-const express = require('express');
-const fetch = require('node-fetch');
-const api  = express.Router();
-
 const db = require('./db.js');
+const apiRouter = require('express').Router();
+const fetch = require('node-fetch');
 
-api.get('/something/:thing', (req, res) => {
+apiRouter.get('/something/:thing', (req, res) => {
 	db.something(req.params.thing)
 		.then ( something => {
 			res.status(200).json(something);
@@ -16,4 +14,4 @@ api.get('/something/:thing', (req, res) => {
 		});
 });
 
-module.exports = api;
+module.exports = apiRouter;
