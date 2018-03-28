@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
 import { updateLatitude, updateLongitude } from '../actions';
 import MapFrame from '../components/MapFrame';
 

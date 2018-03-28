@@ -1,19 +1,18 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
-
-import { MAPBOX_ACCESS_TOKEN } from '../../constants';
+import '../styles/components/MapFrame.scss';
 
 function MapFrame ({ latitude, longitude, zoom, updateLatitude, updateLongitude, updateZoom }) {
 	const position = [ latitude, longitude ];
-	const mapboxApi = `https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?access_token=${ MAPBOX_ACCESS_TOKEN }`;
+	const mapboxApi = `https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?access_token=${ process.env.MAPBOX_ACCESS_TOKEN }`;
 
 	return (
 		<div>
 			<div className="map-inputs">
 				<label htmlFor="latitude">Latitude:</label>
 				<input
-					type="text"
+					type="number"
 					name="latitude"
 					id="latitude"
 					placeholder={ latitude }
@@ -22,7 +21,7 @@ function MapFrame ({ latitude, longitude, zoom, updateLatitude, updateLongitude,
 				/>
 				<label htmlFor="latitude">Longitude:</label>
 				<input
-					type="text"
+					type="number"
 					name="longitude"
 					id="longitude"
 					placeholder={ longitude }
