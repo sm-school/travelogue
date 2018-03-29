@@ -1,3 +1,5 @@
+'use strict';
+
 const rootRouter = require('express').Router();
 const apiRouter = require('./api');
 
