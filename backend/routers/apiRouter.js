@@ -1,6 +1,6 @@
 'use strict';
 
-const db = require('../configs/db');
+const db = require('../controllers/db');
 const apiRouter = require('express').Router();
 const fetch = require('node-fetch');
 
