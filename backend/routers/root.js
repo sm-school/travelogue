@@ -1,5 +1,5 @@
 const rootRouter = require('express').Router();
-const apiRouter = require('./apiRouter');
+const apiRouter = require('./api');
 
 rootRouter.get('/', (req, res) => {
 	res.status(200).sendFile(

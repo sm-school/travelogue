@@ -3,7 +3,7 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const env = require('./backend/configs/env');
-const rootRouter = require('./backend/routers/rootRouter');
+const rootRouter = require('./backend/routers/root');
 const logger = require('morgan');
 
 if (!env['DB_URL']) {
