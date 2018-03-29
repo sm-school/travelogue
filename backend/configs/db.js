@@ -5,4 +5,4 @@ const env = require('./env');
 
 const db = pg(env.DB_URL);
 
-module.exports=db;
+module.exports = db;

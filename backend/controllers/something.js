@@ -17,4 +17,4 @@ WHERE thing = $1`;
 		});
 }
 
-module.exports= {something};
+module.exports = { something };

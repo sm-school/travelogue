@@ -1,5 +1,5 @@
 module.exports = {
-    NODE_ENV:'dev',
-    HOST:'localhost',
-    PORT: 3000
-}
+	NODE_ENV: 'dev',
+	HOST: 'localhost',
+	PORT: 3000,
+};
