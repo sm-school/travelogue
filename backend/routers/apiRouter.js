@@ -1,7 +1,7 @@
 'use strict';
 
-const db = require('../configs/db');
 const apiRouter = require('express').Router();
+const s3Router =require('./s3Router');
 const fetch = require('node-fetch');
 
 apiRouter.get('/something/:thing', (req, res) => {
@@ -13,5 +13,7 @@ apiRouter.get('/something/:thing', (req, res) => {
 			console.log(error);
 		});
 });
+
+apiRouter.use(s3Router);
 
 module.exports = apiRouter;
