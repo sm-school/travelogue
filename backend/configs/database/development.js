@@ -1,3 +1,5 @@
+'use strict';
+
 const username = 'admin';
 const password = 'postgres';
 const port = 5432;

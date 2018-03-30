@@ -1,6 +1,6 @@
 'use strict';
 
-const db = require('../configs/db.js');
+const db = require('../controllers/db.js');
 
 function something (thing) {
 	const sql = `
