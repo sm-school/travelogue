@@ -3,9 +3,12 @@ import React from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import '../styles/components/MapFrame.scss';
 
+import { MAPBOX_ACCESS_TOKEN } from '../constants/mapbox';
+
 function MapFrame ({ latitude, longitude, zoom, updateLatitude, updateLongitude, updateZoom }) {
 	const position = [ latitude, longitude ];
-	const mapboxApi = `https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?access_token=${ process.env.MAPBOX_ACCESS_TOKEN }`;
+	// https://{s}.tile.openstreetmap.org
+	const mapboxApi = `https://b.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=${MAPBOX_ACCESS_TOKEN}`;
 
 	return (
 		<div>
