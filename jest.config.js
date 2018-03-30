@@ -1,5 +1,8 @@
 module.exports = {
 	setupFiles: [
-		'<rootDir>/tests/setup.js',
+		'<rootDir>/frontend/tests/setup',
 	],
+	testPathIgnorePatterns:[
+		'<rootDir>/backend/configs'
+	]
 };

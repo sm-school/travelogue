@@ -1,13 +1,13 @@
-import * as actions from '../frontend/actions';
-import * as types from '../frontend/actions/types';
+import * as actions from '../src/actions';
+import * as types from '../src/constants/action-types';
 
 describe('actions', () => {
 	it('should something', () => {
 		const example = 'something';
 		const exampleAction = {
-			type: types.UPDATE_SOMETHING,
-			example,
+			type: types.UPDATE_ZOOM,
+			zoom:example,
 		};
-		expect(actions.updateExample(example)).toEqual(exampleAction);
+		expect(actions.updateZoom(example)).toEqual(exampleAction);
 	});
 });
