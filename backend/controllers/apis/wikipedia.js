@@ -62,7 +62,7 @@ function fetchExtract (pageName) {
 			let extract = extractRe.exec(raw)[0];
 
 			extract = extract.replace(/ \( listen\)/, '');
-			extract = extract.replace(/\(.*?\) /, '');
+			extract = extract.replace(/ \(.*?\)/g, '');
 
 			output.extract = extract;
 			return output;
