@@ -7,15 +7,6 @@ const api = `https://vision.googleapis.com/v1/images:annotate?fields=responses(f
 
 const S3_BUCKET = 'https://s3.us-east-2.amazonaws.com/traveluploader/'; // 'http://travelogue-test.s3-website.eu-west-2.amazonaws.com/';
 
-const imageIds = [ 'bigben', 'parliament', 'dnvb7a' ];
-
-processImageQueue(imageIds)
-	.then ( imageData => {
-		console.log(JSON.stringify(imageData));
-	});
-
-// ---------------------------------------------------------------------------
-
 function processImageQueue (imageQueue) {
 	let visionApiResults = {};
 
@@ -120,3 +111,5 @@ function fetchBody (imageId) {
 		],
 	};
 }
+
+module.exports = processImageQueue;
