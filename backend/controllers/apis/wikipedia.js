@@ -50,7 +50,7 @@ function processRedirect (pageName) {
 
 function fetchExtract (pageName) {
 	let output = {
-		page: pageName,
+		page: pageName, // Wikipedia's name for whatever we're querying
 	};
 
 	return fetchPageJson(PAGE_API + encodeURI(pageName))
