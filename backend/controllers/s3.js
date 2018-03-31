@@ -35,4 +35,4 @@ const getSignatureS3 = (req, res) => {
     })
 }
 
-module.exports = {getSignatureS3};
+module.exports = getSignatureS3;
