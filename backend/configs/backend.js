@@ -3,6 +3,6 @@
 const stage = process.env.NODE_ENV || 'development';
 const serverConfig = require(`./server/${stage}`);
 const databaseConfig = require(`./database/${stage}`);
-const env = { ...serverConfig, ...databaseConfig };
+const config = { ...serverConfig, ...databaseConfig };
 
-module.exports = env;
+module.exports = config;
