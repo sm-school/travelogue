@@ -10,7 +10,8 @@ db.connect()
 		obj.done();
 	})
 	.catch(error => {
-		console.log(error.message || error);
+		console.log('Database error:', error.message);
+		process.exit(1);
 	});
 
 function metadataRequired (userId) {
