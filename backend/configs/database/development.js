@@ -3,7 +3,7 @@
 const username = 'travelogue';
 const password = process.env.TRAVELOGUE_DB_PASS;
 const port = 5432;
-const db_name = 'dev';
+const db_name = 'travelogue';
 
 if (!password) {
 	throw new Error('Can\'t start Travelogue: set TRAVELOGUE_DB_PASS in env');
