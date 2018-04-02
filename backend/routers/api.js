@@ -1,17 +1,12 @@
 'use strict';
+const authRouter = require('./auth');
 
-const db = require('../controllers/db');
 const apiRouter = require('express').Router();
+const userRouter = require('./user');
 const fetch = require('node-fetch');
 
-apiRouter.get('/something/:thing', (req, res) => {
-	db.something(req.params.thing)
-		.then ( something => {
-			res.status(200).json(something);
-		})
-		.catch( error => {
-			console.log(error);
-		});
-});
+apiRouter.use('/auth',authRouter);
+apiRouter.use('/user',userRouter);
+
 
 module.exports = apiRouter;
