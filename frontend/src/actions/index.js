@@ -28,12 +28,12 @@ export const updateZoom = zoom => {
 export const uploadImages = files => {
 	const fileArray = Array.from(files);
 	fileArray.forEach(file => {
-	    let date = new Date();
-	    const newName = `username_${date.getTime()}_${Math.floor(Math.random() * 100)}_${file.name}`;
-	    const newFile = new File([ file ], newName, {
-	        type: file.type,
-	    });
-	    uploadToS3(newFile).then(url => {});
+		let date = new Date();
+		const newName = `username_${date.getTime()}_${Math.floor(Math.random() * 100)}_${file.name}`;
+		const newFile = new File([ file ], newName, {
+			type: file.type,
+		});
+		uploadToS3(newFile).then(url => {});
 	});
 };
 
