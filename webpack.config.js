@@ -12,24 +12,20 @@ module.exports = {
 			{
 				test: /\.js$/,
 				exclude: /(node_modules)/,
-				loader: require.resolve('babel-loader'),
+				loader: 'babel-loader',
 			}, {
 				test: /\.js$/,
 				exclude: /(node_modules)/,
-				loader: require.resolve('eslint-loader'),
+				loader: 'eslint-loader',
 				options: {
 					fix: true,
 				},
 			}, {
 				test: /\.scss$/,
 				use: [
-					{
-						loader: 'style-loader',
-					}, {
-						loader: 'css-loader',
-					}, {
-						loader: 'sass-loader',
-					},
+					'style-loader',
+					'css-loader',
+					'sass-loader',
 				],
 			},
 		],
