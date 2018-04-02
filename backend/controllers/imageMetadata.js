@@ -1,12 +1,12 @@
 'use strict';
 
-const wikipedia = require('./apis/wikipedia');
-const vision = require('./apis/vision');
+import wikipedia from './apis/wikipedia.js';
+import vision from './apis/vision.js';
 
 // Test data
 // const imageIds = [ 'parliament', 'pisa' ]; // no landmarks: 'dnvb7a'
 
-function imageMetadata (imageIds) {
+export default function imageMetadata (imageIds) {
 	vision(imageIds)
 		.then ( imageData => {
 			let wikiPromises = Object.keys(imageData).map( imageId => {
@@ -55,5 +55,3 @@ function getWikipediaInfo (image, imageId) {
 
 	return Promise.all(landmarkData);
 }
-
-module.exports = imageMetadata;

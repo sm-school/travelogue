@@ -1,13 +1,11 @@
 'use strict';
 
-const fetch = require('node-fetch');
-
 const GOOGLE_CLOUD_API_KEY = 'AIzaSyBIJwMg9nB14VrfKpVhUtIQIovRlXJKB3M';
 const api = `https://vision.googleapis.com/v1/images:annotate?fields=responses(faceAnnotations%2FdetectionConfidence%2ClandmarkAnnotations(confidence%2Cdescription%2Clocations%2Cscore%2Ctopicality))&key=${GOOGLE_CLOUD_API_KEY}`;
 
 const S3_BUCKET = 'https://s3.us-east-2.amazonaws.com/traveluploader/'; // 'http://travelogue-test.s3-website.eu-west-2.amazonaws.com/';
 
-function processImageQueue (imageQueue) {
+export default function processImageQueue (imageQueue) {
 	let visionApiResults = {};
 
 	const fetchPromises = imageQueue.map( imageId => {
@@ -111,5 +109,3 @@ function fetchBody (imageId) {
 		],
 	};
 }
-
-module.exports = processImageQueue;
