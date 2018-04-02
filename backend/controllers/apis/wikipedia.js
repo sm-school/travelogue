@@ -1,9 +1,11 @@
 'use strict';
 
+const fetch = require('node-fetch');
+
 const PAGE_API = 'https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=';
 const REDIRECT_API = 'https://en.wikipedia.org/w/api.php?action=query&redirects&format=json&titles=';
 
-export default function wikipedia (pageName) {
+function wikipedia (pageName) {
 	return fetchPageJson(PAGE_API + encodeURI(pageName))
 		.then( json => {
 			if (json.query.pages['-1']) {
@@ -70,3 +72,5 @@ function fetchExtract (pageName) {
 			console.log(error);
 		});
 }
+
+module.exports = wikipedia;
