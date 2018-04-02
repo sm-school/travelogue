@@ -1,61 +1,19 @@
 'use strict';
 
+const fetch = require('node-fetch');
+
 const api = `https://vision.googleapis.com/v1/images:annotate?fields=responses(faceAnnotations%2FdetectionConfidence%2ClandmarkAnnotations(confidence%2Cdescription%2Clocations%2Cscore%2Ctopicality))&key=${process.env.GOOGLE_CLOUD_API_KEY}`;
 
 const S3_BUCKET = 'https://s3.us-east-2.amazonaws.com/traveluploader/'; // 'http://travelogue-test.s3-website.eu-west-2.amazonaws.com/';
 
-export default function processImageQueue (imageQueue) {
-	let visionApiResults = {};
-
-	const fetchPromises = imageQueue.map( imageId => {
-		return imageApiFetch(imageId);
-	});
-
-	return Promise.all(fetchPromises)
-		.then( results => {
-			results.forEach( item => {
-				visionApiResults[item.imageId] = item.data;
-			});
-
-			return extractData(visionApiResults);
+function processImage (imageId) {
+	return imageApiFetch(imageId)
+		.then( visionApiResult => {
+			return extractData(visionApiResult);
 		})
 		.catch( error => {
 			console.log(error);
 		});
-}
-
-function extractData (visionApiResults) {
-	const imageIds = Object.keys(visionApiResults);
-
-	const imageData = imageIds.reduce( (acc, imageId) => {
-		const visionResponses = visionApiResults[imageId].responses[0];
-		let landmarkData, landmarks, faceConfidence;
-
-		if (visionResponses.landmarkAnnotations) {
-			landmarkData = visionResponses.landmarkAnnotations;
-
-			landmarks = landmarkData.map( landmark => {
-				return {
-					name: landmark.description,
-					latitude: landmark.locations[0].latLng.latitude,
-					longitude: landmark.locations[0].latLng.longitude,
-				};
-			});
-		}
-
-		if (visionResponses.faceAnnotations) {
-			faceConfidence = visionResponses.faceAnnotations[0].detectionConfidence.toFixed(2);
-		}
-
-		acc[imageId] = {
-			landmarks: landmarks,
-			faceConfidence: faceConfidence,
-		};
-
-		return acc;
-	}, {} );
-
-	return imageData;
 }
 
 function imageApiFetch (imageId) {
@@ -72,6 +30,33 @@ function imageApiFetch (imageId) {
 		.catch( error => {
 			console.log(`Couldn't get data: ${error}.`);
 		});
+}
+
+function extractData (visionApiResult) {
+	let data = visionApiResult.data;
+	let landmarkData, landmarks, faceConfidence;
+
+	if (data.responses[0].landmarkAnnotations) {
+		landmarkData = data.responses[0].landmarkAnnotations;
+
+		landmarks = landmarkData.map( landmark => {
+			return {
+				name: landmark.description,
+				latitude: landmark.locations[0].latLng.latitude,
+				longitude: landmark.locations[0].latLng.longitude,
+			};
+		});
+	}
+
+	if (data.faceAnnotations) {
+		faceConfidence = data.faceAnnotations[0].detectionConfidence.toFixed(2);
+	}
+
+	return {
+		imageId: visionApiResult.imageId,
+		landmarks: landmarks,
+		faceConfidence: faceConfidence,
+	};
 }
 
 function fetchRequest (imageId) {
@@ -108,3 +93,5 @@ function fetchBody (imageId) {
 		],
 	};
 }
+
+module.exports = processImage;
