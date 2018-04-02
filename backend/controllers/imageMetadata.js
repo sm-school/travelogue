@@ -1,57 +1,41 @@
 'use strict';
 
-import wikipedia from './apis/wikipedia.js';
-import vision from './apis/vision.js';
+const getWikipediaData = require('./apis/wikipedia.js');
+const getVisionData = require('./apis/vision.js');
 
-// Test data
-// const imageIds = [ 'parliament', 'pisa' ]; // no landmarks: 'dnvb7a'
+// Test data: 'parliament', 'pisa', no landmarks: 'dnvb7a'
 
-export default function imageMetadata (imageIds) {
-	vision(imageIds)
+function imageMetadata (imageId) {
+	return getVisionData(imageId)
 		.then ( imageData => {
-			let wikiPromises = Object.keys(imageData).map( imageId => {
-				const image = imageData[imageId];
-				return getWikipediaInfo(image, imageId);
-			});
+			return getLandmarks(imageData)
+				.then( wikiData => {
+					wikiData.forEach( landmark => {
+						for (let i = 0; i < wikiData.length; i++) {
+							imageData.landmarks[i].page = wikiData[i].page;
+							imageData.landmarks[i].extract = wikiData[i].extract;
+						}
+					});
 
-			return Promise.all(wikiPromises)
-				.then( wikiData => ({ imageData, wikiData }));
-		})
-		.then( results => {
-			let imageData = results.imageData;
-			const wikiData = results.wikiData;
-
-			// Ugly but necessary - we had to include the image ID with each
-			// individual landmark item promise returned from getWikipediaInfo,
-			// so insert that data at matching array positions for each image
-			wikiData.forEach( landmarks => {
-				const imageId = landmarks[0].imageId;
-
-				for (let i = 0; i < landmarks.length; i++) {
-					imageData[imageId].landmarks[i].page = landmarks[i].wikiData.page;
-					imageData[imageId].landmarks[i].extract = landmarks[i].wikiData.extract;
-				}
-			});
-
-			console.log(JSON.stringify(imageData));
+					return imageData;
+				});
 		})
 		.catch( error => {
 			console.log(error);
 		});
 }
 
-function getWikipediaInfo (image, imageId) {
+function getLandmarks (image) {
 	let landmarks = image.landmarks || [];
 
-	let landmarkData = landmarks.map( landmark => {
-		return wikipedia(landmark.name)
+	let landmarkData = image.landmarks.map( landmark => {
+		return getWikipediaData(landmark.name)
 			.then( wikiData => {
-				return {
-					imageId: imageId,
-					wikiData: wikiData,
-				};
+				return wikiData;
 			});
 	});
 
 	return Promise.all(landmarkData);
 }
+
+module.exports = imageMetadata;
