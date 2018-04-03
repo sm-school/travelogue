@@ -3,7 +3,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-class MetadataTest extends React.Component {
+class LandmarkSelector extends React.Component {
 
 	componentDidMount() {
 		this.props.imageMetadata(this.props.imageId);
@@ -45,10 +45,10 @@ class MetadataTest extends React.Component {
 	}
 }
 
-MetadataTest.propTypes = {
+LandmarkSelector.propTypes = {
 	imageId: PropTypes.string,
 	imageMetadata: PropTypes.func,
 	metadata: PropTypes.object,
 };
 
-export default MetadataTest;
+export default LandmarkSelector;
