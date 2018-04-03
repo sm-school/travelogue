@@ -2,6 +2,8 @@ import {
 	UPDATE_LATITUDE,
 	UPDATE_LONGITUDE,
 	UPDATE_ZOOM,
+	ADD_IMAGES,
+	ADD_IMAGE_URL,
 } from '../constants/action-types';
 
 export const updateLatitude = latitude => {
@@ -25,8 +27,7 @@ export const updateZoom = zoom => {
 	};
 };
 
-export const uploadImages = files => {
-	const fileArray = Array.from(files);
+export const uploadImages = fileArray => {
 	fileArray.forEach(file => {
 	    let date = new Date();
 	    const newName = `username_${date.getTime()}_${Math.floor(Math.random() * 100)}_${file.name}`;
@@ -72,4 +73,31 @@ const uploadFile = (file, signedRequest, url) =>{
 		}
 		return url;
 	});
+};
+
+
+export const addImages = (images) =>({
+	type: ADD_IMAGES,
+	images,
+});
+
+export const addUploaderImagesUrl = url =>({
+	type: ADD_IMAGE_URL,
+	url,
+});
+
+export const turnImagesIntoURLs = images =>{
+	return dispatch => {
+		images.forEach(image =>{
+			var reader = new FileReader();
+			// Closure to capture the file information.
+			reader.onload = (function(theFile) {
+				console.log(theFile);
+				return function(e) {
+					dispatch(addUploaderImagesUrl(e.target.result));
+				};
+			})(image);
+			reader.readAsDataURL(image);
+		});
+	};
 };

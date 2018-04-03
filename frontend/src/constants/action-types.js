@@ -1,3 +1,5 @@
 export const UPDATE_LATITUDE = 'UPDATE_LATITUDE';
 export const UPDATE_LONGITUDE = 'UPDATE_LONGITUDE';
 export const UPDATE_ZOOM = 'UPDATE_ZOOM';
+export const ADD_IMAGES = 'ADD_IMAGES';
+export const ADD_IMAGE_URL = 'ADD_IMAGE_URL';

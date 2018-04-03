@@ -4,22 +4,52 @@ import PropTypes from 'prop-types';
 
 function Uploader(props) {
 
-	const onSubmitHandler = event => {
-		event.preventDefault();
-		const files = event.target.images.files;
-		if (!files || !files.length) {
+	const clickHandler = () => {
+		if (!props.uploaderImages || !props.uploaderImages.length) {
 			return;
 		}
 
-		props.uploadImages(files);
+		props.uploadImages(props.uploaderImages);
+    
+	};
+
+	const dragoverHandler = (event) => {
+		event.stopPropagation();
+		event.preventDefault();
+		event.dataTransfer.dropEffect = 'copy';
+	};
+
+	const dropHandler = (event) => {
+		event.stopPropagation();
+		event.preventDefault();
+		let files = Array.from(event.dataTransfer.files);
+		files = files.filter(file => file.type.match('image.*'));
+		console.log(props.uploaderImages);
+		props.addImages(files);  
+		props.turnImagesIntoURLs(files);
+	};
+    
+	const renderImages = () => {
+
+		// Read in the image file as a data URL.
+		
+	
+		console.log(props.uploaderImagesUrl);
+		return props.uploaderImagesUrl ? props.uploaderImagesUrl.map(url=>{
+			return <li><img src={url}  /></li>;
+		}) : null;
+	
 	};
 
 	return (
 		<div>
-			<form onSubmit={onSubmitHandler} >
+			{/* <form onSubmit={onSubmitHandler} >
 				<input name="images" multiple type="file"/>
 				<button>Submit</button>
-			</form>
+			</form> */}
+			<div onDragOver={dragoverHandler} onDrop={dropHandler}>Drop files here</div>
+			<ul>{renderImages()}</ul>
+			<button onClick={clickHandler}>Upload</button>
 		</div>
 	);
 }
