@@ -1,0 +1,22 @@
+.landmark_selector ul {
+	list-style-type: none;
+	margin: 1em 0 0 0;
+	padding: 0;
+}
+
+.landmark_selector ul li {
+	margin: 0 0 1em 0;
+	padding: 0.5em 1em;
+	background-color: #eee;
+	border-radius: 0.5em;
+	border: 1px solid transparent;
+}
+
+.landmark_selector ul li:hover {
+	border: 1px solid #999;
+}
+
+.landmark_selector img {
+	width: 100%;
+	border: 1px solid #999;
+}

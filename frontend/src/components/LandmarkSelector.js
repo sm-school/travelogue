@@ -26,16 +26,10 @@ class LandmarkSelector extends React.Component {
 			});
 		}
 
-		const style = {
-			float: 'left',
-			marginRight: '2em',
-			marginTop: '1em',
-		 };
-
 		return (
-			<div>
+			<div class="landmark_selector">
 				<h1>What's your picture of?</h1>
-				<img src={imageUrl} width={300} style={style} />
+				<img src={imageUrl} />
 				<ul>
 					{landmarks}
 					<li>Something else...</li>
