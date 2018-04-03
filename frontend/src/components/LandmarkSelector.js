@@ -34,9 +34,11 @@ class MetadataTest extends React.Component {
 
 		return (
 			<div>
+				<h1>What's your picture of?</h1>
 				<img src={imageUrl} width={300} style={style} />
 				<ul>
 					{landmarks}
+					<li>Something else...</li>
 				</ul>
 			</div>
 		);

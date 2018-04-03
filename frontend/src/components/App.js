@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/components/App.scss';
 // import MapContainer from '../containers/MapContainer';
-import MetadataTestContainer from '../containers/MetadataTestContainer';
+import LandmarkSelectorContainer from '../containers/LandmarkSelectorContainer';
 // import UploaderContainer from '../containers/UploaderContainer';
 
 // <MapContainer />
@@ -10,7 +10,7 @@ import MetadataTestContainer from '../containers/MetadataTestContainer';
 function App () {
 	return (
 		<div className="app">
-			<MetadataTestContainer imageId='pisa' />
+			<LandmarkSelectorContainer imageId='parliament' />
 		</div>
 	);
 }

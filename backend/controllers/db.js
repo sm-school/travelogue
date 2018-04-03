@@ -10,9 +10,25 @@ db.connect()
 		obj.done();
 	})
 	.catch(error => {
-		console.log('Database error:', error.message);
+		console.log('Database connection error:', error.message);
 		process.exit(1);
 	});
+
+function imageLandmarks (imageId) {
+	const sql = `
+	SELECT l.name, l.latitude, l.longitude, l.page, l.extract
+	FROM photo p, landmark l
+	WHERE p.id = l.photo_id
+	AND p.s3_id=$1;`;
+
+	return db.any(sql, imageId)
+		.then ( landmarks => {
+			return landmarks;
+		})
+		.catch( error => {
+			console.log('Database error:', error.message);
+		});
+}
 
 function saveLandmarkSuggestions (imageData) {
 	let landmarkInserts = imageData.landmarks.map( landmark => {
@@ -26,7 +42,7 @@ function saveLandmarkSuggestions (imageData) {
 }
 
 function saveLandmark (imageId, landmark) {
-	const SQL = `
+	const sql = `
 	INSERT INTO landmark_suggestion
 	VALUES( DEFAULT, $1, $2, $3, $4, $5, FALSE )
 	RETURNING id;`;
@@ -43,8 +59,8 @@ function saveLandmark (imageId, landmark) {
 			return id;
 		})
 		.catch( error => {
-			console.log(error);
+			console.log('Database error:', error.message);
 		});
 }
 
-module.exports = db;
+module.exports.imageLandmarks = imageLandmarks;

@@ -5,7 +5,7 @@ const getVisionData = require('./apis/vision.js');
 
 // Test data: 'parliament', 'pisa', no landmarks: 'dnvb7a'
 
-function imageMetadata (imageId) {
+function fetchMetadata (imageId) {
 	return getVisionData(imageId)
 		.then ( imageData => {
 			return getLandmarks(imageData)
@@ -38,4 +38,4 @@ function getLandmarks (image) {
 	return Promise.all(landmarkData);
 }
 
-module.exports = imageMetadata;
+module.exports = fetchMetadata;
