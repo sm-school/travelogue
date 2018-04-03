@@ -36,7 +36,7 @@ function Uploader(props) {
 	
 		console.log(props.uploaderImagesUrl);
 		return props.uploaderImagesUrl ? props.uploaderImagesUrl.map(url=>{
-			return <li><img src={url}  /></li>;
+			return <li className="uploader-li" ><img className="uploader-image" src={url}  /></li>;
 		}) : null;
 	
 	};
