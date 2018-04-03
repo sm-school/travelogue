@@ -4,6 +4,8 @@ import {
 	UPDATE_ZOOM,
 	ADD_IMAGES,
 	ADD_IMAGE_URL,
+	DELETE_IMAGE,
+	DELETE_IMAGE_URL,
 } from '../constants/action-types';
 
 export const updateLatitude = latitude => {
@@ -81,23 +83,48 @@ export const addImages = (images) =>({
 	images,
 });
 
-export const addUploaderImagesUrl = url =>({
+const addUploaderImagesUrl = (url,index) =>({
 	type: ADD_IMAGE_URL,
 	url,
+	index,
 });
 
-export const turnImagesIntoURLs = images =>{
+
+export const turnImagesIntoURLs = (images,length) =>{
 	return dispatch => {
+		let index = length;
+		console.log(index);
 		images.forEach(image =>{
+
 			var reader = new FileReader();
 			// Closure to capture the file information.
-			reader.onload = (function(theFile) {
+			reader.onload = (function(theFile,index) {
+                
 				console.log(theFile);
+				console.log(index);
 				return function(e) {
-					dispatch(addUploaderImagesUrl(e.target.result));
+					dispatch(addUploaderImagesUrl(e.target.result,index));
 				};
-			})(image);
+			})(image,index);
 			reader.readAsDataURL(image);
+			index += 1;
 		});
+	};
+};
+
+const deleteImages = (index) =>({
+	type: DELETE_IMAGE,
+	index,
+});
+
+const deleteUploaderImagesUrl = (index) =>({
+	type: DELETE_IMAGE_URL,
+	index,
+});
+
+export const deleteUploadImage = index =>{
+	return dispatch => {
+		dispatch(deleteImages(index));
+		dispatch(deleteUploaderImagesUrl(index));
 	};
 };

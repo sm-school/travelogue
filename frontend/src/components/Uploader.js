@@ -24,9 +24,9 @@ function Uploader(props) {
 		event.preventDefault();
 		let files = Array.from(event.dataTransfer.files);
 		files = files.filter(file => file.type.match('image.*'));
-		console.log(props.uploaderImages);
+		console.log('sss',props.uploaderImages.length);
+		props.turnImagesIntoURLs(files,props.uploaderImages.length);
 		props.addImages(files);  
-		props.turnImagesIntoURLs(files);
 	};
     
 	const renderImages = () => {
@@ -34,9 +34,9 @@ function Uploader(props) {
 		// Read in the image file as a data URL.
 		
 	
-		console.log(props.uploaderImagesUrl);
-		return props.uploaderImagesUrl ? props.uploaderImagesUrl.map(url=>{
-			return <li className="uploader-li" ><img className="uploader-image" src={url}  /></li>;
+		console.log(props.uploaderImagesUrl,props.uploaderImages);
+		return props.uploaderImagesUrl ? props.uploaderImagesUrl.map((url,i)=>{
+			return <li onClick={props.deleteUploadImage(i)}className="uploader-li"><img className="uploader-image" src={url}  /></li>;
 		}) : null;
 	
 	};
