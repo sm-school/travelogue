@@ -59,7 +59,7 @@ function fetchExtract (pageName) {
 			const page = Object.keys(json.query.pages)[0];
 			const raw = json.query.pages[page].extract;
 
-			const extractRe = new RegExp(/^(.*?)\./);
+			const extractRe = new RegExp(/^(.*?)\.\s/);
 			let extract = extractRe.exec(raw)[0];
 
 			extract = extract.replace(/ \( listen\)/, '');
