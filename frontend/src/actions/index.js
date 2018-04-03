@@ -1,8 +1,38 @@
 import {
+	ACCEPT_LANDMARK,
+	RECEIVE_METADATA,
 	UPDATE_LATITUDE,
 	UPDATE_LONGITUDE,
 	UPDATE_ZOOM,
 } from '../constants/action-types';
+
+export const acceptLandmark = landmarkId => {
+	return {
+		type: ACCEPT_LANDMARK,
+		landmarkId,
+	};
+};
+
+export const imageMetadata = imageId => {
+	return (dispatch) => {
+		return fetch(`/api/metadata/${imageId}`)
+			.then(response => {
+				if (!response.ok) {
+					throw new Error(`${response.status}: ${response.statusText}`);
+				}
+
+				return response.json();
+			})
+			.then( metadata => dispatch( receiveMetadata(metadata) ) );
+	};
+};
+
+export const receiveMetadata = metadata => {
+	return {
+		type: RECEIVE_METADATA,
+		metadata,
+	};
+};
 
 export const updateLatitude = latitude => {
 	return {
