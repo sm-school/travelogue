@@ -1,6 +1,7 @@
 'use strict';
 
 const fetch = require('node-fetch');
+
 const PAGE_API = 'https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=';
 const REDIRECT_API = 'https://en.wikipedia.org/w/api.php?action=query&redirects&format=json&titles=';
 
@@ -58,7 +59,7 @@ function fetchExtract (pageName) {
 			const page = Object.keys(json.query.pages)[0];
 			const raw = json.query.pages[page].extract;
 
-			const extractRe = new RegExp(/^(.*?)\./);
+			const extractRe = new RegExp(/^(.*?)\.\s/);
 			let extract = extractRe.exec(raw)[0];
 
 			extract = extract.replace(/ \( listen\)/, '');
