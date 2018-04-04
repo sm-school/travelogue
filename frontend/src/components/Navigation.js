@@ -16,7 +16,7 @@ const Navigation = (props) => {
 	};
 	return (<nav className="navigation">
 		<div className="navigation_link_wrapper">
-			<Link className="navigation__brand" to="/">Travelogue</Link>
+			<Link className="navigation__brand" to={Object.keys(props.user).length === 0 ? '/' : '/dashboard'}>Travelogue</Link>
 			<ul className="navigation__ul">
 				{renderNavLinks(props.user)}
 			</ul>

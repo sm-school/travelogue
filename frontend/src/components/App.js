@@ -17,7 +17,9 @@ import '../styles/components/App.scss';
 class App extends React.Component {
 
 	componentDidMount() {
-		if (!this.props.user) this.props.fetchUser();
+		if (Object.keys(this.props.user).length == 0) {
+			this.props.fetchUser();
+		}
 	}
 	render() {
 		return (
