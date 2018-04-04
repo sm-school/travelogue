@@ -2,13 +2,12 @@
 
 const rootRouter = require('express').Router();
 const apiRouter = require('./api');
-
-rootRouter.get('/', (req, res) => {
-	res.status(200).sendFile(
-		'index.html', { root: './backend/static' }
-	);
-});
-
+const isLoggedIn = require('../helpers/isLoggedIn')
+const {sendIndexHtml}= require('../controllers/react')
 rootRouter.use('/api', apiRouter);
+
+rootRouter.get(['/','/login','/register'], sendIndexHtml);
+
+rootRouter.get('/*',isLoggedIn,sendIndexHtml );
 
 module.exports = rootRouter;
