@@ -4,6 +4,7 @@ import {
 	RECEIVE_METADATA,
 	RECEIVE_LATITUDE,
 	RECEIVE_LONGITUDE,
+	RECEIVE_POINT,
 	RECEIVE_ZOOM,
 	ADD_IMAGES,
 	ADD_IMAGE_URL,
@@ -75,6 +76,15 @@ export const receiveLongitude = longitude => {
 	return {
 		type: RECEIVE_LONGITUDE,
 		longitude,
+	};
+};
+
+export const receivePoint = point => {
+	return {
+		type: RECEIVE_POINT,
+		latitude,
+		longitude,
+		title,
 	};
 };
 

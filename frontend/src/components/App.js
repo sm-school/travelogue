@@ -15,7 +15,14 @@ import '../styles/components/App.scss';
 function App() {
 	return (
 		<div className="app">
-			<ImageContainer imageId='parliament.jpg' />
+			<MapContainer
+				latitude={51.5261053} longitude={-0.0834954} zoom={17}
+				points={ [
+					[ 51.5261053, -0.0834954, 'Constructor Labs' ],
+					[ 51.5271053, -0.0844954, 'Not Constructor Labs' ],
+				] }
+			/>
+			{/*<ImageContainer imageId='parliament.jpg' />*/}
 		</div>
 	/*
 		<BrowserRouter>
