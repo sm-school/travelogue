@@ -52,6 +52,11 @@ function Uploader(props) {
 }
 
 Uploader.propTypes = {
+	addImages: PropTypes.func,
+	deleteUploadImage: PropTypes.func,
+	turnImagesIntoURLs: PropTypes.func,
+	uploaderImages: PropTypes.array,
+	uploaderImagesUrl: PropTypes.array,
 	uploadImages: PropTypes.func,
 };
 
