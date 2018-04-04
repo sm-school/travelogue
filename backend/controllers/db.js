@@ -14,16 +14,38 @@ db.connect()
 		process.exit(1);
 	});
 
+function imageMetadata (imageId) {
+	const sql = `
+	SELECT i.latitude, i.longitude
+	FROM image i
+	WHERE i.s3_id = $1`;
+
+	return db.any(sql, imageId)
+		.then( metadata => {
+			return {
+				imageId: imageId,
+				latitude: metadata[0].latitude,
+				longitude: metadata[0].longitude,
+			};
+		})
+		.catch( error => {
+			console.log('Database error:', error.message);
+		});
+}
+
 function imageLandmarks (imageId) {
 	const sql = `
 	SELECT l.name, l.latitude, l.longitude, l.page, l.extract
-	FROM photo p, landmark l
-	WHERE p.id = l.photo_id
-	AND p.s3_id=$1;`;
+	FROM image i, landmark l
+	WHERE i.id = l.image_id
+	AND i.s3_id=$1;`;
 
 	return db.any(sql, imageId)
-		.then ( landmarks => {
-			return landmarks;
+		.then( landmarks => {
+			return {
+				imageId: imageId,
+				landmarks: landmarks,
+			};
 		})
 		.catch( error => {
 			console.log('Database error:', error.message);
@@ -64,3 +86,4 @@ function saveLandmark (imageId, landmark) {
 }
 
 module.exports.imageLandmarks = imageLandmarks;
+module.exports.imageMetadata = imageMetadata;

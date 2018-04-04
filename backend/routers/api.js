@@ -6,6 +6,7 @@ const authRouter = require('./auth');
 const userRouter = require('./user');
 
 const imageLandmarks = require('../controllers/db').imageLandmarks;
+const imageMetadata = require('../controllers/db').imageMetadata;
 const getSignatureS3 = require('../controllers/s3');
 const metadataApis = require('../controllers/metadataApis');
 
@@ -25,18 +26,19 @@ api.get('/fetchMetadata/:imageId', (req, res) => {
 });
 
 api.get('/metadata/:imageId', (req, res) => {
-	// To do: regexp for image ID format
-	// if (/^\d+$/.exec(req.params.userId)) {
-	// 	res.status(400).send('invalid imageId');
-	// 	return;
-	// }
+	imageMetadata(req.params.imageId)
+		.then( metadata => {
+			res.status(200).json(metadata);
+		})
+		.catch( error => {
+			console.log(error);
+		});
+});
 
+api.get('/landmarks/:imageId', (req, res) => {
 	imageLandmarks(req.params.imageId)
 		.then( landmarks => {
-			res.status(200).json({
-				imageId: req.params.imageId,
-				landmarks: landmarks,
-			});
+			res.status(200).json(landmarks);
 		})
 		.catch( error => {
 			console.log(error);

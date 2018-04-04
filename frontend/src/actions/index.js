@@ -1,9 +1,10 @@
 import {
 	ACCEPT_LANDMARK,
+	RECEIVE_LANDMARKS,
 	RECEIVE_METADATA,
-	UPDATE_LATITUDE,
-	UPDATE_LONGITUDE,
-	UPDATE_ZOOM,
+	RECEIVE_LATITUDE,
+	RECEIVE_LONGITUDE,
+	RECEIVE_ZOOM,
 	ADD_IMAGES,
 	ADD_IMAGE_URL,
 	DELETE_IMAGE,
@@ -11,12 +12,27 @@ import {
 	SAVE_USERNAME,
 	UPDATE_NEXT_LOCATION,
 } from '../constants/action-types';
+
 import nextLocation from '../reducers/nextLocation';
 
 export const acceptLandmark = landmarkId => {
 	return {
 		type: ACCEPT_LANDMARK,
 		landmarkId,
+	};
+};
+
+export const imageLandmarks = imageId => {
+	return (dispatch) => {
+		return fetch(`/api/landmarks/${imageId}`)
+			.then(response => {
+				if (!response.ok) {
+					throw new Error(`${response.status}: ${response.statusText}`);
+				}
+
+				return response.json();
+			})
+			.then( landmarks => dispatch( receiveLandmarks(landmarks) ) );
 	};
 };
 
@@ -34,6 +50,13 @@ export const imageMetadata = imageId => {
 	};
 };
 
+export const receiveLandmarks = landmarks => {
+	return {
+		type: RECEIVE_LANDMARKS,
+		landmarks,
+	};
+};
+
 export const receiveMetadata = metadata => {
 	return {
 		type: RECEIVE_METADATA,
@@ -41,23 +64,23 @@ export const receiveMetadata = metadata => {
 	};
 };
 
-export const updateLatitude = latitude => {
+export const receiveLatitude = latitude => {
 	return {
-		type: UPDATE_LATITUDE,
+		type: RECEIVE_LATITUDE,
 		latitude,
 	};
 };
 
-export const updateLongitude = longitude => {
+export const receiveLongitude = longitude => {
 	return {
-		type: UPDATE_LONGITUDE,
+		type: RECEIVE_LONGITUDE,
 		longitude,
 	};
 };
 
-export const updateZoom = zoom => {
+export const receiveZoom = zoom => {
 	return {
-		type: UPDATE_ZOOM,
+		type: RECEIVE_ZOOM,
 		zoom,
 	};
 };

@@ -25,10 +25,10 @@ function fetchMetadata (imageId) {
 		});
 }
 
-function getLandmarks (image) {
-	let landmarks = image.landmarks || [];
+function getLandmarks (imageData) {
+	let landmarks = imageData.landmarks || [];
 
-	let landmarkData = image.landmarks.map( landmark => {
+	let landmarkData = imageData.landmarks.map( landmark => {
 		return getWikipediaData(landmark.name)
 			.then( wikiData => {
 				return wikiData;

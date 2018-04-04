@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 
+import imageLandmarks from './imageLandmarks';
 import imageMetadata from './imageMetadata';
 import map from './map';
 
@@ -9,6 +10,7 @@ import username from './username';
 import nextLocation from './nextLocation';
 
 export default combineReducers({
+	imageLandmarks,
 	imageMetadata,
 	map,
 	uploaderImages,

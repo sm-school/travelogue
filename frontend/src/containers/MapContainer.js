@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateLatitude, updateLongitude } from '../actions';
+import { setLatitude, setLongitude, setZoom } from '../actions';
 import MapFrame from '../components/MapFrame';
 
 const getMap = (state) => {
@@ -13,13 +13,24 @@ const mapStateToProps = state => {
 	return { ...map };
 };
 
+function mergeProps(stateProps, dispatchProps, ownProps) {
+	let merged = Object.assign({}, ownProps, stateProps, dispatchProps);
+
+	return Object.assign({}, merged, {
+		latitude: stateProps.latitude || ownProps.latitude,
+		longitude: stateProps.longitude || ownProps.longitude,
+		zoom: stateProps.zoom || ownProps.zoom,
+	});
+}
+
 const mapDispatchToProps = dispatch => ( {
-	updateLatitude: latitude => dispatch(updateLatitude(latitude)),
-	updateLongitude: longitude => dispatch(updateLongitude(longitude)),
-	updateZoom: zoom => dispatch(updateZoom(zoom)),
+	setLatitude: latitude => dispatch(receiveLatitude(latitude)),
+	setLongitude: longitude => dispatch(receiveLongitude(longitude)),
+	setZoom: zoom => dispatch(receiveZoom(zoom)),
 } );
 
 export default connect(
 	mapStateToProps,
-	mapDispatchToProps
+	mapDispatchToProps,
+	mergeProps
 )(MapFrame);
