@@ -17,6 +17,20 @@ function App() {
 		<div className="app">
 			<LandmarkSelectorContainer imageId='parliament' />
 		</div>
+	/*
+		<BrowserRouter>
+			<Main>
+			    <Route component= {ConnectedRouterContainer}/>
+				<Switch>
+					<Route exact path="/" component={MapContainer} />
+					<Route exact path="/login" component={LoginContainer} />
+					<Route exact path="/register" component={RegisterContainer} />
+					<Route exact path="/dashboard" component={DashboardContainer} />
+					<Route path="/*" component={NotFound} />
+				</Switch>
+			</Main>
+		</BrowserRouter>
+	*/
 	);
 }
 
