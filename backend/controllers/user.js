@@ -20,7 +20,6 @@ function registerUser(req, res,next) {
 function saveUser(user) {
     console.log(user);
 	return hashing(user.password).then(function(hash) {
-		console.log(hash)
 		return db.none('INSERT INTO account (username, pass) VALUES ($1,$2)', [user.username, hash]);
 	});
 }
@@ -35,7 +34,7 @@ function getUserById(id) {
 
 
 const sendUserData = (req,res)=>{
-	res.status(200).json({username:req.user.username});
+	res.status(200).json({user:{username:req.user.username}});
 }
 
 module.exports={getUserById,getUserByUsername,registerUser,sendUserData}

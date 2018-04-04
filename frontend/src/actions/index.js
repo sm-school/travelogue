@@ -8,6 +8,7 @@ import {
 	DELETE_IMAGE_URL,
 	SAVE_USERNAME,
 	UPDATE_NEXT_LOCATION,
+	UPDATE_USER,
 } from '../constants/action-types';
 import nextLocation from '../reducers/nextLocation';
 
@@ -102,14 +103,11 @@ const addUploaderImagesUrl = (url,index) =>({
 export const turnImagesIntoURLs = (images,length) =>{
 	return dispatch => {
 		let index = length;
-		console.log(index);
 		images.forEach(image =>{
 
 			var reader = new FileReader();
 			// Closure to capture the file information.
 			reader.onload = (function(theFile,index) {
-				console.log(theFile);
-				console.log(index);
 				return function(e) {
 					dispatch(addUploaderImagesUrl(e.target.result,index));
 				};
@@ -148,7 +146,6 @@ export const registerUser = (username,password) =>{
 			},
 		})
 			.then(function(response) {
-				console.log(response);
 				if (response.status === 401) {
 		  alert('invalid user name or password');
 				} else if (response.status === 404) {
@@ -160,19 +157,12 @@ export const registerUser = (username,password) =>{
 				}
 			}).then(data=>{
 				if (!data) return;
-				dispatch(saveUsername(data.username));
+				dispatch(updateUser(data.user));
 				dispatch(updateNextLocation('/dashboard'));
 			});
 	};
 };
 
-
-const saveUsername = username=>{
-	return {
-		type: SAVE_USERNAME,
-		username,
-	};
-};
 
 export const loginUser = (username,password) =>{
 	return dispatch =>{
@@ -190,8 +180,8 @@ export const loginUser = (username,password) =>{
 				return response.json();
 			}
 		  }).then(data=>{
-			  if (!data) return;
-			dispatch(saveUsername(data.username));
+			  if (!data) return; 
+			dispatch(updateUser(data.user));
 			//Change this with regexp
 			const params = window.location.search.split('?ref=')[1];
 			const nextUrl = params || '/dashboard';
@@ -209,14 +199,19 @@ export const updateNextLocation = nextLocation =>{
 	};
 };
 
-export const fetchUsername = ()=>{
+const updateUser = (user)=>({
+	type: UPDATE_USER,
+	user,
+});
+
+export const fetchUser = ()=>{
 	return dispatch =>{
-		fetch('/api/user/username', {
+		fetch('/api/user/login', {
 			credentials: 'same-origin',
 		}).then(response=>response.json())
 			.then(data=>{
-			  if (!data) return;
-				dispatch(saveUsername(data.username));
+				if (!data) return;
+				dispatch(updateUser(data.user));
 		  });
 	};
 };

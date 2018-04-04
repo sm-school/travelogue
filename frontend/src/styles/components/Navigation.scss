@@ -1,0 +1,32 @@
+@import '../base/colours';
+
+.navigation{
+    position:fixed;
+    width:100%;
+    background-color: $grey;
+    margin:0;
+    height: 3rem;
+}
+.navigation_link_wrapper{
+    padding: 0 15rem;
+    height:100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    
+}
+
+.navigation__brand{
+    display: inline-block;
+    font-size:1.4rem;
+    
+}
+
+.navigation__ul {
+
+    li{
+    padding: 0 1rem;
+    display: inline-block;
+    list-style-type: none;
+}
+}
