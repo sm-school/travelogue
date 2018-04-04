@@ -5,39 +5,33 @@ import '../styles/components/MapFrame.scss';
 
 import { MAPBOX_ACCESS_TOKEN } from '../constants/mapbox';
 
-class MapFrame extends React.Component {
+function MapFrame ({ latitude, longitude, zoom }) {
+	const position = [ latitude, longitude ];
 
-	componentDidMount() {
-		// this.props.setLatitude(this.props.latitude);
-		// this.props.setLongitude(this.props.longitude);
-		// this.props.setZoom(this.props.zoom);
-	}
+	const mapboxApi = `https://b.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=${MAPBOX_ACCESS_TOKEN}`;
 
-	render() {
-		console.log('MAP LATITUDE:', this.props.latitude);
-		const { latitude, longitude, zoom } = this.props;
-		const position = [ latitude, longitude ];
+	// To do: get as prop
+	const markerTitle = 'Marker Title';
 
-		const mapboxApi = `https://b.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=${MAPBOX_ACCESS_TOKEN}`;
-
-		return (
-			<div>
-				<Map center={ position } zoom={ zoom } id="map">
-					<TileLayer
-						attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-						url={mapboxApi}
-					/>
-					<Marker position={ position }>
-						<Popup>
-							<span>
-								A pretty CSS3 popup. <br /> Easily customizable.
-							</span>
-						</Popup>
-					</Marker>
-				</Map>
-			</div>
-		);
-	}
+	// To do: get an array of lat, long, title as props and produce
+	// one Marker element for each. Need to think about default zoom
+	return (
+		<div>
+			<Map center={position} zoom={zoom} id="map">
+				<TileLayer
+					attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+					url={mapboxApi}
+				/>
+				<Marker position={position}>
+					<Popup>
+						<span>
+							{markerTitle}
+						</span>
+					</Popup>
+				</Marker>
+			</Map>
+		</div>
+	);
 }
 
 MapFrame.propTypes = {
