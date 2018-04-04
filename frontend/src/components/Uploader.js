@@ -10,7 +10,6 @@ function Uploader(props) {
 		}
 
 		props.uploadImages(props.uploaderImages);
-    
 	};
 
 	const dragoverHandler = (event) => {
@@ -26,19 +25,17 @@ function Uploader(props) {
 		files = files.filter(file => file.type.match('image.*'));
 		console.log('sss',props.uploaderImages.length);
 		props.turnImagesIntoURLs(files,props.uploaderImages.length);
-		props.addImages(files);  
+		props.addImages(files);
 	};
-    
+
 	const renderImages = () => {
 
 		// Read in the image file as a data URL.
-		
-	
 		console.log(props.uploaderImagesUrl,props.uploaderImages);
 		return props.uploaderImagesUrl ? props.uploaderImagesUrl.map((url,i)=>{
 			return <li onClick={props.deleteUploadImage(i)}className="uploader-li"><img className="uploader-image" src={url}  /></li>;
 		}) : null;
-	
+
 	};
 
 	return (
