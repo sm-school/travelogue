@@ -1,13 +1,18 @@
 import React from 'react';
-import '../styles/components/App.scss';
-// import MapContainer from '../containers/MapContainer';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+import MapContainer from '../containers/MapContainer';
+import LoginContainer from '../containers/LoginContainer';
+import RegisterContainer from '../containers/RegisterContainer';
+import DashboardContainer from '../containers/DashboardContainer';
+import ConnectedRouterContainer from '../containers/ConnectedRouterContainer';
 import LandmarkSelectorContainer from '../containers/LandmarkSelectorContainer';
-// import UploaderContainer from '../containers/UploaderContainer';
 
-// <MapContainer />
-// <UploaderContainer />
+import Main from '../components/Main';
+import NotFound from '../components/NotFound';
+import '../styles/components/App.scss';
 
-function App () {
+function App() {
 	return (
 		<div className="app">
 			<LandmarkSelectorContainer imageId='parliament' />
