@@ -16,14 +16,15 @@ class LandmarkSelector extends React.Component {
 	render() {
 		const imageUrl = `https://s3.us-east-2.amazonaws.com/traveluploader/${this.props.imageId}`;
 
-		console.log('IMAGE LATITUDE:', this.props.metadata.latitude);
 		let landmarks = [];
 		let latitude = this.props.metadata.latitude;
 		let longitude = this.props.metadata.longitude;
+		// let name = this.props.metadata.name;
 
 		let mapComponent;
 
 		if (latitude && longitude) {
+			// <MapContainer points={[ latitude, longitude, name ]} zoom={15} />
 			mapComponent = <MapContainer latitude={latitude} longitude={longitude} zoom={17} />;
 		} else {
 			mapComponent = 'No map data available';
