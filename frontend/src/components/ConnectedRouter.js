@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 class ConnectedRouter extends React.Component {
 
 	componentWillReceiveProps(NextProps) {
@@ -13,4 +13,9 @@ class ConnectedRouter extends React.Component {
    
 }
 
+ConnectedRouter.propTypes = {
+	nextLocation: PropTypes.string,
+	history: PropTypes.object,
+	'history.push': PropTypes.func,
+};
 export default ConnectedRouter;

@@ -1,6 +1,7 @@
+/backend/static/dist
 /coverage
 /node_modules
-/backend/static/dist
+/scratch
 *~
 .DS_Store
 .envrc

@@ -1,12 +1,16 @@
 'use strict';
-const authRouter = require('./auth');
-
-const apiRouter = require('express').Router();
-const userRouter = require('./user');
 const fetch = require('node-fetch');
 
-apiRouter.use('/auth',authRouter);
-apiRouter.use('/user',userRouter);
+const api = require('express').Router();
+const authRouter = require('./auth');
+const userRouter = require('./user');
 
+const db = require('../controllers/db');
+const getSignatureS3 = require('../controllers/s3');
 
-module.exports = apiRouter;
+api.use('/auth',authRouter);
+api.use('/user',userRouter);
+
+api.get('/sign-s3', getSignatureS3);
+
+module.exports = api;
