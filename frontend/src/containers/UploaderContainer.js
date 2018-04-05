@@ -11,13 +11,11 @@ const mapStateToProps = state => ({
 	uploaderImagesUrl: getUploaderImagesUrl(state),
 });
 
-const mapDispatchToProps = dispatch =>({
+const mapDispatchToProps = dispatch => ({
 	uploadImages,
 	addImages: images => dispatch(addImages(images)),
 	turnImagesIntoURLs: (images,length) => dispatch(turnImagesIntoURLs(images,length)),
 	deleteUploadImage: index => dispatch(deleteUploadImage(index)),
 });
 
-
-export default connect (mapStateToProps, mapDispatchToProps)(Uploader);
-
+export default connect(mapStateToProps, mapDispatchToProps)(Uploader);
