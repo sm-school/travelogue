@@ -195,7 +195,7 @@ export const turnImagesIntoURLs = (images, length) => {
 				console.log(theFile);
 				// console.log(index);
 				return function(e) {
-					dispatch(addUploaderImagesUrl(e.target.result,index));
+					dispatch(addUploaderImagesUrl(e.target.result, index));
 				};
 			} )(image, index);
 

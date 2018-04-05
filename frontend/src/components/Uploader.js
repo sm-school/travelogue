@@ -24,7 +24,7 @@ function Uploader(props) {
 		event.preventDefault();
 		let files = Array.from(event.dataTransfer.files);
 		files = files.filter(file => file.type.match('image.*'));
-		props.turnImagesIntoURLs(files,props.uploaderImages.length);
+		props.turnImagesIntoURLs(files, props.uploaderImages.length);
 		props.addImages(files);
 	};
 

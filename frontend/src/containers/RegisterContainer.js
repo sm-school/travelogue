@@ -10,7 +10,7 @@ const getMap = (state) => {
 const mapStateToProps = null;
 
 const mapDispatchToProps = dispatch => ( {
-	registerUser: (username,password)=> dispatch(registerUser(username,password)),
+	registerUser: (username, password)=> dispatch(registerUser(username, password)),
 } );
 
 export default connect(
