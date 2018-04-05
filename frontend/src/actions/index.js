@@ -235,11 +235,11 @@ export const registerUser = (username, password) =>{
 			.then( response => {
 				console.log(response);
 				if (response.status === 401) {
-					alert('invalid user name or password');
+					alert('Invalid user name or password');
 				} else if (response.status === 404) {
-					alert('bad request');
+					alert('Bad request');
 				} else if (response.status === 400) {
-					alert('user exist');
+					alert('User exists');
 				} else {
 					return response.json();
 				}
