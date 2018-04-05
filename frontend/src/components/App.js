@@ -16,7 +16,7 @@ class App extends React.Component {
 
 	componentDidMount() {
 		if (Object.keys(this.props.user).length == 0) {
-			this.props.fetchUsername();
+			this.props.fetchUser();
 		}
 	}
 	render() {
@@ -46,7 +46,7 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-	fetchUsername : PropTypes.func,
+	fetchUser : PropTypes.func,
 	user: PropTypes.object,
 };
 export default App;

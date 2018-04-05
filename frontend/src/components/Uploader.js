@@ -1,6 +1,7 @@
 import React from 'react';
-import '../styles/components/Uploader.scss';
 import PropTypes from 'prop-types';
+
+import '../styles/components/Uploader.scss';
 
 function Uploader(props) {
 
@@ -23,29 +24,27 @@ function Uploader(props) {
 		event.preventDefault();
 		let files = Array.from(event.dataTransfer.files);
 		files = files.filter(file => file.type.match('image.*'));
-		console.log('sss',props.uploaderImages.length);
 		props.turnImagesIntoURLs(files,props.uploaderImages.length);
 		props.addImages(files);
 	};
 
 	const renderImages = () => {
-
 		// Read in the image file as a data URL.
-		return props.uploaderImagesUrl ? props.uploaderImagesUrl.map((url,i)=>{
-			return <li onClick={props.deleteUploadImage(i)}className="uploader-li"><img className="uploader-image" src={url}  /></li>;
-		}) : null;
+		return props.uploaderImagesUrl ? props.uploaderImagesUrl.map( (url, i) => {
+			return <li key={i} onClick={props.deleteUploadImage(i)}><img src={url} /></li>;
+		} ) : null;
 
 	};
 
 	return (
-		<div>
+		<div className="uploader">
 			{/* <form onSubmit={onSubmitHandler} >
 				<input name="images" multiple type="file"/>
 				<button>Submit</button>
 			</form> */}
-			<div onDragOver={dragoverHandler} onDrop={dropHandler}>Drop files here</div>
-			<ul>{renderImages()}</ul>
+			<div className="drag-area" onDragOver={dragoverHandler} onDrop={dropHandler}>Drop your<br />photos here</div>
 			<button onClick={clickHandler}>Upload</button>
+			<ul className="upload-queue">{renderImages()}</ul>
 		</div>
 	);
 }
@@ -60,5 +59,3 @@ Uploader.propTypes = {
 };
 
 export default Uploader;
-
-

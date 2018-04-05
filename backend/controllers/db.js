@@ -88,7 +88,8 @@ function saveLandmarkSuggestions (imageData) {
 // }
 
 function storeImage ( { user, imageData } ) {
-	const s3_id = imageData.name;
+	console.log(user, imageData);
+	const s3_id = imageData.fileName;
 	const accountId = user.id;
 
 	const sql = `
@@ -97,7 +98,7 @@ function storeImage ( { user, imageData } ) {
 	RETURNING s3_id;`;
 
 	// undefined values standing in for lat and long currently
-	db.one(sql, [ s3_id, undefined, undefined, accountId ])
+	return db.one(sql, [ s3_id, undefined, undefined, accountId ])
 		.then( uploaded_s3_id => {
 			return uploaded_s3_id;
 		})

@@ -6,7 +6,7 @@ import React from 'react';
 import MapContainer from '../containers/MapContainer';
 import '../styles/components/Image.scss';
 
-class LandmarkSelector extends React.Component {
+class Image extends React.Component {
 
 	componentDidMount() {
 		this.props.imageLandmarks(this.props.imageId);
@@ -62,7 +62,7 @@ class LandmarkSelector extends React.Component {
 	}
 }
 
-LandmarkSelector.propTypes = {
+Image.propTypes = {
 	imageId: PropTypes.string,
 	imageLandmarks: PropTypes.func,
 	imageMetadata: PropTypes.func,
@@ -70,4 +70,4 @@ LandmarkSelector.propTypes = {
 	metadata: PropTypes.object,
 };
 
-export default LandmarkSelector;
+export default Image;
