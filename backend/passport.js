@@ -2,14 +2,16 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy
-const {getUserByUsername,getUserById} = require('./controllers/user');
+const {getUserByEmail,getUserById} = require('./controllers/user');
 
 // configure passport to use local strategy
 // that is use locally stored credentials
 passport.use(
-	new LocalStrategy(function(username, password, done) {
-        console.log(username,password)
-		return getUserByUsername(username)
+	new LocalStrategy({
+		usernameField: 'email'
+	  }, function(email, password, done) {
+		console.log(email,password)
+		return getUserByEmail(email)
 			.then(function(user) {
                 console.log('got user');
                 console.log ('sss',user);
@@ -32,13 +34,30 @@ passport.use(
 		callbackURL:"/api/auth/google/callback"
 	},
 	function(accessToken,refreshToken,profile,cb){
-		console.log(profile)
+		let usermail = profile.emails[0].value;
+		
+		getUserByEmail(user.email).then(function(user){
+			console.log('you are in');
+					return done(null, user);
+		}).catch(function(err) {
+			saveUser(user);
+			
+		});
+
+
+			
+		
 		// User.findOrCreate({googleId: profile.id}),function(err,user){
 		// 	return cb(err,user);
 		// }
 	}
 )
 )
+
+const userdetailsOauth = (user) => {
+	
+}
+
 
 	// serialise user into session
 passport.serializeUser(function(user, done) {

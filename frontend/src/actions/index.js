@@ -6,7 +6,7 @@ import {
 	ADD_IMAGE_URL,
 	DELETE_IMAGE,
 	DELETE_IMAGE_URL,
-	SAVE_USERNAME,
+	SAVE_EMAIL,
 	UPDATE_NEXT_LOCATION,
 } from '../constants/action-types';
 import nextLocation from '../reducers/nextLocation';
@@ -37,7 +37,7 @@ export const uploadImages = files => {
 
 	fileArray.forEach( file => {
 		let date = new Date();
-		const newName = `username_${date.getTime()}_${Math.floor(Math.random() * 100)}_${file.name}`;
+		const newName = `email_${date.getTime()}_${Math.floor(Math.random() * 100)}_${file.name}`;
 		const newFile = new File([ file ], newName, { type: file.type });
 
 		uploadToS3(newFile).then( url => {} );
@@ -137,11 +137,11 @@ export const deleteUploadImage = index =>{
 	};
 };
 
-export const registerUser = (username,password) =>{
+export const registerUser = (email,password) =>{
 	return dispatch => {
 		fetch('/api/user/register', {
 			method: 'POST',
-			body: JSON.stringify({ username, password }),
+			body: JSON.stringify({ email, password }),
 			credentials: 'same-origin',
 			headers: {
 		  'content-type': 'application/json',
@@ -160,25 +160,25 @@ export const registerUser = (username,password) =>{
 				}
 			}).then(data=>{
 				if (!data) return;
-				dispatch(saveUsername(data.username));
+				dispatch(saveEmail(data.email));
 				dispatch(updateNextLocation('/dashboard'));
 			});
 	};
 };
 
 
-const saveUsername = username=>{
+const saveEmail = email=>{
 	return {
-		type: SAVE_USERNAME,
-		username,
+		type: SAVE_EMAIL,
+		email,
 	};
 };
 
-export const loginUser = (username,password) =>{
+export const loginUser = (email,password) =>{
 	return dispatch =>{
 		fetch('/api/user/login', {
 			method: 'POST',
-			body: JSON.stringify({ username, password }),
+			body: JSON.stringify({ email, password }),
 			credentials: 'same-origin',
 			headers: {
 			  'content-type': 'application/json',
@@ -191,7 +191,7 @@ export const loginUser = (username,password) =>{
 			}
 		  }).then(data=>{
 			  if (!data) return;
-			dispatch(saveUsername(data.username));
+			dispatch(saveEmail(data.email));
 			//Change this with regexp
 			const params = window.location.search.split('?ref=')[1];
 			const nextUrl = params || '/dashboard';
@@ -209,14 +209,14 @@ export const updateNextLocation = nextLocation =>{
 	};
 };
 
-export const fetchUsername = ()=>{
+export const fetchEmail = ()=>{
 	return dispatch =>{
-		fetch('/api/user/username', {
+		fetch('/api/user/email', {
 			credentials: 'same-origin',
 		}).then(response=>response.json())
 			.then(data=>{
 			  if (!data) return;
-				dispatch(saveUsername(data.username));
+				dispatch(saveEmail(data.email));
 		  });
 	};
 };

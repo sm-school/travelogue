@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const config = require('./backend/configs/backend');
-const router = require('./backend/routers/root');
+const rootRouter = require('./backend/routers/root');
 const logger = require('morgan');
 
 const passport = require('./backend/passport');
@@ -25,7 +25,7 @@ express()
 	}))
 	.use(passport.initialize())
 	.use(passport.session())
-	.use('/', router)
+	.use('/', rootRouter)
 	.listen(config.PORT, () => {
 		console.log(`Starting Travelogue on port ${config.PORT}.`);
 	});

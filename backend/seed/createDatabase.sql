@@ -35,10 +35,10 @@ INSERT INTO landmark VALUES(DEFAULT, 2, 'Pisa', 43.759192, 10.371093, 'Pisa', 'P
 
 CREATE TABLE account (
     id serial PRIMARY KEY,
-    username varchar (25) UNIQUE NOT NULL ,
+   	email varchar UNIQUE NOT NULL,
     pass varchar NOT NULL
 );
 
 INSERT INTO account
-(username, pass)
-VALUES('username','$2a$10$3ERluFbyZWJgOdpvbjUB3.2owUqmy.d1wJ/B4O9fuHeOr/eg0ur4a');
+(email, pass)
+VALUES('test@test.com','$2a$10$3ERluFbyZWJgOdpvbjUB3.2owUqmy.d1wJ/B4O9fuHeOr/eg0ur4a');

@@ -3,13 +3,13 @@ import map from './map';
 
 import uploaderImages from './uploadImages';
 import uploaderImagesUrl from './uploaderImagesUrl';
-import username from './username';
+import email from './email';
 import nextLocation from './nextLocation';
 
 export default combineReducers({
 	map,
 	uploaderImages,
 	uploaderImagesUrl,
-	username,
+	email,
 	nextLocation,
 });

@@ -10,7 +10,7 @@ const getMap = (state) => {
 const mapStateToProps = null;
 
 const mapDispatchToProps = dispatch => ( {
-	loginUser: (username,password)=>dispatch(loginUser(username,password)),
+	loginUser: (email,password)=>dispatch(loginUser(email,password)),
 } );
 
 export default connect(

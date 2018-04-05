@@ -7,5 +7,5 @@ export const ADD_IMAGE_URL = 'ADD_IMAGE_URL';
 export const DELETE_IMAGE = 'DELETE_IMAGE';
 export const DELETE_IMAGE_URL = 'DELETE_IMAGE_URL';
 
-export const SAVE_USERNAME = 'SAVE_USERNAME';
+export const SAVE_EMAIL = 'SAVE_EMAIL';
 export const UPDATE_NEXT_LOCATION = 'UPDATE_NEXT_LOCATION';

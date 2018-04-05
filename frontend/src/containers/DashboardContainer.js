@@ -1,15 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Dashboard from '../components/Dashboard';
-import { fetchUsername } from '../actions/index';
-const getUsername = state=>{
-	return state.username;
+import { fetchEmail } from '../actions/index';
+const getEmail = state=>{
+	return state.email;
 };
 const mapStateToProps = state =>({
-	username: getUsername(state),
+	email: getEmail(state),
 });
 
 const mapDispatchToProps = dispatch =>({
-	fetchUsername: ()=> dispatch(fetchUsername()),
+	fetchEmail: ()=> dispatch(fetchEmail()),
 });
 export default connect(mapStateToProps,mapDispatchToProps)(Dashboard);

@@ -4,22 +4,22 @@ import UploaderContainer from '../containers/UploaderContainer';
 class Dashboard extends React.Component {
 
 	componentDidMount() {
-		if (this.props.username == '') {
-			this.props.fetchUsername();
+		if (this.props.email == '') {
+			this.props.fetchEmail();
 		}
 	}
 	render() {
 		console.log('rendered');
 		return (<div>
-			<h1>Welcome {this.props.username}</h1>
+			<h1>Welcome {this.props.email}</h1>
 			<UploaderContainer/>
 		</div>);
 	}
 };
 
 Dashboard.propTypes = {
-	username: PropTypes.string,
-	fetchUsername: PropTypes.func,
+	email: PropTypes.string,
+	fetchEmail: PropTypes.func,
 };
 
 export default Dashboard;

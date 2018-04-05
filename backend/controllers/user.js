@@ -20,13 +20,21 @@ function registerUser(req, res,next) {
 function saveUser(user) {
     console.log(user);
 	return hashing(user.password).then(function(hash) {
-		console.log(hash)
-		return db.none('INSERT INTO account (username, pass) VALUES ($1,$2)', [user.username, hash]);
+		if(user.gmail_sign_in != undefined) {
+			user.gmail_sign_in = false
+		 } else {
+			user.gmail_sign_in = true;
+			user.password = 'N/a';
+		};
+		debugger;
+		console.log(user)
+
+		return db.none('INSERT INTO account (email, pass, gmail_sign_in) VALUES ($1,$2,$3)', [user.email, hash, user.gmail_sign_in]);
 	});
 }
 
-function getUserByUsername(username) {
-	return db.one('SELECT * FROM account WHERE username = $1', [username]);
+function getUserByEmail(email) {
+	return db.one('SELECT * FROM account WHERE email = $1', [email]);
 }
 
 function getUserById(id) {
@@ -35,7 +43,7 @@ function getUserById(id) {
 
 
 const sendUserData = (req,res)=>{
-	res.status(200).json({username:req.user.username});
+	res.status(200).json({email:req.user.email});
 }
 
-module.exports={getUserById,getUserByUsername,registerUser,sendUserData}
+module.exports={getUserById,getUserByEmail,registerUser,sendUserData}

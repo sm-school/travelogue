@@ -5,6 +5,15 @@ const userRouter = require('express').Router();
 const passport = require('../passport');
 
 userRouter.post('/register',registerUser,passport.authenticate('local', { session: true }), sendUserData);
-userRouter.post('/login',passport.authenticate('local', { session: true }),sendUserData)
-userRouter.get('/username',isLoggedIn,sendUserData)
+userRouter.post('/login', passport.authenticate('local', { session: true }),sendUserData);
+
+
+userRouter.get('/email',isLoggedIn,sendUserData)
+
+
+userRouter.get('/test', function(req,res) {
+    debugger;
+})
+
+
 module.exports = userRouter;
