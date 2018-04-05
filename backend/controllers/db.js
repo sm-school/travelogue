@@ -63,28 +63,50 @@ function saveLandmarkSuggestions (imageData) {
 	return Promise.all(landmarkInserts);
 }
 
-function saveLandmark (imageId, landmark) {
-	const sql = `
-	INSERT INTO landmark_suggestion
-	VALUES( DEFAULT, $1, $2, $3, $4, $5, FALSE )
-	RETURNING id;`;
+// Not used yet
 
-	db.one(sql, [
-		imageId,
-		landmark.name,
-		landmark.latitude,
-		landmark.longitude,
-		landmark.page,
-		landmark.extract,
-	])
-		.then( id => {
-			return id;
+// function saveLandmark (imageId, landmark) {
+// 	const sql = `
+// 	INSERT INTO landmark_suggestion
+// 	VALUES( DEFAULT, $1, $2, $3, $4, $5, FALSE )
+// 	RETURNING id;`;
+
+// 	db.one(sql, [
+// 		imageId,
+// 		landmark.name,
+// 		landmark.latitude,
+// 		landmark.longitude,
+// 		landmark.page,
+// 		landmark.extract,
+// 	])
+// 		.then( id => {
+// 			return id;
+// 		})
+// 		.catch( error => {
+// 			console.log('Database error:', error.message);
+// 		});
+// }
+
+function storeImage ( { user, imageData } ) {
+	const s3_id = imageData.name;
+	const accountId = user.id;
+
+	const sql = `
+	INSERT INTO image
+	VALUES( DEFAULT, $1, $2, $3, $4 )
+	RETURNING s3_id;`;
+
+	// undefined values standing in for lat and long currently
+	db.one(sql, [ s3_id, undefined, undefined, accountId ])
+		.then( uploaded_s3_id => {
+			return uploaded_s3_id;
 		})
 		.catch( error => {
-			console.log('Database error:', error.message);
+			console.log('Database error while uploading image', s3_id, ':', error.message);
 		});
 }
 
 module.exports.db = db;
 module.exports.imageLandmarks = imageLandmarks;
 module.exports.imageMetadata = imageMetadata;
+module.exports.storeImage = storeImage;
