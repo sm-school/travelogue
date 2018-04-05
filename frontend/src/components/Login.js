@@ -18,8 +18,7 @@ const Login = (props) => {
 				<input name="userPassword" type='password' />
 				<button type="submit">Login</button>
 			</form>
-			<Link to="/register"> <button>Register</button></Link>
-			<a href='api/auth/google'>Login with google</a>
+			<a href='api/auth/google'><button>Login with google</button></a>
 		</div>
 	);
 };

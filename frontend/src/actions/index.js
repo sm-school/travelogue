@@ -12,6 +12,7 @@ import {
 	DELETE_IMAGE_URL,
 	SAVE_USERNAME,
 	UPDATE_NEXT_LOCATION,
+	UPDATE_USER,
 } from '../constants/action-types';
 
 import nextLocation from '../reducers/nextLocation';
@@ -98,24 +99,24 @@ export const receiveZoom = zoom => {
 export const uploadImages = files => {
 	const fileArray = Array.from(files);
 
-	fileArray.forEach( file => {
+	fileArray.forEach(file => {
 		let date = new Date();
 		const newName = `username_${date.getTime()}_${Math.floor(Math.random() * 100)}_${file.name}`;
 		const newFile = new File([ file ], newName, { type: file.type });
 
-		uploadToS3(newFile).then( url => {} );
+		uploadToS3(newFile).then(url => { });
 	});
 };
 
 const uploadToS3 = file => {
 	return getSignedRequest(file)
-		.then( json => {
+		.then(json => {
 			uploadFile(file, json.signedRequest, json.url);
 		})
-		.then( url => {
+		.then(url => {
 			return url;
 		})
-		.catch( err => {
+		.catch(err => {
 			console.error(err);
 			return null;
 		});
@@ -124,7 +125,7 @@ const uploadToS3 = file => {
 const getSignedRequest = file => {
 	return fetch(
 		`/api/sign-s3?fileName=${file.name}&fileType=${file.type}`
-	).then( response => {
+	).then(response => {
 		if (!response.ok) {
 			throw new Error(`${response.status}: ${response.statusText}`);
 		}
@@ -133,14 +134,14 @@ const getSignedRequest = file => {
 	});
 };
 
-const uploadFile = (file, signedRequest, url) =>{
+const uploadFile = (file, signedRequest, url) => {
 	const options = {
 		method: 'PUT',
 		body: file,
 	};
 
 	return fetch(signedRequest, options)
-		.then( response => {
+		.then(response => {
 			if (!response.ok) {
 				throw new Error(`${response.status}: ${response.statusText}`);
 			}
@@ -150,70 +151,66 @@ const uploadFile = (file, signedRequest, url) =>{
 };
 
 
-export const addImages = (images) =>({
+export const addImages = (images) => ({
 	type: ADD_IMAGES,
 	images,
 });
 
-const addUploaderImagesUrl = (url,index) =>({
+const addUploaderImagesUrl = (url, index) => ({
 	type: ADD_IMAGE_URL,
 	url,
 	index,
 });
 
 
-export const turnImagesIntoURLs = (images,length) =>{
+export const turnImagesIntoURLs = (images, length) => {
 	return dispatch => {
 		let index = length;
-		console.log(index);
-		images.forEach(image =>{
+		images.forEach(image => {
 
 			var reader = new FileReader();
 			// Closure to capture the file information.
-			reader.onload = (function(theFile,index) {
-				console.log(theFile);
-				console.log(index);
-				return function(e) {
-					dispatch(addUploaderImagesUrl(e.target.result,index));
+			reader.onload = (function (theFile, index) {
+				return function (e) {
+					dispatch(addUploaderImagesUrl(e.target.result, index));
 				};
-			})(image,index);
+			})(image, index);
 			reader.readAsDataURL(image);
 			index += 1;
 		});
 	};
 };
 
-const deleteImages = (index) =>({
+const deleteImages = (index) => ({
 	type: DELETE_IMAGE,
 	index,
 });
 
-const deleteUploaderImagesUrl = (index) =>({
+const deleteUploaderImagesUrl = (index) => ({
 	type: DELETE_IMAGE_URL,
 	index,
 });
 
-export const deleteUploadImage = index =>{
+export const deleteUploadImage = index => {
 	return dispatch => {
 		dispatch(deleteImages(index));
 		dispatch(deleteUploaderImagesUrl(index));
 	};
 };
 
-export const registerUser = (username,password) =>{
+export const registerUser = (username, password) => {
 	return dispatch => {
 		fetch('/api/user/register', {
 			method: 'POST',
 			body: JSON.stringify({ username, password }),
 			credentials: 'same-origin',
 			headers: {
-		  'content-type': 'application/json',
+				'content-type': 'application/json',
 			},
 		})
-			.then(function(response) {
-				console.log(response);
+			.then(function (response) {
 				if (response.status === 401) {
-		  alert('invalid user name or password');
+					alert('invalid user name or password');
 				} else if (response.status === 404) {
 					alert('bad request');
 				} else if (response.status === 400) {
@@ -221,65 +218,66 @@ export const registerUser = (username,password) =>{
 				} else {
 					return response.json();
 				}
-			}).then(data=>{
+			}).then(data => {
 				if (!data) return;
-				dispatch(saveUsername(data.username));
+				dispatch(updateUser(data.user));
 				dispatch(updateNextLocation('/dashboard'));
 			});
 	};
 };
 
 
-const saveUsername = username=>{
-	return {
-		type: SAVE_USERNAME,
-		username,
-	};
-};
-
-export const loginUser = (username,password) =>{
-	return dispatch =>{
+export const loginUser = (username, password) => {
+	return dispatch => {
 		fetch('/api/user/login', {
 			method: 'POST',
 			body: JSON.stringify({ username, password }),
 			credentials: 'same-origin',
 			headers: {
-			  'content-type': 'application/json',
+				'content-type': 'application/json',
 			},
-		}).then(function(response) {
+		}).then(function (response) {
 			if (response.status === 401) {
-			  alert('invalid user name or password');
+				alert('invalid user name or password');
 			} else {
 				return response.json();
 			}
-		  }).then(data=>{
-			  if (!data) return;
-			dispatch(saveUsername(data.username));
+		}).then(data => {
+			if (!data) return;
+			dispatch(updateUser(data.user));
 			//Change this with regexp
 			const params = window.location.search.split('?ref=')[1];
 			const nextUrl = params || '/dashboard';
 
 			dispatch(updateNextLocation(nextUrl));
-		  });
+		});
 	};
 };
 
 
-export const updateNextLocation = nextLocation =>{
+export const updateNextLocation = nextLocation => {
 	return {
 		type: UPDATE_NEXT_LOCATION,
 		nextLocation,
 	};
 };
 
-export const fetchUsername = ()=>{
-	return dispatch =>{
-		fetch('/api/user/username', {
+const updateUser = (user) => ({
+	type: UPDATE_USER,
+	user,
+});
+
+export const fetchUser = () => {
+	return dispatch => {
+		fetch('/api/user/check', {
 			credentials: 'same-origin',
-		}).then(response=>response.json())
-			.then(data=>{
-			  if (!data) return;
-				dispatch(saveUsername(data.username));
-		  });
+		}).then(response => {
+			if (response.status !== 404) {
+				return response.json();
+			}
+		}).then(data => {
+			if (!data) return;
+			dispatch(updateUser(data.user));
+		});
 	};
 };

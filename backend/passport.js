@@ -11,10 +11,7 @@ passport.use(
         console.log(username,password)
 		return getUserByUsername(username)
 			.then(function(user) {
-                console.log('got user');
-                console.log ('sss',user);
 				if(!bcrypt.compareSync(password,user.pass)) return done(null, false);
-					console.log('you are in');
 					return done(null, user);
 				})
 			.catch(function(err) {

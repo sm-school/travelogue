@@ -11,5 +11,6 @@ export const ADD_IMAGE_URL = 'ADD_IMAGE_URL';
 export const DELETE_IMAGE = 'DELETE_IMAGE';
 export const DELETE_IMAGE_URL = 'DELETE_IMAGE_URL';
 
-export const SAVE_USERNAME = 'SAVE_USERNAME';
 export const UPDATE_NEXT_LOCATION = 'UPDATE_NEXT_LOCATION';
+
+export const UPDATE_USER = 'UPDATE_USER';
