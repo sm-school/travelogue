@@ -2,12 +2,12 @@
 
 const rootRouter = require('express').Router();
 const apiRouter = require('./api');
-const isLoggedIn = require('../helpers/isLoggedIn')
+const isLoggedInWithRedirect = require('../helpers/isLoggedInWithRedirect')
 const {sendIndexHtml}= require('../controllers/react')
 rootRouter.use('/api', apiRouter);
 
 rootRouter.get(['/','/login','/register'], sendIndexHtml);
 
-rootRouter.get('/*',isLoggedIn,sendIndexHtml );
+rootRouter.get('/*',isLoggedInWithRedirect,sendIndexHtml );
 
 module.exports = rootRouter;
