@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 
-const db = require('../controllers/db').db;
+const db = require('../controllers/db');
 
 const salt = 10;
 

@@ -25,7 +25,7 @@ export const acceptLandmark = landmarkId => {
 
 export const imageLandmarks = imageId => {
 	return (dispatch) => {
-		return fetch(`/api/landmarks/${imageId}`)
+		return fetch(`/api/image/landmarks/${imageId}`)
 			.then(response => {
 				if (!response.ok) {
 					throw new Error(`${response.status}: ${response.statusText}`);
@@ -39,7 +39,7 @@ export const imageLandmarks = imageId => {
 
 export const imageMetadata = imageId => {
 	return (dispatch) => {
-		return fetch(`/api/metadata/${imageId}`)
+		return fetch(`/api/image/metadata/${imageId}`)
 			.then(response => {
 				if (!response.ok) {
 					throw new Error(`${response.status}: ${response.statusText}`);
@@ -156,7 +156,7 @@ const getSignedRequest = file => {
 };
 
 const storeImageData = (imageData) => {
-	return fetch('/api/images', {
+	return fetch('/api/image/store', {
 		method: 'POST',
 		body: JSON.stringify(imageData),
 		credentials: 'same-origin',
