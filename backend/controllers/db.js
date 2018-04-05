@@ -85,5 +85,6 @@ function saveLandmark (imageId, landmark) {
 		});
 }
 
+module.exports.db = db;
 module.exports.imageLandmarks = imageLandmarks;
 module.exports.imageMetadata = imageMetadata;
