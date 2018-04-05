@@ -2,7 +2,7 @@ import { ADD_IMAGE_URL } from '../constants/action-types';
 
 const addUrlToIndex = (state,url,id) =>{
 	const newState = [ ...state ];
-	console.log(id);
+	// console.log(id);
 	newState[id] = url;
 	return newState;
 };

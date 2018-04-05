@@ -86,7 +86,7 @@ function fetchBody (imageId) {
 				],
 				image: {
 					source: {
-						imageUri: `${S3_BUCKET}${imageId}.jpg`,
+						imageUri: `${S3_BUCKET}${imageId}`,
 					},
 				},
 			},

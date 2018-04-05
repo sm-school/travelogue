@@ -5,45 +5,28 @@ import '../styles/components/MapFrame.scss';
 
 import { MAPBOX_ACCESS_TOKEN } from '../constants/mapbox';
 
-function MapFrame ({ latitude, longitude, zoom, updateLatitude, updateLongitude, updateZoom }) {
-	const position = [ latitude, longitude ];
-	// https://{s}.tile.openstreetmap.org
+// need to rename to mapCenterLatitude, mapCenterLongitude
+function MapFrame ({ latitude, longitude, zoom, points }) {
 	const mapboxApi = `https://b.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=${MAPBOX_ACCESS_TOKEN}`;
+
+	const markers = points.map( (point, i) => {
+		return (
+			<Marker key={i} position={[ point[0], point[1] ]}>
+				<Popup>
+					<span>{point[2]}</span>
+				</Popup>
+			</Marker>
+		);
+	});
 
 	return (
 		<div>
-			<div className="map-inputs">
-				<label htmlFor="latitude">Latitude:</label>
-				<input
-					type="number"
-					name="latitude"
-					id="latitude"
-					placeholder={ latitude }
-					onChange={ event => updateLatitude(event.target.value) }
-					value={ latitude }
-				/>
-				<label htmlFor="latitude">Longitude:</label>
-				<input
-					type="number"
-					name="longitude"
-					id="longitude"
-					placeholder={ longitude }
-					onChange={ event => updateLongitude(event.target.value) }
-					value={ longitude }
-				/>
-			</div>
-			<Map center={ position } zoom={ zoom } id="map">
+			<Map center={[ latitude, longitude ]} zoom={zoom} id="map">
 				<TileLayer
 					attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
 					url={mapboxApi}
 				/>
-				<Marker position={ position }>
-					<Popup>
-						<span>
-							A pretty CSS3 popup. <br /> Easily customizable.
-						</span>
-					</Popup>
-				</Marker>
+				{markers}
 			</Map>
 		</div>
 	);
@@ -52,10 +35,11 @@ function MapFrame ({ latitude, longitude, zoom, updateLatitude, updateLongitude,
 MapFrame.propTypes = {
 	latitude: PropTypes.number,
 	longitude: PropTypes.number,
-	updateLatitude: PropTypes.func,
-	updateLongitude: PropTypes.func,
-	updateZoom: PropTypes.func,
 	zoom: PropTypes.number,
+	points: PropTypes.array,
+	setLatitude: PropTypes.func,
+	setLongitude: PropTypes.func,
+	setZoom: PropTypes.func,
 };
 
 export default MapFrame;

@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const salt = 10;
-const db = require('../controllers/db');
+const db = require('../controllers/db').db;
 function hashing(password) {
 	return bcrypt.hash(password, salt);
 }

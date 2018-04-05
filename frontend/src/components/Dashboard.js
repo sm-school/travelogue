@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import UploaderContainer from '../containers/UploaderContainer';
-const Dashboard = props=> {
 
-	return (<div>
-		<h1>Welcome {props.user.username}</h1>
-		<UploaderContainer/>
-	</div>);
+const Dashboard = props => {
+	return (
+		<div>
+			<h1>Welcome {props.user.username}</h1>
+			<UploaderContainer />
+		</div>
+	);
 };
-
 
 Dashboard.propTypes = {
 	user: PropTypes.object,
