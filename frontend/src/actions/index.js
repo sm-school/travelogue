@@ -10,7 +10,7 @@ import {
 	ADD_IMAGE_URL,
 	DELETE_IMAGE,
 	DELETE_IMAGE_URL,
-	SAVE_USERNAME,
+	UPDATE_USER,
 	UPDATE_NEXT_LOCATION,
 } from '../constants/action-types';
 
@@ -187,7 +187,6 @@ const addUploaderImagesUrl = (url, index) =>({
 export const turnImagesIntoURLs = (images, length) =>{
 	return dispatch => {
 		let index = length;
-		console.log(index);
 		images.forEach(image =>{
 
 			var reader = new FileReader();
@@ -198,19 +197,19 @@ export const turnImagesIntoURLs = (images, length) =>{
 				return function(e) {
 					dispatch(addUploaderImagesUrl(e.target.result,index));
 				};
-			})(image,index);
+			})(image, index);
 			reader.readAsDataURL(image);
 			index += 1;
 		});
 	};
 };
 
-const deleteImages = (index) =>({
+const deleteImages = (index) => ({
 	type: DELETE_IMAGE,
 	index,
 });
 
-const deleteUploaderImagesUrl = (index) =>({
+const deleteUploaderImagesUrl = (index) => ({
 	type: DELETE_IMAGE_URL,
 	index,
 });
@@ -222,7 +221,7 @@ export const deleteUploadImage = index =>{
 	};
 };
 
-export const registerUser = (username,password) =>{
+export const registerUser = (username, password) =>{
 	return dispatch => {
 		fetch('/api/user/register', {
 			method: 'POST',
@@ -243,19 +242,11 @@ export const registerUser = (username,password) =>{
 				} else {
 					return response.json();
 				}
-			}).then(data=>{
+			}).then(data => {
 				if (!data) return;
-				dispatch(saveUsername(data.user.username));
+				dispatch(updateUser(data.user));
 				dispatch(updateNextLocation('/dashboard'));
 			});
-	};
-};
-
-
-const saveUsername = username=>{
-	return {
-		type: SAVE_USERNAME,
-		username,
 	};
 };
 
@@ -276,8 +267,7 @@ export const loginUser = (username,password) =>{
 			}
 		  }).then(data=>{
 			  if (!data) return;
-			console.log('login data:', data);
-			dispatch(saveUsername(data.user.username));
+			dispatch(updateUser(data.user));
 			//Change this with regexp
 			const params = window.location.search.split('?ref=')[1];
 			const nextUrl = params || '/dashboard';
@@ -288,21 +278,29 @@ export const loginUser = (username,password) =>{
 };
 
 
-export const updateNextLocation = nextLocation =>{
+export const updateNextLocation = nextLocation => {
 	return {
 		type: UPDATE_NEXT_LOCATION,
 		nextLocation,
 	};
 };
 
+const updateUser = (user) => ({
+	type: UPDATE_USER,
+	user,
+});
+
 export const fetchUser = ()=>{
 	return dispatch =>{
 		fetch('/api/user/check', {
 			credentials: 'same-origin',
-		}).then(response=>response.json())
-			.then(data=>{
+		}).then(response => {
+			if (response.status !== 404) {
+				return response.json();
+			}
+		}).then(data=>{
 			  if (!data) return;
-				dispatch(saveUsername(data.user.username));
-		  });
+			dispatch(updateUser(data.user));
+		});
 	};
 };
