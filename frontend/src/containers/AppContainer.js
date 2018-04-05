@@ -1,6 +1,6 @@
 import App from '../components/App';
 import { connect } from 'react-redux';
-import { fetchUser } from '../actions/index';
+import { fetchUsername } from '../actions/index';
 const getUser = state=> state.user;
 
 const mapStateToProps = state =>({
@@ -8,7 +8,7 @@ const mapStateToProps = state =>({
 });
 
 const mapDispatchToProps = dispatch => ({
-	fetchUser: ()=> dispatch(fetchUser()),
+	fetchUsername: ()=> dispatch(fetchUsername()),
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(App);
