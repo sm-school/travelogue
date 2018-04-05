@@ -128,7 +128,7 @@ const uploadToS3 = file => {
 		});
 };
 
-const uploadFile = (file, signedRequest, url) =>{
+const uploadFile = (file, signedRequest, url) => {
 	const options = {
 		method: 'PUT',
 		body: file,
@@ -173,43 +173,44 @@ const storeImageData = (imageData) => {
 		});
 };
 
-export const addImages = (images) =>({
+export const addImages = images => ({
 	type: ADD_IMAGES,
 	images,
 });
 
-const addUploaderImagesUrl = (url, index) =>({
+const addUploaderImagesUrl = (url, index) => ({
 	type: ADD_IMAGE_URL,
 	url,
 	index,
 });
 
-export const turnImagesIntoURLs = (images, length) =>{
+export const turnImagesIntoURLs = (images, length) => {
 	return dispatch => {
 		let index = length;
 		images.forEach(image =>{
 
 			var reader = new FileReader();
 			// Closure to capture the file information.
-			reader.onload = (function(theFile, index) {
+			reader.onload = ( (theFile, index) => {
 				console.log(theFile);
 				// console.log(index);
 				return function(e) {
 					dispatch(addUploaderImagesUrl(e.target.result,index));
 				};
-			})(image, index);
+			} )(image, index);
+
 			reader.readAsDataURL(image);
 			index += 1;
 		});
 	};
 };
 
-const deleteImages = (index) => ({
+const deleteImages = index => ({
 	type: DELETE_IMAGE,
 	index,
 });
 
-const deleteUploaderImagesUrl = (index) => ({
+const deleteUploaderImagesUrl = index => ({
 	type: DELETE_IMAGE_URL,
 	index,
 });
@@ -231,10 +232,10 @@ export const registerUser = (username, password) =>{
 		  'content-type': 'application/json',
 			},
 		})
-			.then(function(response) {
+			.then( response => {
 				console.log(response);
 				if (response.status === 401) {
-		  alert('invalid user name or password');
+					alert('invalid user name or password');
 				} else if (response.status === 404) {
 					alert('bad request');
 				} else if (response.status === 400) {
@@ -242,7 +243,7 @@ export const registerUser = (username, password) =>{
 				} else {
 					return response.json();
 				}
-			}).then(data => {
+			}).then( data => {
 				if (!data) return;
 				dispatch(updateUser(data.user));
 				dispatch(updateNextLocation('/dashboard'));
@@ -250,33 +251,34 @@ export const registerUser = (username, password) =>{
 	};
 };
 
-export const loginUser = (username,password) =>{
-	return dispatch =>{
+export const loginUser = (username, password) => {
+	return dispatch => {
 		fetch('/api/user/login', {
 			method: 'POST',
 			body: JSON.stringify({ username, password }),
 			credentials: 'same-origin',
 			headers: {
-			  'content-type': 'application/json',
+				'content-type': 'application/json',
 			},
-		}).then(function(response) {
+		}).then( response => {
 			if (response.status === 401) {
-			  alert('invalid user name or password');
+				alert('invalid user name or password');
 			} else {
 				return response.json();
 			}
-		  }).then(data=>{
-			  if (!data) return;
+		}).then( data => {
+			if (!data) return;
+
 			dispatch(updateUser(data.user));
-			//Change this with regexp
+
+			// To do: change this with regexp
 			const params = window.location.search.split('?ref=')[1];
 			const nextUrl = params || '/dashboard';
 
 			dispatch(updateNextLocation(nextUrl));
-		  });
+		});
 	};
 };
-
 
 export const updateNextLocation = nextLocation => {
 	return {
@@ -285,21 +287,22 @@ export const updateNextLocation = nextLocation => {
 	};
 };
 
-const updateUser = (user) => ({
+const updateUser = user => ({
 	type: UPDATE_USER,
 	user,
 });
 
-export const fetchUser = ()=>{
-	return dispatch =>{
+export const fetchUser = () => {
+	return dispatch => {
 		fetch('/api/user/check', {
 			credentials: 'same-origin',
-		}).then(response => {
+		}).then( response => {
 			if (response.status !== 404) {
 				return response.json();
 			}
-		}).then(data=>{
-			  if (!data) return;
+		}).then( data => {
+			if (!data) return;
+
 			dispatch(updateUser(data.user));
 		});
 	};
