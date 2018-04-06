@@ -1,15 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Dashboard from '../components/Dashboard';
-import { fetchEmail } from '../actions/index';
-const getEmail = state=>{
-	return state.email;
+
+const getUser = state => {
+	return state.user;
 };
-const mapStateToProps = state =>({
-	email: getEmail(state),
+
+const mapStateToProps = state => ({
+	user: getUser(state),
 });
 
-const mapDispatchToProps = dispatch =>({
-	fetchEmail: ()=> dispatch(fetchEmail()),
-});
-export default connect(mapStateToProps,mapDispatchToProps)(Dashboard);
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

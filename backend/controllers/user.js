@@ -1,20 +1,24 @@
 const bcrypt = require('bcrypt');
-const salt = 10;
+
 const db = require('../controllers/db');
-function hashing(password) {
+
+const salt = 10;
+
+function hashing (password) {
 	return bcrypt.hash(password, salt);
 }
 
 const registerUser = (req, res,next) => {
 	saveUser(req.body)
-		.then(function(_d) {
+		.then( _d => {
 			next();
 		})
-		.catch(function(err) {
-            console.log(err);
-			res.status(400).json(err);
+		.catch( error => {
+			console.log(error);
+			res.status(400).json(error);
 		});
 }
+
 // helper function to work with user
 
 const getUserByOauth = (userOauth) => {
@@ -57,9 +61,8 @@ const getUserById = id => {
 	return db.one('SELECT * FROM account WHERE id = $1', [id]);
 }
 
+const sendUserData = (req, res) => {
+	res.status(200).json({ user: { username:req.user.username } });
+};
 
-const sendUserData = (req,res)=>{
-	res.status(200).json({email:req.user.email});
-}
-
-module.exports={getUserById,getUserByEmail,registerUser,sendUserData, getUserByOauth}
+module.exports = { getUserById, getUserByUsername, registerUser, sendUserData };

@@ -62,6 +62,7 @@ function fetchExtract (pageName) {
 			const extractRe = new RegExp(/^(.*?)\.\s/);
 			let extract = extractRe.exec(raw)[0];
 
+			extract = extract.replace(/\s$/, '');
 			extract = extract.replace(/ \( listen\)/, '');
 			extract = extract.replace(/ \(.*?\)/g, '');
 

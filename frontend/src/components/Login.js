@@ -2,6 +2,8 @@ import React from 'react';
 import { Link }  from 'react-router-dom';
 import PropTypes  from 'prop-types';
 
+import '../styles/components/Login.scss';
+
 const Login = (props) => {
 	const onSubmitHandler = (e) => {
 		e.preventDefault();
@@ -10,7 +12,7 @@ const Login = (props) => {
 		props.loginUser(email, password);
 	};
 	return (
-		<div>
+		<div className="login">
 			<form onSubmit={onSubmitHandler}  method="POST">
 				<label htmlFor="email">Email:</label>
 				<input name="email" type='text' />
@@ -18,8 +20,9 @@ const Login = (props) => {
 				<input name="userPassword" type='password' />
 				<button type="submit">Login</button>
 			</form>
-			<Link to="/register"> <button>Register</button></Link>
-			<a href='api/auth/google'>Login with google</a>
+			<div className="login-google">
+				Or, <a href='api/auth/google'><button>log in with your Google account</button></a>
+			</div>
 		</div>
 	);
 };

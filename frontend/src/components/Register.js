@@ -18,7 +18,6 @@ const Register = (props) => {
 				<input name="userPassword" type='password' />
 				<button type="submit">Register</button>
 			</form>
-			<Link to="/login"> <button>Login</button></Link>
 		</div>
 	);
 };

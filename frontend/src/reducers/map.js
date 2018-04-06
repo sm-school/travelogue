@@ -1,24 +1,36 @@
 import {
-	UPDATE_LATITUDE,
-	UPDATE_LONGITUDE,
-	UPDATE_ZOOM,
+	RECEIVE_LATITUDE,
+	RECEIVE_LONGITUDE,
+	RECEIVE_POINT,
+	RECEIVE_ZOOM,
 } from '../constants/action-types';
 
 const map = (state = {
-	latitude: 51.5261053,
-	longitude: -0.0834954,
-	zoom: 18,
+	latitude: undefined,
+	longitude: undefined,
+	zoom: 15,
 }, action) => {
 	switch (action.type) {
-		case UPDATE_LATITUDE:
+		case RECEIVE_LATITUDE:
 			return Object.assign( {}, state, {
 				latitude: action.latitude,
 			} );
-		case UPDATE_LONGITUDE:
+		case RECEIVE_LONGITUDE:
 			return Object.assign( {}, state, {
 				longitude: action.longitude,
 			} );
-		case UPDATE_ZOOM:
+		case RECEIVE_POINT:
+			return Object.assign({}, state, {
+				points: [
+			 		...state.points,
+					{
+						latitude: action.latitude,
+						longitude: action.longitude,
+						title: action.title,
+					},
+				],
+			} );
+		case RECEIVE_ZOOM:
 			return Object.assign( {}, state, {
 				zoom: action.zoom,
 			} );

@@ -10,4 +10,4 @@ const mapStateToProps = state=>({
 
 const mapDispatchToProps = {};
 
-export default connect(mapStateToProps,mapDispatchToProps)(ConnectedRouter);
+export default connect(mapStateToProps, mapDispatchToProps)(ConnectedRouter);

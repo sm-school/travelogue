@@ -20,3 +20,4 @@ const pass = process.env.TRAVELOGUE_DB_PASS;
 module.exports = {
 	DB_URL: `postgres://${user}:${pass}@localhost:${port}/${name}`,
 };
+

@@ -5,7 +5,7 @@ const getVisionData = require('./apis/vision.js');
 
 // Test data: 'parliament', 'pisa', no landmarks: 'dnvb7a'
 
-function imageMetadata (imageId) {
+function fetchMetadata (imageId) {
 	return getVisionData(imageId)
 		.then ( imageData => {
 			return getLandmarks(imageData)
@@ -25,10 +25,10 @@ function imageMetadata (imageId) {
 		});
 }
 
-function getLandmarks (image) {
-	let landmarks = image.landmarks || [];
+function getLandmarks (imageData) {
+	let landmarks = imageData.landmarks || [];
 
-	let landmarkData = image.landmarks.map( landmark => {
+	let landmarkData = imageData.landmarks.map( landmark => {
 		return getWikipediaData(landmark.name)
 			.then( wikiData => {
 				return wikiData;
@@ -38,4 +38,4 @@ function getLandmarks (image) {
 	return Promise.all(landmarkData);
 }
 
-module.exports = imageMetadata;
+module.exports = fetchMetadata;
