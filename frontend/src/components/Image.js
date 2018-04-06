@@ -6,6 +6,8 @@ import React from 'react';
 import MapContainer from '../containers/MapContainer';
 import '../styles/components/Image.scss';
 
+const AWS_S3_BUCKET = 'https://s3.eu-west-2.amazonaws.com/travelogue-test/';
+
 class Image extends React.Component {
 
 	componentDidMount() {
@@ -14,7 +16,7 @@ class Image extends React.Component {
 	}
 
 	render() {
-		const imageUrl = `https://s3.us-east-2.amazonaws.com/traveluploader/${this.props.imageId}`;
+		const imageUrl = AWS_S3_BUCKET + this.props.imageId;
 
 		let landmarks = [];
 		let latitude = this.props.metadata.latitude;
@@ -24,8 +26,12 @@ class Image extends React.Component {
 		let mapComponent;
 
 		if (latitude && longitude) {
-			// <MapContainer points={[ latitude, longitude, name ]} zoom={15} />
-			mapComponent = <MapContainer latitude={latitude} longitude={longitude} zoom={17} />;
+			mapComponent = <MapContainer
+				centerLat={latitude}
+				centerLon={longitude}
+				zoom={17}
+				points={[ latitude, longitude ]}
+			/>;
 		} else {
 			mapComponent = 'No map data available';
 		}

@@ -2,11 +2,14 @@
 	width: 75%;
 	height: 500px;
 	margin: auto;
-	border: 1px solid #999;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .image_frame img {
-	object-fit: cover;
+	height: 500px;
+	object-fit: scale-down;
 }
 
 .map {
@@ -14,6 +17,10 @@
 	width: 50%;
 	vertical-align: top;
 	padding-top: 1em;
+}
+
+#map {
+	border: 1px solid #999;
 }
 
 .landmark_suggestions {

@@ -18,6 +18,10 @@ const mapStateToProps = (state, ownProps) => {
 	};
 };
 
+function mergeProps(stateProps, dispatchProps, ownProps) {
+	return Object.assign({}, ownProps, stateProps, dispatchProps);
+}
+
 const mapDispatchToProps = dispatch => ( {
 	imageLandmarks: imageId => dispatch(imageLandmarks(imageId)),
 	imageMetadata: imageId => dispatch(imageMetadata(imageId)),
@@ -27,5 +31,6 @@ const mapDispatchToProps = dispatch => ( {
 
 export default connect(
 	mapStateToProps,
-	mapDispatchToProps
+	mapDispatchToProps,
+	mergeProps
 )(Image);

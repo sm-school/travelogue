@@ -6,14 +6,15 @@ import '../styles/components/MapFrame.scss';
 import { MAPBOX_ACCESS_TOKEN } from '../constants/mapbox';
 
 // need to rename to mapCenterLatitude, mapCenterLongitude
-function MapFrame ({ latitude, longitude, zoom, points }) {
+function MapFrame ({ centerLat, centerLon, zoom, points }) {
 	const mapboxApi = `https://b.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=${MAPBOX_ACCESS_TOKEN}`;
 
+	console.log(points);
 	const markers = points.map( (point, i) => {
 		return (
-			<Marker key={i} position={[ point[0], point[1] ]}>
+			<Marker key={i} position={[ points[0], points[1] ]}>
 				<Popup>
-					<span>{point[2]}</span>
+					<span>{points[2]}</span>
 				</Popup>
 			</Marker>
 		);
@@ -21,7 +22,7 @@ function MapFrame ({ latitude, longitude, zoom, points }) {
 
 	return (
 		<div>
-			<Map center={[ latitude, longitude ]} zoom={zoom} id="map">
+			<Map center={[ centerLat, centerLon ]} zoom={zoom} id="map">
 				<TileLayer
 					attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
 					url={mapboxApi}
@@ -33,8 +34,8 @@ function MapFrame ({ latitude, longitude, zoom, points }) {
 }
 
 MapFrame.propTypes = {
-	latitude: PropTypes.number,
-	longitude: PropTypes.number,
+	centerLat: PropTypes.string,
+	centerLon: PropTypes.string,
 	zoom: PropTypes.number,
 	points: PropTypes.array,
 	setLatitude: PropTypes.func,
