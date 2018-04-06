@@ -95,8 +95,24 @@ function storeImage ( { user, imageData } ) {
 		});
 }
 
+function userImages (userId) {
+	const sql = `
+	SELECT i.s3_id, i.latitude, i.longitude
+	FROM image i
+	WHERE i.account_id = $1`;
+
+	return db.any(sql, userId)
+		.then( images => {
+			return images
+		})
+		.catch( error => {
+			console.log('Database error:', error.message);
+		});
+}
+
 module.exports = {
 	imageLandmarks,
 	imageMetadata,
-	storeImage,
+    storeImage,
+    userImages
 };

@@ -15,5 +15,6 @@ export default combineReducers({
 	uploaderImages,
 	uploaderImagesUrl,
 	nextLocation,
-	user,
+    user,
+    tripInfo
 });

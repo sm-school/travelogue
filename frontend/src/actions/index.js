@@ -11,7 +11,8 @@ import {
 	DELETE_IMAGE,
 	DELETE_IMAGE_URL,
 	UPDATE_USER,
-	UPDATE_NEXT_LOCATION,
+    UPDATE_NEXT_LOCATION,
+    TRIP_SUMMARY
 } from '../constants/action-types';
 
 import nextLocation from '../reducers/nextLocation';
@@ -307,3 +308,8 @@ export const fetchUser = () => {
 		});
 	};
 };
+
+const tripSummary = () => {
+    type: TRIP_SUMMARY,
+    tripInfo
+}
