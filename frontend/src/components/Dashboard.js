@@ -6,7 +6,7 @@ import TripSummaryContainer from '../containers/TripSummaryContainer';
 const Dashboard = props => {
 	return (
 		<div>
-			<h1>Welcome {props.user.username}</h1>
+			<h1>Welcome {`${props.user.loggedIn}`}</h1>
 			<UploaderContainer />
 			<TripSummaryContainer />
 		</div>

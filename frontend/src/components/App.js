@@ -1,21 +1,22 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import MapContainer from '../containers/MapContainer';
 import LoginContainer from '../containers/LoginContainer';
 import RegisterContainer from '../containers/RegisterContainer';
 import DashboardContainer from '../containers/DashboardContainer';
 import ConnectedRouterContainer from '../containers/ConnectedRouterContainer';
+import LogoutContainer from '../containers/LogoutContainer';
 import ImageContainer from '../containers/ImageContainer';
-
 import Main from '../components/Main';
 import NotFound from '../components/NotFound';
 import '../styles/components/App.scss';
 
+
 class App extends React.Component {
 
 	componentDidMount() {
-		if (Object.keys(this.props.user).length == 0) {
+		if (!this.props.user.loggedIn) {
 			this.props.fetchUser();
 		}
 	}
@@ -34,10 +35,12 @@ class App extends React.Component {
 								] }
 							/>
 						)} />
+						<Route exact path="/dashboard" component={DashboardContainer}/>
+						<Redirect from='/logout' to='/'/>
 						<Route exact path="/login" component={LoginContainer} />
 						<Route exact path="/register" component={RegisterContainer} />
-						<Route exact path="/dashboard" component={DashboardContainer} />
 						<Route path="/*" component={NotFound} />
+						
 					</Switch>
 				</Main>
 			</BrowserRouter>

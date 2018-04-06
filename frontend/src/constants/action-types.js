@@ -8,11 +8,12 @@ export const RECEIVE_ZOOM = 'RECEIVE_ZOOM';
 
 export const ADD_IMAGES = 'ADD_IMAGES';
 export const ADD_IMAGE_URL = 'ADD_IMAGE_URL';
-export const DELETE_IMAGE = 'DELETE_IMAGE';
-export const DELETE_IMAGE_URL = 'DELETE_IMAGE_URL';
+export const DELETE_UPLOADER_IMAGE = 'DELETE_UPLOADER_IMAGE';
 
 export const UPDATE_NEXT_LOCATION = 'UPDATE_NEXT_LOCATION';
 
 export const UPDATE_USER = 'UPDATE_USER';
 
 export const TRIP_SUMMARY = 'TRIP_SUMMARY';
+export const SAVE_LOGGED_IN_USER = 'SAVE_LOGGED_IN_USER';
+export const RESET_USER = 'RESET_USER';
