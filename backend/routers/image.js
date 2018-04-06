@@ -3,8 +3,10 @@
 const imageApi = require('express').Router();
 const fetch = require('node-fetch');
 
+const metadataApis = require('../controllers/metadataApis');
+
 const {
-	imageLandmarks, imageMetadata, storeImage, storeLandmarks,
+	imageLandmarks, imageMetadata, storeImage, userImages, storeLandmarks,
 } = require('../controllers/image');
 const fetchMetadata = require('../controllers/metadataApis');
 
@@ -37,6 +39,16 @@ imageApi.post('/store', isLoggedIn, (req, res) => {
 		.then( imageId => fetchMetadata(req.body.fileName) )
 		.then( landmarkData => storeLandmarks(landmarkData) )
 		.catch( error => console.log(error) );
+});
+
+imageApi.get('/trip',isLoggedIn, (req, res) => {
+    userImages(req.user)
+        .then( images => {
+            return images;
+        })
+        .catch( error => {
+            console.log(error);
+        });
 });
 
 module.exports = imageApi;

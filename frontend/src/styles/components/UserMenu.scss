@@ -1,8 +1,21 @@
+.usermenu{
+    position:relative;
+}
 .usermenu__avatar__wrapper{
     img{
         height:2rem;
         width:2rem;
         border-radius: 50%;
         object-fit: cover;
+    }
+}
+.usermenu__popup {
+    position: absolute;
+    top: 3rem;
+    right: 0;
+
+    div{
+        background: grey;
+        padding: 0.4rem 3rem;
     }
 }

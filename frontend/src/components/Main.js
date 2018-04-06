@@ -6,7 +6,7 @@ import NavigationContainer from '../containers/NavigationContainer';
 import '../styles/components/Main.scss';
 const Main = (props)=> {
 	return (
-		<div>
+		<div className='main__page'>
 			<NavigationContainer/>
 			<div className='main__children_wrapper'>
 				<div className="main__children">
