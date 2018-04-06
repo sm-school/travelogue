@@ -13,6 +13,9 @@ import {
 	UPDATE_NEXT_LOCATION,
 	TRIP_SUMMARY,
 	RESET_USER,
+	TURN_MENU_ON, 
+	TURN_MENU_OFF, 
+	TOGGLE_MENU,
 } from '../constants/action-types';
 
 import nextLocation from '../reducers/nextLocation';
@@ -308,6 +311,7 @@ export const fetchUser = () => {
 	};
 };
 
+<<<<<<< HEAD
 export const fetchTripSummary = () => {
 	return dispatch => {
 		fetch('/api/image/trip', {
@@ -328,3 +332,15 @@ const tripSummary = (tripInfo) => {
 	type: TRIP_SUMMARY,
 	tripInfo;
 };
+=======
+export const turnMenuOn = ()=>({
+	type: TURN_MENU_ON,
+});
+export const turnMenuOff = ()=>({
+	type: TURN_MENU_OFF,
+});
+export const toggleMenu = ()=>({
+	type: TOGGLE_MENU,
+});
+
+>>>>>>> 23fd192e275447c91de0f5b9b60e22acad04227a
