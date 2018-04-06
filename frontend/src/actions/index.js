@@ -309,7 +309,23 @@ export const fetchUser = () => {
 	};
 };
 
-const tripSummary = () => {
+export const fetchTripSummary = () => {
+    return dispatch => {
+        fetch('/api/image/trip', {
+			credentials: 'same-origin',
+		}).then( response => {
+			if (response.status !== 404) {
+				return response.json();
+			}
+		}).then( data => {
+			if (!data) return;
+
+			dispatch(tripSummary(data.tripSummary)); //confirm returned object from db
+		});
+    };
+};
+
+const tripSummary = (tripInfo) => {
     type: TRIP_SUMMARY,
     tripInfo
-}
+};
