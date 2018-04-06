@@ -59,7 +59,7 @@ Uploader.propTypes = {
 	uploaderImages:PropTypes.array,
 	turnImagesIntoURLs: PropTypes.func,
 	addImages: PropTypes.func,
-	uploaderImagesUrl: PropTypes.object,
+	uploaderImagesUrl: PropTypes.array,
 	deleteUploadImage: PropTypes.func,
 };
 

@@ -6,13 +6,11 @@ import LoginContainer from '../containers/LoginContainer';
 import RegisterContainer from '../containers/RegisterContainer';
 import DashboardContainer from '../containers/DashboardContainer';
 import ConnectedRouterContainer from '../containers/ConnectedRouterContainer';
+import LogoutContainer from '../containers/LogoutContainer';
 
 import Main from '../components/Main';
 import NotFound from '../components/NotFound';
 import '../styles/components/App.scss';
-
-
-
 
 function App() {
 	return (
@@ -24,6 +22,7 @@ function App() {
 					<Route exact path="/login" component={LoginContainer} />
 					<Route exact path="/register" component={RegisterContainer} />
 					<Route exact path="/dashboard" component={DashboardContainer} />
+					<Route exact path="/logout" component={LogoutContainer}/>
 					<Route path="/*" component={NotFound} />
 				</Switch>
 			</Main>

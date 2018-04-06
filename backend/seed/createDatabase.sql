@@ -39,6 +39,13 @@ CREATE TABLE account (
     pass varchar NOT NULL
 );
 
+alter table account add column gmail_sign_in boolean;
+alter table account add column display_name boolean;
+alter table account add column first_fame varchar;
+alter table account add column last_name varchar;
+alter table account add column photo varchar;
+alter table account add column domain_name varchar;
+
 INSERT INTO account
 (email, pass)
 VALUES('test@test.com','$2a$10$3ERluFbyZWJgOdpvbjUB3.2owUqmy.d1wJ/B4O9fuHeOr/eg0ur4a');

@@ -14,8 +14,4 @@ api.use('/user',userRouter);
 api.get('/sign-s3', getSignatureS3);
 
 
-api.get('/test', function(req,res) {
-    debugger;
-})
-
 module.exports = api;

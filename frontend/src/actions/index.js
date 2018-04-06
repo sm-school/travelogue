@@ -201,6 +201,18 @@ export const loginUser = (email,password) =>{
 	};
 };
 
+export const logoutUser = () =>{
+	return dispatch => {
+		fetch('/api/user/logout', {
+			credentials: 'same-origin',
+		}).then(function(user) {
+			alert('logged out');
+		}).then(function(result) {
+			saveEmail('');
+		});
+	};
+};
+
 
 export const updateNextLocation = nextLocation =>{
 	return {
