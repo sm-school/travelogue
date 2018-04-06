@@ -4,32 +4,24 @@ const fetch = require('node-fetch');
 
 const api = `https://vision.googleapis.com/v1/images:annotate?fields=responses(faceAnnotations%2FdetectionConfidence%2ClandmarkAnnotations(confidence%2Cdescription%2Clocations%2Cscore%2Ctopicality))&key=${process.env.GOOGLE_CLOUD_API_KEY}`;
 
-const S3_BUCKET = 'https://s3.us-east-2.amazonaws.com/traveluploader/'; // 'http://travelogue-test.s3-website.eu-west-2.amazonaws.com/';
+const AWS_S3_BUCKET = `https://s3.eu-west-2.amazonaws.com/${process.env.AWS_S3_BUCKET}/`;
 
-function processImage (imageId) {
+function getVisionData (imageId) {
 	return imageApiFetch(imageId)
-		.then( visionApiResult => {
-			return extractData(visionApiResult);
-		})
-		.catch( error => {
-			console.log(error);
-		});
+		.then( visionApiResult => extractData(visionApiResult) )
+		.catch( error => console.log(`Couldn't extract data: ${error.message}`) );
 }
 
 function imageApiFetch (imageId) {
 	return fetch(api, fetchRequest(imageId))
-		.then( response => {
-			return response.json();
-		})
+		.then( response => { return response.json(); } )
 		.then( json => {
 			return {
 				imageId: imageId,
 				data: json,
 			};
 		})
-		.catch( error => {
-			console.log(`Couldn't get data: ${error}.`);
-		});
+		.catch( error => console.log(`Couldn't get data: ${error.message}.`) );
 }
 
 function extractData (visionApiResult) {
@@ -54,7 +46,7 @@ function extractData (visionApiResult) {
 
 	return {
 		imageId: visionApiResult.imageId,
-		landmarks: landmarks,
+		landmarks: landmarks || [],
 		faceConfidence: faceConfidence,
 	};
 }
@@ -86,7 +78,7 @@ function fetchBody (imageId) {
 				],
 				image: {
 					source: {
-						imageUri: `${S3_BUCKET}${imageId}`,
+						imageUri: `${AWS_S3_BUCKET}${imageId}`,
 					},
 				},
 			},
@@ -94,4 +86,4 @@ function fetchBody (imageId) {
 	};
 }
 
-module.exports = processImage;
+module.exports = getVisionData;
