@@ -61,4 +61,4 @@ const sendUserData = (req, res) => {
 	res.status(200).json({ ...user });
 };
 
-module.exports = { getUserById, getUserByEmail, registerUser, sendUserData };
+module.exports = { getUserById, getUserByEmail, registerUser, sendUserData,getUserByOauth };
