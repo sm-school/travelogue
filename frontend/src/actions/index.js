@@ -311,7 +311,6 @@ export const fetchUser = () => {
 	};
 };
 
-<<<<<<< HEAD
 export const fetchTripSummary = () => {
 	return dispatch => {
 		fetch('/api/image/trip', {
@@ -332,7 +331,7 @@ const tripSummary = (tripInfo) => {
 	type: TRIP_SUMMARY,
 	tripInfo;
 };
-=======
+
 export const turnMenuOn = ()=>({
 	type: TURN_MENU_ON,
 });
@@ -342,5 +341,3 @@ export const turnMenuOff = ()=>({
 export const toggleMenu = ()=>({
 	type: TOGGLE_MENU,
 });
-
->>>>>>> 23fd192e275447c91de0f5b9b60e22acad04227a
