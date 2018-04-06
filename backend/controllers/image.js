@@ -40,44 +40,9 @@ function imageLandmarks (imageId) {
 		});
 }
 
-function saveLandmarkSuggestions (imageData) {
-	let landmarkInserts = imageData.landmarks.map( landmark => {
-		return saveLandmark(imageId, landmark)
-			.then( landmarkId => {
-				return landmarkId;
-			});
-	});
-
-	return Promise.all(landmarkInserts);
-}
-
-// Not used yet
-
-// function saveLandmark (imageId, landmark) {
-// 	const sql = `
-// 	INSERT INTO landmark_suggestion
-// 	VALUES( DEFAULT, $1, $2, $3, $4, $5, FALSE )
-// 	RETURNING id;`;
-
-// 	db.one(sql, [
-// 		imageId,
-// 		landmark.name,
-// 		landmark.latitude,
-// 		landmark.longitude,
-// 		landmark.page,
-// 		landmark.extract,
-// 	])
-// 		.then( id => {
-// 			return id;
-// 		})
-// 		.catch( error => {
-// 			console.log('Database error:', error.message);
-// 		});
-// }
-
 function storeImage ( { user, imageData } ) {
-	console.log(user, imageData);
 	const s3_id = imageData.fileName;
+	console.log('Storing', s3_id, 'for', user.username);
 	const accountId = user.id;
 
 	const sql = `
@@ -95,8 +60,44 @@ function storeImage ( { user, imageData } ) {
 		});
 }
 
+function storeLandmarks (imageData) {
+	console.log(imageData);
+	const s3_id = imageData.imageId;
+	const landmarks = imageData.landmarks;
+	// console.log('Storing landmarks:', landmarks);
+
+	const getImageId = `
+	SELECT id
+	FROM image
+	WHERE s3_id=$1;`;
+
+	const saveLandmark = `
+	INSERT INTO landmark
+	VALUES( DEFAULT, $1, $2, $3, $4, $5, $6, FALSE )
+	RETURNING id;`;
+
+	let landmarkInserts = landmarks.map( landmark => {
+		db.one(getImageId, s3_id)
+			.then( imageDbId => {
+				return db.one(saveLandmark, [
+					imageDbId.id,
+					landmark.name,
+					landmark.latitude,
+					landmark.longitude,
+					landmark.page,
+					landmark.extract,
+				]);
+			})
+			.then( id => id )
+			.catch( error => console.log('Database error storing landmark:', error.message) );
+	});
+
+	return Promise.all(landmarkInserts);
+}
+
 module.exports = {
 	imageLandmarks,
 	imageMetadata,
 	storeImage,
+	storeLandmarks,
 };
