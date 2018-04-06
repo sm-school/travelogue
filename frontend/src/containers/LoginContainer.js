@@ -3,14 +3,10 @@ import { connect } from 'react-redux';
 import { loginUser } from '../actions';
 import Login from '../components/Login';
 
-const getMap = (state) => {
-	return state.map;
-};
-
 const mapStateToProps = null;
 
 const mapDispatchToProps = dispatch => ( {
-	loginUser: (email,password)=>dispatch(loginUser(email,password)),
+	loginUser: (email, password)=>dispatch(loginUser(email, password)),
 } );
 
 export default connect(

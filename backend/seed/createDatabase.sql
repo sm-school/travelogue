@@ -5,20 +5,38 @@ DROP TABLE landmark CASCADE;
 CREATE TABLE account (
     id serial PRIMARY KEY,
    	email varchar UNIQUE NOT NULL,
-    pass varchar NOT NULL
+    pass varchar NOT NULL,
+	gmail_sign_in boolean,
+	display_name varchar,
+	first_name varchar,
+	last_name varchar,
+	photo varchar,
+	domain_name varchar
 );
 
-alter table account add column gmail_sign_in boolean;
-alter table account add column display_name boolean;
-alter table account add column first_fame varchar;
-alter table account add column last_name varchar;
-alter table account add column photo varchar;
-alter table account add column domain_name varchar;
 
 
 INSERT INTO account
-(email, pass)
-VALUES('test@test.com','$2a$10$3ERluFbyZWJgOdpvbjUB3.2owUqmy.d1wJ/B4O9fuHeOr/eg0ur4a');
+(email, pass, display_name, first_name, last_name, photo)
+VALUES('test@test.com',
+'$2a$10$3ERluFbyZWJgOdpvbjUB3.2owUqmy.d1wJ/B4O9fuHeOr/eg0ur4a',
+'Test-display-name',
+'Test-first-name',
+'test-last-name',
+'https://cdn.dribbble.com/users/199982/screenshots/4044699/furkan-avatar-dribbble_1x.png'),
+('test2@test.com',
+'$2a$10$3ERluFbyZWJgOdpvbjUB3.2owUqmy.d1wJ/B4O9fuHeOr/eg0ur4a',
+NULL,
+'Test-first-name',
+'test-last-name',
+NULL),
+('test3@test.com',
+'$2a$10$3ERluFbyZWJgOdpvbjUB3.2owUqmy.d1wJ/B4O9fuHeOr/eg0ur4a',
+NULL,
+NULL,
+NULL,
+NULL);
+
 
 
 CREATE TABLE image (

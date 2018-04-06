@@ -13,10 +13,6 @@ const Main = (props)=> {
 					{props.children}
 				</div>
 			</div>			
-				
-			<div className="container">
-				{props.children}
-			</div>
 		</div>
 	);
 };

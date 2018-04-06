@@ -6,7 +6,7 @@ class Logout extends React.Component {
 	componentDidMount() {
 		this.props.logoutUser();
 	}
-
+	
 	render() {
 		return (
 			<h1>logged out </h1>

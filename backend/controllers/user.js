@@ -24,19 +24,13 @@ const registerUser = (req, res,next) => {
 const getUserByOauth = (userOauth) => {
 	
 	return getUserByEmail(userOauth.email).then(function(user){
-		console.log('got user');
-
 		return user;
 	}).catch(function(err){
 	
 		return saveUser(userOauth).then(function(user){
-	
-			console.log('new user registered');
-			console.log(user);
 			return user;
 		}).
 		catch(function(err){
-	
 			console.log(err);
 			res.status(400).json(err);
 		})
@@ -46,9 +40,7 @@ const getUserByOauth = (userOauth) => {
 }
 
 function saveUser(user) {
-    console.log(user);
 	return hashing(user.password).then(function(hash) {
-
 		return db.one('INSERT INTO account (email, pass, gmail_sign_in, display_name, first_name, last_name, photo, domain_name) VALUES ($1,$2, $3, $4, $5, $6, $7, $8) RETURNING *', [user.email, hash, user.gmail_sign_in, user.displayName, user.firstName,  user.lastName,   user.photo, user.domain]);
 	});
 }
@@ -62,7 +54,11 @@ const getUserById = id => {
 }
 
 const sendUserData = (req, res) => {
-	res.status(200).json({ user: { username:req.user.username } });
+	const user = req.user;
+	delete user['id'];
+	delete user['pass']
+	
+	res.status(200).json({ ...user });
 };
 
-module.exports = { getUserById, getUserByUsername, registerUser, sendUserData };
+module.exports = { getUserById, getUserByEmail, registerUser, sendUserData };

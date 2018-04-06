@@ -8,11 +8,10 @@ import {
 	RECEIVE_ZOOM,
 	ADD_IMAGES,
 	ADD_IMAGE_URL,
-	DELETE_IMAGE,
-	DELETE_IMAGE_URL,
-	SAVE_EMAIL,
-	UPDATE_USER,
+	DELETE_UPLOADER_IMAGE,
+	SAVE_LOGGED_IN_USER,
 	UPDATE_NEXT_LOCATION,
+	RESET_USER,
 } from '../constants/action-types';
 
 import nextLocation from '../reducers/nextLocation';
@@ -166,7 +165,6 @@ const storeImageData = (imageData) => {
 		},
 	})
 		.then( response => {
-			console.log(`Uploaded: ${imageData.fileName}`);
 			return response.json();
 		})
 		.catch( error => {
@@ -193,8 +191,6 @@ export const turnImagesIntoURLs = (images, length) => {
 			var reader = new FileReader();
 			// Closure to capture the file information.
 			reader.onload = ( (theFile, index) => {
-				console.log(theFile);
-				// console.log(index);
 				return function(e) {
 					dispatch(addUploaderImagesUrl(e.target.result, index));
 				};
@@ -206,24 +202,14 @@ export const turnImagesIntoURLs = (images, length) => {
 	};
 };
 
-const deleteImages = index => ({
-	type: DELETE_IMAGE,
+
+
+export const deleteUploaderImage = index =>({
+	type: DELETE_UPLOADER_IMAGE,
 	index,
 });
 
-const deleteUploaderImagesUrl = index => ({
-	type: DELETE_IMAGE_URL,
-	index,
-});
-
-export const deleteUploadImage = index =>{
-	return dispatch => {
-		dispatch(deleteImages(index));
-		dispatch(deleteUploaderImagesUrl(index));
-	};
-};
-
-export const registerUser = (email,password) =>{
+export const registerUser = (email, password) =>{
 	return dispatch => {
 		fetch('/api/user/register', {
 			method: 'POST',
@@ -234,7 +220,6 @@ export const registerUser = (email,password) =>{
 			},
 		})
 			.then( response => {
-				console.log(response);
 				if (response.status === 401) {
 					alert('Invalid user name or password');
 				} else if (response.status === 404) {
@@ -246,22 +231,13 @@ export const registerUser = (email,password) =>{
 				}
 			}).then( data => {
 				if (!data) return;
-				dispatch(saveEmail(data.email));
-				dispatch(updateUser(data.user));
+				dispatch(saveLoggedInUser(data));
 				dispatch(updateNextLocation('/dashboard'));
 			});
 	};
 };
 
-
-const saveEmail = email=>{
-	return {
-		type: SAVE_EMAIL,
-		email,
-	};
-};
-
-export const loginUser = (email,password) =>{
+export const loginUser = (email, password) =>{
 	return dispatch =>{
 		fetch('/api/user/login', {
 			method: 'POST',
@@ -278,13 +254,11 @@ export const loginUser = (email,password) =>{
 			}
 		}).then( data => {
 			if (!data) return;
-
-			dispatch(updateUser(data.user));
-			dispatch(saveEmail(data.email));
+			dispatch(saveLoggedInUser(data));
+			
 			// To do: change this with regexp
 			const params = window.location.search.split('?ref=')[1];
 			const nextUrl = params || '/dashboard';
-
 			dispatch(updateNextLocation(nextUrl));
 		});
 	};
@@ -294,13 +268,16 @@ export const logoutUser = () =>{
 	return dispatch => {
 		fetch('/api/user/logout', {
 			credentials: 'same-origin',
-		}).then(function(user) {
-			alert('logged out');
 		}).then(function(result) {
-			saveEmail('');
+			dispatch(resetUser());
+			dispatch(updateNextLocation('/'));
 		});
 	};
 };
+
+const resetUser = ()=>({
+	type: RESET_USER,
+});
 
 
 export const updateNextLocation = nextLocation =>{
@@ -309,21 +286,9 @@ export const updateNextLocation = nextLocation =>{
 		nextLocation,
 	};
 };
-
-export const fetchEmail = ()=>{
-	return dispatch =>{
-		fetch('/api/user/email', {
-			credentials: 'same-origin',
-		}).then(response=>response.json())
-			.then(data=>{
-			  if (!data) return;
-				dispatch(saveEmail(data.email));
-		  });
-		}
-	}
 	
-const updateUser = user => ({
-	type: UPDATE_USER,
+const saveLoggedInUser = user => ({
+	type: SAVE_LOGGED_IN_USER,
 	user,
 });
 
@@ -337,8 +302,7 @@ export const fetchUser = () => {
 			}
 		}).then( data => {
 			if (!data) return ;
-
-			dispatch(updateUser(data.user));
+			dispatch(saveLoggedInUser(data));
 		});
 	};
 };

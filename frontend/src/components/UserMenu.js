@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import '../styles/components/UserMenu.scss';
 const UserMenu = props =>{
-	return (<h1>{props.user.username}</h1>);
+	return (<div className="usermenu__avatar__wrapper"><img  src={props.user.photo}/></div>);
 };
 
 UserMenu.propTypes = {

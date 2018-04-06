@@ -23,14 +23,9 @@ userRouter.post(
 	sendUserData
 );
 
-userRouter.get('/email',isLoggedIn,sendUserData)
-
 userRouter.get('/logout', function(req, res){
-    // send user info. It should strip password at this stage
-    console.log("logged out");
-    console.log(req.user);
 	req.logout();
-	res.redirect('/');
+	res.status(200).end();
   });
 
 

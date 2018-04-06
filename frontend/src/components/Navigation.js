@@ -5,9 +5,10 @@ import PropTypes from 'prop-types';
 import UserMenu from './UserMenu';
 const Navigation = (props) => {
 	const renderNavLinks = user =>{
-		if (Object.keys(user).length !== 0) {
+		if (user.loggedIn) {
 			return (
-				<li><UserMenu user={user}/></li>
+				[ <li><UserMenu user={user}/></li>,
+					<li><div onClick={e => props.logoutUser()}>Log Out</div></li> ]
 			);
 		} else {
 			return [ <li key='login'><NavLink to="/login">Login</NavLink></li>,
@@ -19,7 +20,7 @@ const Navigation = (props) => {
 			<Link className="navigation__brand" to={Object.keys(props.user).length === 0 ? '/' : '/dashboard'}>Travelogue</Link>
 			<ul className="navigation__ul">
 				{renderNavLinks(props.user)} 
-				<li><NavLink to="/logout">Log Out </NavLink></li>
+				
 			</ul>
 		</div>
 	</nav>);
@@ -27,6 +28,7 @@ const Navigation = (props) => {
 
 Navigation.propTypes = {
 	user: PropTypes.object,
+	logoutUser: PropTypes.func,
 };
 
 export default Navigation;

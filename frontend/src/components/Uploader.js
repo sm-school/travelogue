@@ -31,7 +31,7 @@ function Uploader(props) {
 	const renderImages = () => {
 		// Read in the image file as a data URL.
 		return props.uploaderImagesUrl ? props.uploaderImagesUrl.map( (url, i) => {
-			return <li key={i} onClick={props.deleteUploadImage(i)}><img src={url} /></li>;
+			return <li key={i} onClick={e=> props.deleteUploaderImage(i)}><img src={url} /></li>;
 		} ) : null;
 
 	};

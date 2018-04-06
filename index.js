@@ -24,7 +24,7 @@ express()
 	}))
 	.use(passport.initialize())
 	.use(passport.session())
-	.use('/', rootRouter)
+	.use('/', router)
 	.listen(config.PORT, () => {
 		console.log(`Starting Travelogue on port ${config.PORT}.`);
 	});
