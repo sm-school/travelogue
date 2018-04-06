@@ -1,43 +1,54 @@
 DROP TABLE account CASCADE;
-DROP TABLE image CASCADE;
-DROP TABLE landmark CASCADE;
 
 CREATE TABLE account (
-    id serial PRIMARY KEY,
-   	email varchar UNIQUE NOT NULL,
-    pass varchar NOT NULL,
+	id SERIAL PRIMARY KEY,
+	email VARCHAR UNIQUE NOT NULL,
+	pass VARCHAR NOT NULL,
 	gmail_sign_in boolean,
-	display_name varchar,
-	first_name varchar,
-	last_name varchar,
-	photo varchar,
-	domain_name varchar
+	display_name VARCHAR,
+	first_name VARCHAR,
+	last_name VARCHAR,
+	photo VARCHAR,
+	domain_name VARCHAR
 );
 
+INSERT INTO account VALUES
+(
+	DEFAULT,
+	'test@test.com',
+	'$2a$10$3ERluFbyZWJgOdpvbjUB3.2owUqmy.d1wJ/B4O9fuHeOr/eg0ur4a',
+	NULL,
+	'Test-display-name',
+	'Test-first-name',
+	'test-last-name',
+	'https://cdn.dribbble.com/users/199982/screenshots/4044699/furkan-avatar-dribbble_1x.png',
+	NULL
+),
+(
+	DEFAULT,
+	'test2@test.com',
+	'$2a$10$3ERluFbyZWJgOdpvbjUB3.2owUqmy.d1wJ/B4O9fuHeOr/eg0ur4a',
+	NULL,
+	'Test-first-name',
+	'test-last-name',
+	NULL,
+	NULL,
+	NULL
+),
+(
+	DEFAULT,
+	'test3@test.com',
+	'$2a$10$3ERluFbyZWJgOdpvbjUB3.2owUqmy.d1wJ/B4O9fuHeOr/eg0ur4a',
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL
+);
 
-
-INSERT INTO account
-(email, pass, display_name, first_name, last_name, photo)
-VALUES('test@test.com',
-'$2a$10$3ERluFbyZWJgOdpvbjUB3.2owUqmy.d1wJ/B4O9fuHeOr/eg0ur4a',
-'Test-display-name',
-'Test-first-name',
-'test-last-name',
-'https://cdn.dribbble.com/users/199982/screenshots/4044699/furkan-avatar-dribbble_1x.png'),
-('test2@test.com',
-'$2a$10$3ERluFbyZWJgOdpvbjUB3.2owUqmy.d1wJ/B4O9fuHeOr/eg0ur4a',
-NULL,
-'Test-first-name',
-'test-last-name',
-NULL),
-('test3@test.com',
-'$2a$10$3ERluFbyZWJgOdpvbjUB3.2owUqmy.d1wJ/B4O9fuHeOr/eg0ur4a',
-NULL,
-NULL,
-NULL,
-NULL);
-
-
+DROP TABLE image CASCADE;
+DROP TABLE landmark CASCADE;
 
 CREATE TABLE image (
 	id SERIAL,
@@ -62,7 +73,6 @@ CREATE TABLE landmark (
 	FOREIGN KEY (image_id) REFERENCES image (id),
 	UNIQUE (image_id, name)
 );
-
 
 INSERT INTO image VALUES (DEFAULT, 'parliament.jpg', 51.499355, -0.124683, 1);
 INSERT INTO image VALUES (DEFAULT, 'pisa.jpg', NULL, NULL, 1);
