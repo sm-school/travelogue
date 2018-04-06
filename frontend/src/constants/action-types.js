@@ -14,3 +14,7 @@ export const UPDATE_NEXT_LOCATION = 'UPDATE_NEXT_LOCATION';
 
 export const SAVE_LOGGED_IN_USER = 'SAVE_LOGGED_IN_USER';
 export const RESET_USER = 'RESET_USER';
+
+export const TURN_MENU_ON = 'TURN_MENU_ON';
+export const TURN_MENU_OFF = 'TURN_MENU_OFF';
+export const TOGGLE_MENU = 'TOGGLE_MENU';
