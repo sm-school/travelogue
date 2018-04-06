@@ -7,6 +7,7 @@ import map from './map';
 import uploaderImages from './uploadImages';
 import uploaderImagesUrl from './uploaderImagesUrl';
 import nextLocation from './nextLocation';
+import tripInfo from './tripSummary';
 import user from './user';
 export default combineReducers({
 	imageLandmarks,
@@ -15,6 +16,6 @@ export default combineReducers({
 	uploaderImages,
 	uploaderImagesUrl,
 	nextLocation,
-    user,
-    tripInfo
+	user,
+	tripInfo,
 });

@@ -11,8 +11,8 @@ import {
 	DELETE_IMAGE,
 	DELETE_IMAGE_URL,
 	UPDATE_USER,
-    UPDATE_NEXT_LOCATION,
-    TRIP_SUMMARY
+	UPDATE_NEXT_LOCATION,
+	TRIP_SUMMARY,
 } from '../constants/action-types';
 
 import nextLocation from '../reducers/nextLocation';
@@ -310,8 +310,8 @@ export const fetchUser = () => {
 };
 
 export const fetchTripSummary = () => {
-    return dispatch => {
-        fetch('/api/image/trip', {
+	return dispatch => {
+		fetch('/api/image/trip', {
 			credentials: 'same-origin',
 		}).then( response => {
 			if (response.status !== 404) {
@@ -322,10 +322,10 @@ export const fetchTripSummary = () => {
 
 			dispatch(tripSummary(data.tripSummary)); //confirm returned object from db
 		});
-    };
+	};
 };
 
 const tripSummary = (tripInfo) => {
-    type: TRIP_SUMMARY,
-    tripInfo
+	type: TRIP_SUMMARY,
+	tripInfo;
 };
