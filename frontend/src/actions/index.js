@@ -11,6 +11,7 @@ import {
 	DELETE_UPLOADER_IMAGE,
 	SAVE_LOGGED_IN_USER,
 	UPDATE_NEXT_LOCATION,
+	TRIP_SUMMARY,
 	RESET_USER,
 	TURN_MENU_ON, 
 	TURN_MENU_OFF, 
@@ -310,6 +311,28 @@ export const fetchUser = () => {
 	};
 };
 
+<<<<<<< HEAD
+export const fetchTripSummary = () => {
+	return dispatch => {
+		fetch('/api/image/trip', {
+			credentials: 'same-origin',
+		}).then( response => {
+			if (response.status !== 404) {
+				return response.json();
+			}
+		}).then( data => {
+			if (!data) return;
+
+			dispatch(tripSummary(data.tripSummary)); //confirm returned object from db
+		});
+	};
+};
+
+const tripSummary = (tripInfo) => {
+	type: TRIP_SUMMARY,
+	tripInfo;
+};
+=======
 export const turnMenuOn = ()=>({
 	type: TURN_MENU_ON,
 });
@@ -320,3 +343,4 @@ export const toggleMenu = ()=>({
 	type: TOGGLE_MENU,
 });
 
+>>>>>>> 23fd192e275447c91de0f5b9b60e22acad04227a

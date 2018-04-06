@@ -8,6 +8,7 @@ import userMenu from './userMenu';
 import uploaderImages from './uploaderImages';
 import uploaderImagesUrl from './uploaderImagesUrl';
 import nextLocation from './nextLocation';
+import tripInfo from './tripSummary';
 import user from './user';
 export default combineReducers({
 	userMenu,
@@ -18,4 +19,5 @@ export default combineReducers({
 	uploaderImagesUrl,
 	nextLocation,
 	user,
+	tripInfo,
 });
