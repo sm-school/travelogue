@@ -8,4 +8,7 @@ const TripPhoto = props => {
 	);
 };
 
+TripPhoto.propTypes = {
+	item: PropTypes.object,
+};
 export default TripPhoto;
