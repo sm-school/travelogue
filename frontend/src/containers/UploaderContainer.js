@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { uploadImages, addImages, turnImagesIntoURLs, deleteUploadImage } from '../actions';
+import { uploadImages, addImages, turnImagesIntoURLs, deleteUploaderImage } from '../actions';
 import Uploader from '../components/Uploader';
 
 const getUploaderImages = state => state.uploaderImages;
@@ -15,7 +15,7 @@ const mapDispatchToProps = dispatch => ({
 	uploadImages,
 	addImages: images => dispatch(addImages(images)),
 	turnImagesIntoURLs: (images, length) => dispatch(turnImagesIntoURLs(images, length)),
-	deleteUploadImage: index => dispatch(deleteUploadImage(index)),
+	deleteUploaderImage: index => dispatch(deleteUploaderImage(index)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Uploader);

@@ -1,10 +1,8 @@
 'use strict';
-
-const userRouter = require('express').Router();
-const passport = require('../passport');
-
 const { registerUser, sendUserData } = require('../controllers/user');
 const isLoggedIn = require('../helpers/isLoggedIn');
+const userRouter = require('express').Router();
+const passport = require('../passport');
 
 userRouter.post(
 	'/register',
@@ -25,6 +23,12 @@ userRouter.post(
 	sendUserData
 );
 
+userRouter.get('/logout', function(req, res){
+	req.logout();
+	res.status(200).end();
+  });
+
+
 userRouter.get(
 	'/check',
 	isLoggedIn,
@@ -32,3 +36,4 @@ userRouter.get(
 );
 
 module.exports = userRouter;
+

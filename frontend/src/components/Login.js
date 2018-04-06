@@ -7,16 +7,16 @@ import '../styles/components/Login.scss';
 const Login = (props) => {
 	const onSubmitHandler = (e) => {
 		e.preventDefault();
-		const username = e.target.userName.value;
+		const email = e.target.email.value;
 		const password = e.target.userPassword.value;
-		props.loginUser(username, password);
+		props.loginUser(email, password);
 	};
 	return (
 		<div className="login">
 			<form onSubmit={onSubmitHandler}  method="POST">
-				<label htmlFor="userName">Username</label>
-				<input name="userName" type='text' />
-				<label htmlFor="userPassword">Password</label>
+				<label htmlFor="email">Email:</label>
+				<input name="email" type='text' />
+				<label htmlFor="userPassword">User Password:</label>
 				<input name="userPassword" type='password' />
 				<button type="submit">Login</button>
 			</form>

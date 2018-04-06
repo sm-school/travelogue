@@ -8,10 +8,10 @@ import {
 	RECEIVE_ZOOM,
 	ADD_IMAGES,
 	ADD_IMAGE_URL,
-	DELETE_IMAGE,
-	DELETE_IMAGE_URL,
-	UPDATE_USER,
+	DELETE_UPLOADER_IMAGE,
+	SAVE_LOGGED_IN_USER,
 	UPDATE_NEXT_LOCATION,
+	RESET_USER,
 } from '../constants/action-types';
 
 import nextLocation from '../reducers/nextLocation';
@@ -165,7 +165,6 @@ const storeImageData = (imageData) => {
 		},
 	})
 		.then( response => {
-			console.log(`Uploaded: ${imageData.fileName}`);
 			return response.json();
 		})
 		.catch( error => {
@@ -192,8 +191,6 @@ export const turnImagesIntoURLs = (images, length) => {
 			var reader = new FileReader();
 			// Closure to capture the file information.
 			reader.onload = ( (theFile, index) => {
-				console.log(theFile);
-				// console.log(index);
 				return function(e) {
 					dispatch(addUploaderImagesUrl(e.target.result, index));
 				};
@@ -205,35 +202,24 @@ export const turnImagesIntoURLs = (images, length) => {
 	};
 };
 
-const deleteImages = index => ({
-	type: DELETE_IMAGE,
+
+
+export const deleteUploaderImage = index =>({
+	type: DELETE_UPLOADER_IMAGE,
 	index,
 });
 
-const deleteUploaderImagesUrl = index => ({
-	type: DELETE_IMAGE_URL,
-	index,
-});
-
-export const deleteUploadImage = index =>{
-	return dispatch => {
-		dispatch(deleteImages(index));
-		dispatch(deleteUploaderImagesUrl(index));
-	};
-};
-
-export const registerUser = (username, password) =>{
+export const registerUser = (email, password) =>{
 	return dispatch => {
 		fetch('/api/user/register', {
 			method: 'POST',
-			body: JSON.stringify({ username, password }),
+			body: JSON.stringify({ email, password }),
 			credentials: 'same-origin',
 			headers: {
 		  'content-type': 'application/json',
 			},
 		})
 			.then( response => {
-				console.log(response);
 				if (response.status === 401) {
 					alert('Invalid user name or password');
 				} else if (response.status === 404) {
@@ -245,17 +231,17 @@ export const registerUser = (username, password) =>{
 				}
 			}).then( data => {
 				if (!data) return;
-				dispatch(updateUser(data.user));
+				dispatch(saveLoggedInUser(data));
 				dispatch(updateNextLocation('/dashboard'));
 			});
 	};
 };
 
-export const loginUser = (username, password) => {
-	return dispatch => {
+export const loginUser = (email, password) =>{
+	return dispatch =>{
 		fetch('/api/user/login', {
 			method: 'POST',
-			body: JSON.stringify({ username, password }),
+			body: JSON.stringify({ email, password }),
 			credentials: 'same-origin',
 			headers: {
 				'content-type': 'application/json',
@@ -268,27 +254,41 @@ export const loginUser = (username, password) => {
 			}
 		}).then( data => {
 			if (!data) return;
-
-			dispatch(updateUser(data.user));
-
+			dispatch(saveLoggedInUser(data));
+			
 			// To do: change this with regexp
 			const params = window.location.search.split('?ref=')[1];
 			const nextUrl = params || '/dashboard';
-
 			dispatch(updateNextLocation(nextUrl));
 		});
 	};
 };
 
-export const updateNextLocation = nextLocation => {
+export const logoutUser = () =>{
+	return dispatch => {
+		fetch('/api/user/logout', {
+			credentials: 'same-origin',
+		}).then(function(result) {
+			dispatch(resetUser());
+			dispatch(updateNextLocation('/'));
+		});
+	};
+};
+
+const resetUser = ()=>({
+	type: RESET_USER,
+});
+
+
+export const updateNextLocation = nextLocation =>{
 	return {
 		type: UPDATE_NEXT_LOCATION,
 		nextLocation,
 	};
 };
-
-const updateUser = user => ({
-	type: UPDATE_USER,
+	
+const saveLoggedInUser = user => ({
+	type: SAVE_LOGGED_IN_USER,
 	user,
 });
 
@@ -301,9 +301,8 @@ export const fetchUser = () => {
 				return response.json();
 			}
 		}).then( data => {
-			if (!data) return;
-
-			dispatch(updateUser(data.user));
+			if (!data) return ;
+			dispatch(saveLoggedInUser(data));
 		});
 	};
 };

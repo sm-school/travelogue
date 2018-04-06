@@ -12,7 +12,7 @@ const Main = (props)=> {
 				<div className="main__children">
 					{props.children}
 				</div>
-			</div>
+			</div>			
 		</div>
 	);
 };

@@ -1,10 +1,13 @@
 import { connect } from 'react-redux';
 import Navigation from '../components/Navigation';
-const getUser = state=> state.user;
+import { logoutUser } from '../actions/';
+const getUser = state => state.user;
 
-const mapStateToProps = state =>({
+const mapStateToProps = state => ({
 	user: getUser(state),
 });
-const mapDispatchToProps = {};
+const mapDispatchToProps = dispatch => ({
+	logoutUser: () => dispatch(logoutUser()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

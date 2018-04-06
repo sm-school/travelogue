@@ -3,10 +3,41 @@ DROP TABLE image CASCADE;
 DROP TABLE landmark CASCADE;
 
 CREATE TABLE account (
-	id serial PRIMARY KEY,
-	username varchar (25) UNIQUE NOT NULL,
-	pass varchar NOT NULL
+    id serial PRIMARY KEY,
+   	email varchar UNIQUE NOT NULL,
+    pass varchar NOT NULL,
+	gmail_sign_in boolean,
+	display_name varchar,
+	first_name varchar,
+	last_name varchar,
+	photo varchar,
+	domain_name varchar
 );
+
+
+
+INSERT INTO account
+(email, pass, display_name, first_name, last_name, photo)
+VALUES('test@test.com',
+'$2a$10$3ERluFbyZWJgOdpvbjUB3.2owUqmy.d1wJ/B4O9fuHeOr/eg0ur4a',
+'Test-display-name',
+'Test-first-name',
+'test-last-name',
+'https://cdn.dribbble.com/users/199982/screenshots/4044699/furkan-avatar-dribbble_1x.png'),
+('test2@test.com',
+'$2a$10$3ERluFbyZWJgOdpvbjUB3.2owUqmy.d1wJ/B4O9fuHeOr/eg0ur4a',
+NULL,
+'Test-first-name',
+'test-last-name',
+NULL),
+('test3@test.com',
+'$2a$10$3ERluFbyZWJgOdpvbjUB3.2owUqmy.d1wJ/B4O9fuHeOr/eg0ur4a',
+NULL,
+NULL,
+NULL,
+NULL);
+
+
 
 CREATE TABLE image (
 	id SERIAL,
@@ -32,7 +63,6 @@ CREATE TABLE landmark (
 	UNIQUE (image_id, name)
 );
 
-INSERT INTO account (username, pass) VALUES('username', '$2a$10$3ERluFbyZWJgOdpvbjUB3.2owUqmy.d1wJ/B4O9fuHeOr/eg0ur4a');
 
 INSERT INTO image VALUES (DEFAULT, 'parliament.jpg', 51.499355, -0.124683, 1);
 INSERT INTO image VALUES (DEFAULT, 'pisa.jpg', NULL, NULL, 1);

@@ -9,7 +9,7 @@ const isLoggedInWithRedirect = require('../helpers/isLoggedInWithRedirect');
 
 rootRouter.use('/api', apiRouter);
 
-rootRouter.get([ '/', '/login', '/register' ], sendIndexHtml);
+rootRouter.get([ '/', '/login', '/logout', '/register'], sendIndexHtml);
 
 rootRouter.get('/*', isLoggedInWithRedirect, sendIndexHtml);
 
