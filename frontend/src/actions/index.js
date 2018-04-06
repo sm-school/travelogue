@@ -12,6 +12,9 @@ import {
 	SAVE_LOGGED_IN_USER,
 	UPDATE_NEXT_LOCATION,
 	RESET_USER,
+	TURN_MENU_ON, 
+	TURN_MENU_OFF, 
+	TOGGLE_MENU,
 } from '../constants/action-types';
 
 import nextLocation from '../reducers/nextLocation';
@@ -306,3 +309,14 @@ export const fetchUser = () => {
 		});
 	};
 };
+
+export const turnMenuOn = ()=>({
+	type: TURN_MENU_ON,
+});
+export const turnMenuOff = ()=>({
+	type: TURN_MENU_OFF,
+});
+export const toggleMenu = ()=>({
+	type: TOGGLE_MENU,
+});
+

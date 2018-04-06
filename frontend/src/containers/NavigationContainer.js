@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
 import Navigation from '../components/Navigation';
-import { logoutUser } from '../actions/';
+import { turnMenuOff } from '../actions/';
 const getUser = state => state.user;
 
 const mapStateToProps = state => ({
 	user: getUser(state),
 });
 const mapDispatchToProps = dispatch => ({
-	logoutUser: () => dispatch(logoutUser()),
+	turnMenuOff: () => dispatch(turnMenuOff()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

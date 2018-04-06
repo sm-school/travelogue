@@ -4,11 +4,13 @@ import imageLandmarks from './imageLandmarks';
 import imageMetadata from './imageMetadata';
 import map from './map';
 
-import uploaderImages from './uploadImages';
+import userMenu from './userMenu';
+import uploaderImages from './uploaderImages';
 import uploaderImagesUrl from './uploaderImagesUrl';
 import nextLocation from './nextLocation';
 import user from './user';
 export default combineReducers({
+	userMenu,
 	imageLandmarks,
 	imageMetadata,
 	map,
