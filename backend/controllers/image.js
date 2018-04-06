@@ -73,6 +73,8 @@ function userImages (userId) {
 		.catch( error => {
 			console.log('Database error:', error.message);
 		});
+	}
+	
 function storeLandmarks (imageData) {
 	console.log(imageData);
 	const s3_id = imageData.imageId;
