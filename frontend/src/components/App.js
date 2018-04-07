@@ -28,12 +28,9 @@ class App extends React.Component {
 				<Main>
 					<Route component={ConnectedRouterContainer} />
 					<Switch>
-						<Route exact path="/" render={(props) => (
-							<ImageContainer imageId={'1523020245318_16_DSC_0002.jpg'} />
-						)} />
 						<Route path="/image/:imageId" component={ImageComponent} />
 						<Route exact path="/dashboard" component={DashboardContainer} />
-						<Redirect from='/logout' to='/' />
+						
 						<Route exact path="/login" component={LoginContainer} />
 						<Route exact path="/map" render={(props) => (
 							<MapContainer
@@ -45,6 +42,8 @@ class App extends React.Component {
 							/>
 						)} />
 						<Route exact path="/register" component={RegisterContainer} />
+						<Redirect from='/logout' to='/' />
+						<Redirect from='/' to='/login' />
 						<Route path="/*" component={NotFound} />
 					</Switch>
 				</Main>

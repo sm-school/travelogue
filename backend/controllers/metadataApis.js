@@ -13,6 +13,9 @@ function fetchMetadata (imageId) {
 		})
 		.then( wikiData => {
 			wikiData.forEach( landmark => {
+				//creates an error for trafalgar square image where wikiData is similar to one below
+				// {0:{page: "Trafalgar Square", extract: "Trafalgar Square is a public square in the City of… around the area formerly known as Charing Cross."}
+				// 1:undefined}
 				for (let i = 0; i < wikiData.length; i++) {
 					imageData.landmarks[i].page = wikiData[i].page;
 					imageData.landmarks[i].extract = wikiData[i].extract;

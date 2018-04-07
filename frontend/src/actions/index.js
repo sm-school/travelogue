@@ -99,9 +99,7 @@ export const receiveZoom = zoom => {
 	};
 };
 
-export const uploadImages = files => {
-	const fileArray = Array.from(files);
-
+export const uploadImages = fileArray => {
 	fileArray.forEach( file => {
 		let date = new Date();
 		const newName = `${date.getTime()}_${Math.floor(Math.random() * 100)}_${file.name}`;
