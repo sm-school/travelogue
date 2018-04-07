@@ -74,13 +74,14 @@ CREATE TABLE landmark (
 	UNIQUE (image_id, name)
 );
 
-INSERT INTO image VALUES (default, '1523020245318_16_DSC_0002.jpg', '38.889296', '-77.04991299999999', 1);
-INSERT INTO landmark VALUES(default, 1, 'Lincoln Memorial', '38.889296', '-77.04991299999999', 'Lincoln Memorial', 'The Lincoln Memorial is an American national monument built to honor the 16th President of the United States, Abraham Lincoln.', false);
-INSERT INTO image VALUES (DEFAULT, 'parliament.jpg', 51.499355, -0.124683, 1);
-INSERT INTO image VALUES (DEFAULT, 'pisa.jpg', NULL, NULL, 1);
+INSERT INTO image VALUES (DEFAULT, 'DSC_0001.jpg', '38.8885', '-77.006566', 1);
+INSERT INTO image VALUES (DEFAULT, 'DSC_0002.jpg', '38.8885', '-77.05', 1);
+INSERT INTO image VALUES (DEFAULT, 'DSC_0003.jpg', '38.8885', '-77.0495', 1);
+INSERT INTO image VALUES (DEFAULT, 'DSC_0004.jpg', '38.890383', '-77.004666', 1);
+INSERT INTO image VALUES (DEFAULT, 'DSC_0005.jpg', '38.8977', '-77.036083', 1);
 
-INSERT INTO landmark VALUES (DEFAULT, 2, 'London Eye', 51.502999, -0.120742, 'London Eye', 'The London Eye is a giant Ferris wheel on the South Bank of the River Thames in London.');
-INSERT INTO landmark VALUES (DEFAULT, 2, 'Big Ben', 51.500782, -0.124626, 'Big Ben', 'Big Ben is the nickname for the Great Bell of the clock at the north end of the Palace of Westminster in London and is usually extended to refer to both the clock and the clock tower.');
-INSERT INTO landmark VALUES (DEFAULT, 2, 'Houses of Parliament', 51.499355, -0.124683, 'Palace of Westminster', 'The Palace of Westminster is the meeting place of the House of Commons and the House of Lords, the two houses of the Parliament of the United Kingdom.', true);
-INSERT INTO landmark VALUES (DEFAULT, 3, 'Piazza dei Miracoli', 43.722855, 10.395813, 'Piazza dei Miracoli', 'The Piazza dei Miracoli, formally known as Piazza del Duomo, is a walled 8.87-hectare area located in Pisa, Tuscany, Italy, recognized as an important center of European medieval art and one of the finest architectural complexes in the world.');
-INSERT INTO landmark VALUES (DEFAULT, 3, 'Pisa', 43.759192, 10.371093, 'Pisa', 'Pisa is a city in the Tuscany region of Central Italy straddling the Arno just before it empties into the Ligurian Sea.');
+INSERT INTO landmark VALUES (DEFAULT, 1, 'U.S. Capitol', 38.889805, -77.010673, 'United States Capitol', 'The United States Capitol, often called the Capitol Building, is the home of the United States Congress, and the seat of the legislative branch of the U.S.', false);
+INSERT INTO landmark VALUES (DEFAULT, 2, 'Lincoln Memorial', '38.889296', '-77.049913', 'Lincoln Memorial', 'The Lincoln Memorial is an American national monument built to honor the 16th President of the United States, Abraham Lincoln.', false);
+INSERT INTO landmark VALUES (DEFAULT, 3, 'National Mall', '38.892091', '-77.024055', 'National Mall', 'The National Mall is a landscaped park within the National Mall and Memorial Parks, an official unit of the United States National Park System.', false);
+INSERT INTO landmark VALUES (DEFAULT, 4, 'United States Supreme Court building', '38.890636', '-77.005341', 'United States Supreme Court Building', 'The Supreme Court Building is the seat of the Supreme Court of the United States and the Judicial Branch thereof.', false);
+INSERT INTO landmark VALUES (DEFAULT, 5, 'White House', '38.897312', '-77.036564', 'White House', 'The White House is the official residence and workplace of the President of the United States.', false);
