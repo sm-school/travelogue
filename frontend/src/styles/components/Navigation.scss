@@ -21,6 +21,10 @@
 	font-size: 1.4rem;
 }
 
+.navigation__brand:before {
+	content:"\2767\0020";
+}
+
 .navigation__ul {
 	li {
 		padding: 0 1rem;
