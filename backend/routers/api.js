@@ -1,8 +1,7 @@
 'use strict';
 
-const fetch = require('node-fetch');
-
 const api = require('express').Router();
+
 const authRouter = require('./auth');
 const userRouter = require('./user');
 const imageRouter = require('./image');
@@ -13,6 +12,5 @@ api.use('/auth', authRouter);
 api.use('/image', imageRouter);
 api.get('/sign-s3', getSignatureS3);
 api.use('/user', userRouter);
-
 
 module.exports = api;
