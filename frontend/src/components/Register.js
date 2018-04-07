@@ -1,6 +1,8 @@
 import React from 'react';
-import { Link }  from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
+import '../styles/components/Register.scss';
 
 const Register = (props) => {
 	const onSubmitHandler = (e) => {
@@ -10,13 +12,14 @@ const Register = (props) => {
 		props.registerUser(email, password);
 	};
 	return (
-		<div>
-			<form onSubmit={onSubmitHandler} action="/login" method="POST">
-				<label htmlFor="email">Email:</label>
-				<input name="email" type='text' />
-				<label htmlFor="userPassword">User Password:</label>
-				<input name="userPassword" type='password' />
-				<button type="submit">Register</button>
+		<div className="register">
+			<h1>Get a Travelogue account</h1>
+			<form onSubmit={onSubmitHandler} action="/login" method="post">
+				<label htmlFor="email">Email</label>
+				<input name="email" type="text" />
+				<label htmlFor="userPassword">Password</label>
+				<input name="userPassword" type="password" />
+				<button type="submit">Sign up!</button>
 			</form>
 		</div>
 	);

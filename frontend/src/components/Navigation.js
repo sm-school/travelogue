@@ -17,11 +17,11 @@ class Navigation extends React.Component {
 
 	renderNavLinks = user =>{
 		if (user.loggedIn) {
-			return ( <li key='usermenu'><UserMenuContainer/></li> );
+			return ( <li key="usermenu"><UserMenuContainer/></li> );
 		} else {
 			return [
-				<li key='login'><NavLink to="/login">Login</NavLink></li>,
-				<li key='register'><NavLink to="/register">Register</NavLink></li>,
+				<li key="login"><NavLink to="/login">Log in</NavLink></li>,
+				<li key="register"><NavLink to="/register">Sign up</NavLink></li>,
 			];
 		}
 	};
@@ -30,7 +30,9 @@ class Navigation extends React.Component {
 		return (
 			<nav className="navigation">
 				<div className="navigation_link_wrapper">
-					<Link className="navigation__brand" to={ this.props.user.loggedIn ? '/dashboard' : '/'}>Travelogue</Link>
+					<Link className="navigation__brand" to={
+						this.props.user.loggedIn ? '/dashboard' : '/'
+					}>Travelogue</Link>
 					<ul className="navigation__ul">
 						{this.renderNavLinks(this.props.user)}
 					</ul>

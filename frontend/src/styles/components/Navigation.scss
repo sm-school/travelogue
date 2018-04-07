@@ -3,9 +3,10 @@
 .navigation {
 	position: fixed;
 	width: 100%;
-	background-color: $grey;
+	background-color: $midgrey;
 	margin: 0;
 	height: 3rem;
+	border-bottom: 1px solid $darkgrey;
 }
 
 .navigation_link_wrapper {

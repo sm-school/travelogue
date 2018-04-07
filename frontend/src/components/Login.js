@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link }  from 'react-router-dom';
-import PropTypes  from 'prop-types';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import '../styles/components/Login.scss';
 
@@ -14,15 +14,16 @@ const Login = (props) => {
 
 	return (
 		<div className="login">
-			<form onSubmit={onSubmitHandler}  method="POST">
+			<h1>Log in to Travelogue</h1>
+			<form onSubmit={onSubmitHandler} method="post">
 				<label htmlFor="email">Email</label>
-				<input name="email" type='text' />
+				<input name="email" type="text" />
 				<label htmlFor="userPassword">Password</label>
-				<input name="userPassword" type='password' />
+				<input name="userPassword" type="password" />
 				<button type="submit">log in</button>
 			</form>
 			<div className="login-google">
-				Or, <a href='api/auth/google'><button>log in with your Google account</button></a>
+				Or, <a href="api/auth/google"><button>log in with your Google account</button></a>
 			</div>
 		</div>
 	);
