@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 
 const api = `https://vision.googleapis.com/v1/images:annotate?fields=responses(faceAnnotations%2FdetectionConfidence%2ClandmarkAnnotations(confidence%2Cdescription%2Clocations%2Cscore%2Ctopicality))&key=${process.env.GOOGLE_CLOUD_API_KEY}`;
 
-const AWS_S3_BUCKET = `https://s3.eu-west-2.amazonaws.com/${process.env.AWS_S3_BUCKET}/`;
+const S3_BUCKET = `https://s3.${process.env.AWS_REGION}.amazonaws.com/${process.env.S3_BUCKET}/`;
 
 function getVisionData (imageId) {
 	return imageApiFetch(imageId)
@@ -78,7 +78,7 @@ function fetchBody (imageId) {
 				],
 				image: {
 					source: {
-						imageUri: `${AWS_S3_BUCKET}${imageId}`,
+						imageUri: `${S3_BUCKET}${imageId}`,
 					},
 				},
 			},
