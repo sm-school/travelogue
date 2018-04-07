@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import UploaderContainer from '../containers/UploaderContainer';
-import TripSummaryContainer from '../containers/TripSummaryContainer';
 
 const Dashboard = props => {
+	const name = props.user.first_name
+		? props.user.first_name
+		: props.user.email;
+
 	return (
 		<div>
-			<h1>Welcome {`${props.user.loggedIn}`}</h1>
+			<h1>Welcome {name}</h1>
 			<UploaderContainer />
-			<TripSummaryContainer />
 		</div>
 	);
 };
