@@ -17,7 +17,7 @@ class Navigation extends React.Component {
 
 	renderNavLinks = user =>{
 		if (user.loggedIn) {
-			return ( <li><UserMenuContainer/></li> );
+			return ( <li key='usermenu'><UserMenuContainer/></li> );
 		} else {
 			return [
 				<li key='login'><NavLink to="/login">Login</NavLink></li>,
