@@ -1,9 +1,9 @@
-function isLoggedIn(req, res, next) {
+function isLoggedIn (req, res, next) {
 	if (req.user && req.user.id) {
 		next();
 	} else {
-		res.status(404).end()
+		res.status(404).end();
 	}
 }
 
-module.exports= isLoggedIn;
+module.exports = isLoggedIn;
