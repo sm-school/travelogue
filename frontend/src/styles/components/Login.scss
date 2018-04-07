@@ -1,8 +1,30 @@
 .login label, .login input {
 	display: inline-block;
 	margin-right: 0.5em;
+	font-size: 1.25em;
+}
+
+.login label {
+	color: #666;
+	background: transparent;
+}
+
+.login input {
+	border-top: 0;
+	border-left: 0;
+	border-right: 0;
+	border-bottom: 3px solid #666;
+	padding-bottom: 0.1em;
+	font-size: 1.75em;
 }
 
 .login-google {
 	margin-top: 1em;
+}
+
+.login button {
+	border: 1px solid #ccc;
+	border-radius: 0.5em;
+	background: #efefef;
+	padding: 0.25em 0.5em;
 }

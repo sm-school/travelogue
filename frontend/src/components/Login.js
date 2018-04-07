@@ -11,14 +11,15 @@ const Login = (props) => {
 		const password = e.target.userPassword.value;
 		props.loginUser(email, password);
 	};
+
 	return (
 		<div className="login">
 			<form onSubmit={onSubmitHandler}  method="POST">
-				<label htmlFor="email">Email:</label>
+				<label htmlFor="email">Email</label>
 				<input name="email" type='text' />
-				<label htmlFor="userPassword">User Password:</label>
+				<label htmlFor="userPassword">Password</label>
 				<input name="userPassword" type='password' />
-				<button type="submit">Login</button>
+				<button type="submit">log in</button>
 			</form>
 			<div className="login-google">
 				Or, <a href='api/auth/google'><button>log in with your Google account</button></a>
