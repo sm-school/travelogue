@@ -74,8 +74,8 @@ const getUserById = id => {
 
 const sendUserData = (req, res) => {
 	const user = req.user;
-	delete user['id'];
 	delete user['pass'];
+
 	res.status(200).json({ ...user });
 };
 
