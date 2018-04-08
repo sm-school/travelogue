@@ -41,14 +41,4 @@ imageApi.post('/store', isLoggedIn, (req, res) => {
 		.catch( error => console.log(error) );
 });
 
-imageApi.get('/trip', isLoggedIn, (req, res) => {
-	userImages(req.user)
-		.then( images => {
-			return images;
-		})
-		.catch( error => {
-			console.log(error);
-		});
-});
-
 module.exports = imageApi;

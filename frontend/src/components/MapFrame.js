@@ -5,11 +5,9 @@ import '../styles/components/MapFrame.scss';
 
 import { MAPBOX_ACCESS_TOKEN } from '../constants/mapbox';
 
-// need to rename to mapCenterLatitude, mapCenterLongitude
 function MapFrame ({ centerLat, centerLon, zoom, points }) {
 	const mapboxApi = `https://b.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=${MAPBOX_ACCESS_TOKEN}`;
 
-	console.log(points);
 	const markers = points.map( (point, i) => {
 		return (
 			<Marker key={i} position={[ points[0], points[1] ]}>

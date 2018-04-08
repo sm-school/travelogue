@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-
 import PropTypes from 'prop-types';
+
 import NavigationContainer from '../containers/NavigationContainer';
 
 import '../styles/components/Main.scss';
-const Main = (props)=> {
+
+const Main = (props) => {
 	return (
 		<div className='main__page'>
 			<NavigationContainer/>
@@ -12,7 +13,7 @@ const Main = (props)=> {
 				<div className="main__children">
 					{props.children}
 				</div>
-			</div>			
+			</div>
 		</div>
 	);
 };
