@@ -15,29 +15,29 @@ CREATE TABLE account (
 INSERT INTO account VALUES
 (
 	DEFAULT,
-	'test@test.com',
+	'test@example.com',
 	'$2a$10$3ERluFbyZWJgOdpvbjUB3.2owUqmy.d1wJ/B4O9fuHeOr/eg0ur4a',
 	NULL,
-	'Test-display-name',
-	'Test-first-name',
-	'test-last-name',
+	'Display Name',
+	'First1',
+	'Last1',
 	'https://cdn.dribbble.com/users/199982/screenshots/4044699/furkan-avatar-dribbble_1x.png',
 	NULL
 ),
 (
 	DEFAULT,
-	'test2@test.com',
+	'test2@example.com',
 	'$2a$10$3ERluFbyZWJgOdpvbjUB3.2owUqmy.d1wJ/B4O9fuHeOr/eg0ur4a',
 	NULL,
-	'Test-first-name',
-	'test-last-name',
+	'First2',
+	'Last2',
 	NULL,
 	NULL,
 	NULL
 ),
 (
 	DEFAULT,
-	'test3@test.com',
+	'test3@example.com',
 	'$2a$10$3ERluFbyZWJgOdpvbjUB3.2owUqmy.d1wJ/B4O9fuHeOr/eg0ur4a',
 	NULL,
 	NULL,
