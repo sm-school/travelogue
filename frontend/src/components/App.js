@@ -12,7 +12,7 @@ import LoginContainer from '../containers/LoginContainer';
 import LogoutContainer from '../containers/LogoutContainer';
 import MapContainer from '../containers/MapContainer';
 import RegisterContainer from '../containers/RegisterContainer';
-import TripSummaryContainer from '../containers/TripSummaryContainer';
+import TripContainer from '../containers/TripContainer';
 
 import '../styles/components/App.scss';
 
@@ -43,7 +43,7 @@ class App extends React.Component {
 							/>
 						) } />
 						<Route exact path="/register" component={RegisterContainer} />
-						<Route exact path="/trip" component={TripSummaryContainer} />
+						<Route exact path="/trip" component={TripContainer} />
 						<Redirect from='/logout' to='/' />
 						<Redirect from='/' to='/login' />
 						<Route path="/*" component={NotFound} />

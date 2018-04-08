@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from  'prop-types';
 
-const TripPhoto = props => {
+const TripImage = props => {
 	return (
 		<li><img src={props.item.pictureURL}/>
 		</li>
 	);
 };
 
-TripPhoto.propTypes = {
+TripImage.propTypes = {
 	item: PropTypes.object,
 };
-export default TripPhoto;
+export default TripImage;

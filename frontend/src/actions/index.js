@@ -11,10 +11,9 @@ import {
 	DELETE_UPLOADER_IMAGE,
 	SAVE_LOGGED_IN_USER,
 	UPDATE_NEXT_LOCATION,
-	TRIP_SUMMARY,
 	RESET_USER,
-	TURN_MENU_ON, 
-	TURN_MENU_OFF, 
+	TURN_MENU_ON,
+	TURN_MENU_OFF,
 	TOGGLE_MENU,
 } from '../constants/action-types';
 
@@ -204,8 +203,6 @@ export const turnImagesIntoURLs = (images, length) => {
 	};
 };
 
-
-
 export const deleteUploaderImage = index =>({
 	type: DELETE_UPLOADER_IMAGE,
 	index,
@@ -257,7 +254,7 @@ export const loginUser = (email, password) =>{
 		}).then( data => {
 			if (!data) return;
 			dispatch(saveLoggedInUser(data));
-			
+
 			// To do: change this with regexp
 			const params = window.location.search.split('?ref=')[1];
 			const nextUrl = params || '/dashboard';
@@ -288,7 +285,7 @@ export const updateNextLocation = nextLocation =>{
 		nextLocation,
 	};
 };
-	
+
 const saveLoggedInUser = user => ({
 	type: SAVE_LOGGED_IN_USER,
 	user,
@@ -307,27 +304,6 @@ export const fetchUser = () => {
 			dispatch(saveLoggedInUser(data));
 		});
 	};
-};
-
-export const fetchTripSummary = () => {
-	return dispatch => {
-		fetch('/api/image/trip', {
-			credentials: 'same-origin',
-		}).then( response => {
-			if (response.status !== 404) {
-				return response.json();
-			}
-		}).then( data => {
-			if (!data) return;
-
-			dispatch(tripSummary(data.tripSummary)); //confirm returned object from db
-		});
-	};
-};
-
-const tripSummary = (tripInfo) => {
-	type: TRIP_SUMMARY,
-	tripInfo;
 };
 
 export const turnMenuOn = ()=>({

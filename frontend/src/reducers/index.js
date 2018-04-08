@@ -3,21 +3,21 @@ import { combineReducers } from 'redux';
 import imageLandmarks from './imageLandmarks';
 import imageMetadata from './imageMetadata';
 import map from './map';
-
-import userMenu from './userMenu';
+import nextLocation from './nextLocation';
+import trip from './trip';
 import uploaderImages from './uploaderImages';
 import uploaderImagesUrl from './uploaderImagesUrl';
-import nextLocation from './nextLocation';
-import tripInfo from './tripSummary';
 import user from './user';
+import userMenu from './userMenu';
+
 export default combineReducers({
-	userMenu,
 	imageLandmarks,
 	imageMetadata,
 	map,
+	nextLocation,
+	trip,
 	uploaderImages,
 	uploaderImagesUrl,
-	nextLocation,
 	user,
-	tripInfo,
+	userMenu,
 });
