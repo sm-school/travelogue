@@ -24,6 +24,7 @@ class Navigation extends React.Component {
 				<li key="register"><NavLink to="/register">Sign up</NavLink></li>,
 			];
 		}
+    
 	};
 
 	render() {

@@ -1,16 +1,24 @@
 @import '../base/colours';
+@import url('https://fonts.googleapis.com/css?family=Shrikhand');
 
 .navigation {
-	position: fixed;
+	position: absolute;
 	width: 100%;
-	background-color: $midgrey;
 	margin: 0;
 	height: 3rem;
-	border-bottom: 1px solid $darkgrey;
+    z-index: 1;
+    animation: 1s fadein 0.5s forwards;
+    opacity: 0;
+}
+
+@keyframes fadein {
+    100% {
+        opacity: 1;
+    }
 }
 
 .navigation_link_wrapper {
-	padding: 0 15rem;
+	padding: 2rem 5rem;
 	height:100%;
 	display: flex;
 	justify-content: space-between;
@@ -19,14 +27,20 @@
 
 .navigation__brand {
 	display: inline-block;
-	font-size: 1.4rem;
+    font-size: 2.5rem;
+    color: #FFF;
+    font-family: 'Shrikhand', cursive;
 }
 
 .navigation__brand:before {
-	content:"\2767\0020";
+    content:"\2767\0020";
+    font-family: 'Shrikhand', cursive;
 }
 
 .navigation__ul {
+    a {
+        color: #FFF;
+    }
 	li {
 		padding: 0 1rem;
 		display: inline-block;
