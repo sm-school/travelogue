@@ -11,7 +11,7 @@ const user = require('./user');
 api.use('/auth', auth);
 api.use('/image', image);
 api.get('/sign-s3', s3);;
-api.get('/trip', trip);
+api.use('/trip', trip);
 api.use('/user', user);
 
 module.exports = api;
