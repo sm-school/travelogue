@@ -43,7 +43,7 @@ class App extends React.Component {
 							/>
 						) } />
 						<Route exact path="/register" component={RegisterContainer} />
-						<Route exact path="/trip" component={TripContainer} />
+						<Route path="/trip/:tripId" component={TripContainer} />
 						<Redirect from='/logout' to='/' />
 						<Redirect from='/' to='/login' />
 						<Route path="/*" component={NotFound} />
@@ -58,7 +58,16 @@ const ImageComponent = ({ match }) => (
 	<ImageContainer imageId={match.params.imageId} />
 );
 
+const TripComponent = ({ match }) => (
+	<TripContainer tripId={match.params.tripId} />
+);
+
+
 ImageComponent.propTypes = {
+	match: PropTypes.object,
+};
+
+TripComponent.propTypes = {
 	match: PropTypes.object,
 };
 

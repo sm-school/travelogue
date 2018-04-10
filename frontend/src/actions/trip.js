@@ -1,20 +1,21 @@
 import { RECEIVE_TRIP } from '../constants/action-types';
 
-// Trips not yet implemented in database. For the time being,
-// get all images associated with a user ID
-export const fetchTrip = (userId) => {
+export const fetchTrip = (tripId) => {
 	return dispatch => {
-		fetch(`/api/trip/userImages/${userId}`, { credentials: 'same-origin' })
+		console.log('Trip ID is:', tripId);
+		fetch(`/api/trip/${tripId}`, { credentials: 'same-origin' })
 			.then( response => {
 				if (!response.ok)
-				 	throw new Error(`${response.status}: ${response.statusText}`);
-
+					throw new Error(`${response.status}: ${response.statusText}`);
 				return response.json();
-			}).then( data => dispatch(receiveTrip(data)) );
+			}).then( data => {
+				console.log(data);
+				dispatch(receiveTrip(data));
+			});
 	};
 };
 
-const receiveTrip = (trip) => {
+const receiveTrip = (trip) => ({
 	type: RECEIVE_TRIP,
-	trip;
-};
+	trip,
+});

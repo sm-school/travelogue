@@ -6,21 +6,25 @@ const getTrip = (state) => {
 	return state.trip;
 };
 
-const getUser = state => {
-	return state.user;
-};
-
 const mapStateToProps = state => ({
 	trip: getTrip(state),
-	user: getUser(state),
 });
 
 const mapDispatchToProps = dispatch => ({
-	fetchTrip: userId => dispatch(fetchTrip(userId)),
+	fetchTrip: (tripId) => dispatch(fetchTrip(tripId)),
 	setTrip: trip => dispatch(receiveTrip(trip)),
 });
 
+function mergeProps(stateProps, dispatchProps, ownProps) {
+	let merged = Object.assign({}, ownProps, stateProps, dispatchProps);
+
+	return Object.assign({}, merged, {
+		tripId: stateProps.tripId || ownProps.tripId,
+	});
+}
+
 export default connect (
 	mapStateToProps,
-	mapDispatchToProps
+	mapDispatchToProps,
+	mergeProps
 )(Trip);

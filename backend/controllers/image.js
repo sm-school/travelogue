@@ -45,13 +45,15 @@ function storeImage ( { user, imageData } ) {
 	console.log('Storing', s3_id, 'for', user.username);
 	const accountId = user.id;
 
+	const tripId = 1; // until we build feature
+
 	const sql = `
 	INSERT INTO image
-	VALUES( DEFAULT, $1, $2, $3, $4 )
+	VALUES( DEFAULT, $1, $2, $3, $4, $5 )
 	RETURNING s3_id;`;
 
 	// undefined values standing in for lat and long currently
-	return db.one(sql, [ s3_id, undefined, undefined, accountId ])
+	return db.one(sql, [ s3_id, undefined, undefined, accountId, tripId ])
 		.then( uploaded_s3_id => {
 			return uploaded_s3_id;
 		})

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class Trip extends React.Component {
 	componentDidMount() {
-		this.props.fetchTrip(this.props.user.id);
+		this.props.fetchTrip(this.props.match.params.tripId);
 	}
 
 	render() {
@@ -24,8 +24,8 @@ class Trip extends React.Component {
 
 Trip.propTypes = {
 	fetchTrip: PropTypes.func,
+	match: PropTypes.object,
 	trip: PropTypes.array,
-	user: PropTypes.object,
 };
 
 export default Trip;
