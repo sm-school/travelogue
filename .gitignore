@@ -7,3 +7,6 @@
 .envrc
 travelogue.sublime-project
 travelogue.sublime-workspace
+server.csr
+server.key
+server.pass.key
