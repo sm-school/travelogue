@@ -1,3 +1,18 @@
+
+.dashboard {
+    display: grid;
+    grid-auto-rows: auto;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.dashboard-title {
+    grid-column-start: 2;
+    grid-row-start: 1;
+    padding: 1.5em;
+    align-self: center;
+    justify-self: center;
+}
+
 .drag-area {
 	margin-bottom: 1em;
 	border: 5px dashed #999;
@@ -33,5 +48,17 @@
 	padding: 0.25em 0.5em;
 	border-right: 2px solid #999;
 	border-radius: 0.25em;
-	border-bottom: 2px solid #999;
+    border-bottom: 2px solid #999;
+    width: 200px;
+    align-self: center;
+    justify-self: center;
 }
+
+.uploader {
+    display: grid;
+    grid-column-start: 2;
+    grid-row-start: 2;
+    align-self: center;
+    justify-self: center;
+}
+
