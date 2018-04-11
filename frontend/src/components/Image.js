@@ -51,7 +51,7 @@ class Image extends React.Component {
 				<div className="map">
 					{mapComponent}
 				</div>
-				<div className="landmark_suggestions">
+				<div className="landmarks">
 					{landmarksComponent}
 				</div>
 			</div>

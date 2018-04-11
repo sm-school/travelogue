@@ -7,15 +7,17 @@ function Landmarks (props) {
 		const wikipedia = 'https://en.wikipedia.org/wiki/' + encodeURI(page);
 
 		return <li key={i}>
-			<strong><a href={wikipedia}>{item.name}</a></strong><br />
-			{item.extract}
+			<a href={wikipedia}>
+				<strong>{item.name}</strong><br />
+				{item.extract}
+			</a>
 		</li>;
 	});
 
 	return (
-		<div className="landmarks">
+		<div>
 			<h2>Shown in this photo:</h2>
-			<ul>
+			<ul className="landmarks_list">
 				{landmarks}
 			</ul>
 		</div>

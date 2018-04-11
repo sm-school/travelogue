@@ -23,25 +23,31 @@
 	border: 1px solid #999;
 }
 
-.landmark_suggestions {
+.landmarks {
 	display: inline-block;
 	width: 50%;
 }
 
-.landmark_suggestions ul {
+.landmarks_list {
 	list-style-type: none;
 	margin: 1em 0 0 0;
 	padding: 0;
 }
 
-.landmark_suggestions ul li {
+.landmarks_list li {
 	margin: 0 0 0.5em 0;
+}
+
+.landmarks_list li a {
+	display: inline-block;
+	width: 100%;
 	padding: 0.5em 1em;
 	background-color: #ddd;
 	border-radius: 0.5em;
 	border: 1px solid transparent;
+	text-decoration: none;
 }
 
-.landmark_suggestions ul li:hover {
+.landmarks_list li a:hover {
 	border: 1px solid #999;
 }
