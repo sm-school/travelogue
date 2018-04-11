@@ -12,12 +12,6 @@ class Trip extends React.Component {
 	}
 
 	render() {
-<<<<<<< HEAD
-		const tripImages = this.props.trip.map( (image, i) => {
-			return <li key={i}>
-				<img src={'http://travelogue-test.s3-website.eu-west-2.amazonaws.com/800x600/' + image.s3_id}/></li>;
-		});
-=======
 		let tripImages;
 
 		const thumbnailWidth = 200;
@@ -30,7 +24,6 @@ class Trip extends React.Component {
 				return <li key={i}><a href={imageView}><img src={imageUrl} /></a></li>;
 			});
 		}
->>>>>>> 5a6cb410d3be9d7598f7ef475e40ee80612c77b4
 
 		return (
 			<div className="trip">
