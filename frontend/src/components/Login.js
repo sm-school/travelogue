@@ -14,7 +14,7 @@ const Login = (props) => {
 
 	return (
 		<div className="login">
-			<h1>Log in to Travelogue</h1>
+			<h1>Log in</h1>
 			<form onSubmit={onSubmitHandler} method="post">
 				<label htmlFor="email">Email</label>
 				<input name="email" type="text" />

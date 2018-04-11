@@ -10,8 +10,6 @@
 	flex-direction: column;
 	text-align: center;
 	font-size: 1.5em;
-	font-style: italic;
-	line-height: 0.9em;
 }
 
 .upload-queue {
@@ -28,4 +26,12 @@
 	width: 5em;
 	border-right: 2px solid #666;
 	border-bottom: 2px solid #666;
+}
+
+.uploader button {
+	background: #ddd;
+	padding: 0.25em 0.5em;
+	border-right: 2px solid #999;
+	border-radius: 0.25em;
+	border-bottom: 2px solid #999;
 }

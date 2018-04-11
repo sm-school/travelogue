@@ -20,7 +20,7 @@ const Launchpage = () => {
 			<section className="hero">
 				<div className="background-image" style={divStyle}/>
 				<div className="hero-content-area">
-					<h1>Photo sharing, but better!</h1>
+					<h1>Photo sharing, but better</h1>
 					<h3 id="tag">Secure cloud storage. Built in location & landmark recognition.</h3>
 					<a href="/register" className="button-register">Start sharing now!</a>
 				</div>

@@ -1,6 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Basic');
+
 .main__children_wrapper {
     padding-top:8rem;
 }
+
 .main__children {
     padding:0 5rem;
+}
+
+body, .main__page {
+	background: #efefef;
+}
+
+.main__children * {
+	font-family: 'Basic', sans-serif;
 }
