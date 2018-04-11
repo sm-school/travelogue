@@ -48,11 +48,13 @@ class Image extends React.Component {
 				<div className="image_frame">
 					<img src={imageUrl} />
 				</div>
-				<div className="map">
-					{mapComponent}
-				</div>
-				<div className="landmarks">
-					{landmarksComponent}
+				<div className="metadata">
+					<div className="map">
+						{mapComponent}
+					</div>
+					<div className="landmarks">
+						{landmarksComponent}
+					</div>
 				</div>
 			</div>
 		);
