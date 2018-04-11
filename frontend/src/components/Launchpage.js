@@ -4,7 +4,8 @@ import '../styles/components/Launchpage.scss';
 const Launchpage = () => {
 
 	var divStyle = {
-		backgroundImage: 'url(https://s3.us-east-2.amazonaws.com/traveluploader/frontbanner.jpg)',
+		backgroundImage: 'url(https://s3.eu-west-2.amazonaws.com/travelogue-test/frontbanner.jpg)',
+		
 		position: 'absolute',
 		top: 0,
 		left: 0,
