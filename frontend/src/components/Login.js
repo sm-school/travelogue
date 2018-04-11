@@ -14,16 +14,17 @@ const Login = (props) => {
 
 	return (
 		<div className="login">
-			<h1>Log in</h1>
+			<h1 className="login-title">Log in</h1>
 			<form onSubmit={onSubmitHandler} method="post">
 				<label htmlFor="email">Email</label>
 				<input name="email" type="text" />
 				<label htmlFor="userPassword">Password</label>
 				<input name="userPassword" type="password" />
-				<button type="submit">log in</button>
+				<button type="submit">Log in</button>
 			</form>
-			<div className="login-google">
-				Or, <a href="api/auth/google"><button>log in with your Google account</button></a>
+			<div className="google">
+				<div className="login-option">OR</div>
+				<a href="api/auth/google"><button>Log in with Google</button></a>
 			</div>
 		</div>
 	);
