@@ -24,7 +24,7 @@ function MapFrame ({ centerLat, centerLon, zoom, points }) {
 
 	return (
 		<div>
-			Photo location
+			<div className="map_heading">Photo location</div>
 			<Map center={[ centerLat, centerLon ]} zoom={zoom} id="map">
 				<TileLayer
 					attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"

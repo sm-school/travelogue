@@ -49,7 +49,7 @@ class Image extends React.Component {
 					<img src={imageUrl} />
 				</div>
 				<div className="metadata">
-					<div className="map">
+					<div className="map_frame">
 						{mapComponent}
 					</div>
 					<div className="landmarks">
