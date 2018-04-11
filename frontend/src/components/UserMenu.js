@@ -13,6 +13,7 @@ const UserMenu = props=> {
 	const renderPopUp = open => {
 		if (open) {
 			return <div className="usermenu__popup">
+				< Link to='/trip/1'><div>Trip</div></Link>
 				< Link to='/profile'><div>Profile</div></Link>
 				< Link to='#'><div onClick={e =>{e.stopPropagation(); props.logoutUser();}}>LogOut</div></Link>
 			</div>;

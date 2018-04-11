@@ -8,7 +8,8 @@ class Trip extends React.Component {
 
 	render() {
 		const tripImages = this.props.trip.map( (image, i) => {
-			return <li key={i}>{image.imageId}</li>;
+			return <li key={i}>
+				<img src={'http://travelogue-test.s3-website.eu-west-2.amazonaws.com/800x600/' + image.s3_id}/></li>;
 		});
 
 		return (
