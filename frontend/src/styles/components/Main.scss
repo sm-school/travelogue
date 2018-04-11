@@ -5,13 +5,19 @@
 }
 
 .main__children {
-    padding:0rem;
+    padding:5rem;
 }
 
 body, .main__page {
-	background: #efefef;
+	background: #e8f4ff;
 }
 
 .main__children * {
 	font-family: 'Basic', sans-serif;
+}
+
+@media only screen and (max-width: 600px) {
+    .main__children {
+        padding:0rem;
+    }
 }

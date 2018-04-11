@@ -2,17 +2,17 @@
 @import url('https://fonts.googleapis.com/css?family=Shrikhand');
 
 .navigation {
-	background: #aaa;
+    background: #45B2D0;
 	position: absolute;
 	width: 100%;
 	margin: 0;
-	height: 8rem;
+	height: 4rem;
     z-index: 1;
-    border-bottom: 1px solid #666;
+    border-bottom: 1px solid #45B2D0;
 }
 
 .navigation_link_wrapper {
-	padding: 2rem 5rem;
+	padding: 0rem 5rem;
 	height:100%;
 	display: flex;
 	justify-content: space-between;
@@ -22,13 +22,11 @@
 .navigation__brand {
 	display: inline-block;
     font-size: 2.5rem;
-    color: #000;
+    color: #FFF;
     font-family: 'Shrikhand', cursive;
-	text-shadow: 1px 1px 0px #ff9;
 }
 
 .navigation__brand:before {
-    content:"\2767\0020";
     font-family: 'Shrikhand', cursive;
 }
 
