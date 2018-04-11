@@ -9,11 +9,15 @@ function MapFrame ({ centerLat, centerLon, zoom, points }) {
 	const mapboxApi = `https://b.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=${MAPBOX_ACCESS_TOKEN}`;
 
 	const markers = points.map( (point, i) => {
+		let popup;
+
+		if (points[2]) {
+			popup = <Popup><span>{points[2]}</span></Popup>;
+		}
+
 		return (
 			<Marker key={i} position={[ points[0], points[1] ]}>
-				<Popup>
-					<span>{points[2]}</span>
-				</Popup>
+				{popup}
 			</Marker>
 		);
 	});
