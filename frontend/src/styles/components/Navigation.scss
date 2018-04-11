@@ -2,10 +2,11 @@
 @import url('https://fonts.googleapis.com/css?family=Shrikhand');
 
 .navigation {
+	background: rgba(87, 87, 87, 0.219);
 	position: absolute;
 	width: 100%;
 	margin: 0;
-	height: 3rem;
+	height: 8rem;
     z-index: 1;
     animation: 1s fadein 0.5s forwards;
     opacity: 0;
