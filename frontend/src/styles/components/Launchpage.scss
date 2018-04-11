@@ -75,3 +75,55 @@
     align-items: center;
     min-height: 10vh;
 }
+
+@media only screen and (max-width: 600px) {
+
+    section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 8px;
+    }
+
+    .hero {
+        justify-content: center;
+        text-align: center;
+        padding-top: 10vh;
+        padding-left: 10px;
+        min-height: 70vh;
+        color: #FFF;
+    }
+
+    .hero-content-area h1 {
+        font-size: 30px;
+        margin-bottom: 5vh;
+    }
+    
+    
+    .hero-content-area h3 {
+        font-size: 20px;
+        margin-bottom: 5vh;
+    }
+    
+    .hero a.button-register {
+        padding: 10px 10px;
+        font-size: 2vh;
+    }
+
+    .blurb h3.title {
+        padding-top: 2vh;
+        font-size: 20px;
+        margin-bottom: 30px;
+        text-align: center;
+    
+    }
+    
+    .blurb p {
+        max-width: 775px;
+        font-size: 12px;
+        line-height: 2;
+        padding: 0  20px;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+}

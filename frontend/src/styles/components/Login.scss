@@ -1,8 +1,30 @@
+.login {
+    display: grid;
+    grid-auto-rows: auto;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+.login-title {
+    grid-column-start: 2;
+    grid-row-start: 1;
+    text-align: center;
+  }
+
+.login form {
+    padding: 5vh 5vh 0vh 5vh;
+    grid-column-start: 2;
+    grid-row-start: 2;
+    display: grid;
+    align-self: center;
+    justify-self: center;
+}
+
 .login label, .login input {
 	display: inline-block;
 	margin-right: 0.5em;
 	font-size: 1.25em;
-	background: #efefef;
+    background: #efefef;
+    padding: 5px;
 }
 
 .login label {
@@ -28,5 +50,26 @@
 	padding: 0.25em 0.5em;
 	border-right: 2px solid #999;
 	border-radius: 0.25em;
-	border-bottom: 2px solid #999;
+    border-bottom: 2px solid #999;
+    margin: 2em;
+    width: 250px;
+}
+
+.google {
+    padding: 0vh 5vh 0vh 5vh;
+    grid-column-start: 2;
+    grid-row-start: 3;
+    display: grid;
+    align-self: center;
+    justify-self: center;
+}
+
+.login-option {
+    text-align: center;
+    border-radius: 4px;
+    display: grid;
+}
+
+.google button {
+    width: 250px;
 }
