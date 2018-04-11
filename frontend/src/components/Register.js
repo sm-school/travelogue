@@ -13,7 +13,7 @@ const Register = (props) => {
 	};
 	return (
 		<div className="register">
-			<h1>Get a Travelogue account</h1>
+			<h1 className="register-title">Get a Travelogue account</h1>
 			<form onSubmit={onSubmitHandler} action="/login" method="post">
 				<label htmlFor="email">Email</label>
 				<input name="email" type="text" />

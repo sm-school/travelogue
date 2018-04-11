@@ -1,12 +1,35 @@
+
+.register {
+    display: grid;
+    grid-auto-rows: auto;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
 .register label, .register input {
-	display: inline-block;
 	margin-right: 0.5em;
     font-size: 1.25em;
 }
 
+.register-title {
+    grid-column-start: 2;
+    grid-row-start: 1;
+    text-align: center;
+  }
+
+.register form {
+    padding: 5vh 5vh 0vh 5vh;
+    grid-column-start: 2;
+    grid-row-start: 2;
+    display: grid;
+    align-self: center;
+    justify-self: center;
+}
+
 .register label {
 	color: #666;
-	background: transparent;
+    background: transparent;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .register input {
@@ -22,5 +45,19 @@
 	border: 1px solid #ccc;
 	border-radius: 0.5em;
 	background: #efefef;
-	padding: 0.25em 0.5em;
+    padding: 0.25em 0.5em;
+    margin: 20px;
+    width: 200px;
+    align-self: center;
+    justify-self: center;
+}
+
+@media screen and (max-width: 600px) {
+    .register-title {
+        padding-top: 1.5em;
+        font-size: 1.5em;
+    }
+    .register form {
+        padding: 0vh 5vh 0vh 5vh;
+    }
 }
