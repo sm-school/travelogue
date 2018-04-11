@@ -8,14 +8,13 @@
 .dashboard-title {
     grid-column-start: 2;
     grid-row-start: 1;
-    padding: 1.5em;
     align-self: center;
     justify-self: center;
 }
 
 .drag-area {
 	margin-bottom: 1em;
-	border: 5px dashed #999;
+	border: 5px dashed rgb(27, 190, 255);
 	border-radius: 1em;
 	width: 10em;
 	height: 10em;

@@ -19,8 +19,8 @@ INSERT INTO account VALUES
 	'$2a$10$3ERluFbyZWJgOdpvbjUB3.2owUqmy.d1wJ/B4O9fuHeOr/eg0ur4a',
 	NULL,
 	'Display Name',
-	'First1',
-	'Last1',
+	'Demo',
+	'User 1',
 	'https://cdn.dribbble.com/users/199982/screenshots/4044699/furkan-avatar-dribbble_1x.png',
 	NULL
 ),
@@ -29,8 +29,8 @@ INSERT INTO account VALUES
 	'test2@example.com',
 	'$2a$10$3ERluFbyZWJgOdpvbjUB3.2owUqmy.d1wJ/B4O9fuHeOr/eg0ur4a',
 	NULL,
-	'First2',
-	'Last2',
+	'Demo',
+	'User 2',
 	NULL,
 	NULL,
 	NULL
