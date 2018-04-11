@@ -29,6 +29,21 @@ function tripImages (tripId) {
 		});
 }
 
+function tripLandmarks (tripId) {
+	const sql = `
+	SELECT DISTINCT l.name, l.page
+	FROM landmark l, image i
+	WHERE l.image_id = i.id
+	AND i.trip_id = 1
+	ORDER BY name`;
+
+	return db.any(sql, tripId)
+		.then( landmarks => landmarks )
+		.catch( error => {
+			console.log('Database error:', error.message);
+		});
+}
 module.exports = {
 	tripImages,
+	tripLandmarks,
 };

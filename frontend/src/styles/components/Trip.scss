@@ -1,11 +1,11 @@
-.trip ul {
+.trip_images {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
 	width: 1000px;
 }
 
-.trip ul li {
+.trip_images li {
 	display: inline-block;
 	float: left;
 	width: 200px;
@@ -13,6 +13,11 @@
 	padding: 0;
 }
 
-.trip ul li a {
+.trip_images li a {
 	border: 0;
+}
+
+h2 {
+	margin-top: 25px;
+	clear: both;
 }

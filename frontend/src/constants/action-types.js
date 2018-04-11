@@ -7,6 +7,7 @@ export const RECEIVE_POINT = 'RECEIVE_POINT';
 export const RECEIVE_ZOOM = 'RECEIVE_ZOOM';
 
 export const RECEIVE_TRIP = 'RECEIVE_TRIP';
+export const RECEIVE_TRIP_LANDMARKS = 'RECEIVE_TRIP_LANDMARKS';
 
 export const ADD_IMAGES = 'ADD_IMAGES';
 export const ADD_IMAGE_URL = 'ADD_IMAGE_URL';
