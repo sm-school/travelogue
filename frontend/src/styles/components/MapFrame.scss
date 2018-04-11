@@ -1,5 +1,16 @@
+.map_frame {
+	display: inline-block;
+	width: 50%;
+	vertical-align: top;
+	padding-top: 1em;
+}
+
 #map {
-	margin: 0 auto;
-	width: 250px;
+	border: 1px solid #999;
 	height: 250px;
+}
+
+#map, .map_heading {
+	width: 250px;
+	margin: 0 auto;
 }
