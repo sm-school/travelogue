@@ -3,6 +3,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import Landmarks from './Landmarks';
 import MapContainer from '../containers/MapContainer';
 import '../styles/components/Image.scss';
 
@@ -23,7 +24,7 @@ class Image extends React.Component {
 		let longitude = this.props.metadata.longitude;
 		// let name = this.props.metadata.name;
 
-		let mapComponent;
+		let mapComponent, landmarksComponent;
 
 		if (latitude && longitude) {
 			mapComponent = <MapContainer
@@ -37,15 +38,9 @@ class Image extends React.Component {
 		}
 
 		if (this.props.landmarks.landmarks) {
-			landmarks = this.props.landmarks.landmarks.map( (item, i) => {
-				const page = item.page.replace(/ /g, '_');
-				const wikipedia = 'https://en.wikipedia.org/wiki/' + encodeURI(page);
-
-				return <li key={i}>
-					<strong><a href={wikipedia}>{item.name}</a></strong><br />
-					{item.extract}
-				</li>;
-			});
+			landmarksComponent = <Landmarks landmarks={this.props.landmarks.landmarks} />;
+		} else {
+			landmarksComponent = '';
 		}
 
 		return (
@@ -57,11 +52,7 @@ class Image extends React.Component {
 					{mapComponent}
 				</div>
 				<div className="landmark_suggestions">
-					<h2>What's this photo of?</h2>
-					<ul>
-						{landmarks}
-						<li>Something else...</li>
-					</ul>
+					{landmarksComponent}
 				</div>
 			</div>
 		);

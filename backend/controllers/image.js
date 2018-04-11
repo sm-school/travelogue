@@ -3,6 +3,7 @@
 const db = require('./db');
 
 function imageMetadata (imageId) {
+	console.log('Getting metadata:', imageId);
 	const sql = `
 	SELECT i.latitude, i.longitude
 	FROM image i
@@ -62,21 +63,6 @@ function storeImage ( { user, imageData } ) {
 		});
 }
 
-function userImages (userId) {
-	const sql = `
-	SELECT i.s3_id, i.latitude, i.longitude
-	FROM image i
-	WHERE i.account_id = $1`;
-
-	return db.any(sql, userId)
-		.then( images => {
-			return images
-		})
-		.catch( error => {
-			console.log('Database error:', error.message);
-		});
-	}
-	
 function storeLandmarks (imageData) {
 	console.log(imageData);
 	const s3_id = imageData.imageId;
@@ -115,7 +101,6 @@ function storeLandmarks (imageData) {
 module.exports = {
 	imageLandmarks,
 	imageMetadata,
-    storeImage,
-    userImages,
-	storeLandmarks
+	storeImage,
+	storeLandmarks,
 };

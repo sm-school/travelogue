@@ -2,32 +2,33 @@
 
 const db = require('./db');
 
+// To do: get associated landmarks
+
 function tripImages (tripId) {
 	const sql = `
-	SELECT s3_id, latitude, longitude
-	FROM image
+	SELECT i.id, i.s3_id, i.latitude, i.longitude, t.name
+	FROM image i, trip t
 	WHERE trip_id = $1`;
 
-	return db.any(sql, userId)
-		.then( images => images )
-		.catch( error => {
-			console.log('Database error:', error.message);
-		});
-}
+	return db.any(sql, tripId)
+		.then( images => {
+			const tripName = images[0].name;
 
-function userImages (userId) {
-	const sql = `
-	SELECT s3_id, latitude, longitude
-	FROM image
-	WHERE account_id = $1`;
+			for (let i = 0; i < images.length; i++) {
+				delete images[i].name;
+			}
 
-	return db.any(sql, userId)
-		.then( images => images )
+			return {
+				id: tripId,
+				name: tripName,
+				images,
+			};
+		})
 		.catch( error => {
 			console.log('Database error:', error.message);
 		});
 }
 
 module.exports = {
-	userImages,
+	tripImages,
 };
