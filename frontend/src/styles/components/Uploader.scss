@@ -28,18 +28,19 @@
 
 .upload-queue {
 	list-style-type: none;
-	width: 50%;
+    width: 50%;
+    grid-template-columns: 1fr 1fr;
+    display: grid;
 }
 
 .upload-queue li {
-	float: left;
-	margin-right: 0.5em;
+    display: grid;
+    padding: 2px;
 }
 
 .upload-queue li img {
 	width: 5em;
-	border-right: 2px solid #666;
-	border-bottom: 2px solid #666;
+	border: 2px solid #666;
 }
 
 .uploader button {
