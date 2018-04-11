@@ -37,19 +37,23 @@
 	border-left: 0;
 	border-right: 0;
 	border-bottom: 3px solid #666;
-	padding-bottom: 0.1em;
-	font-size: 1.75em;
+    padding-bottom: 0.1em;
+    font-size: 1.75em;
+    background: transparent;
 }
 
 .register button {
-	border: 1px solid #ccc;
-	border-radius: 0.5em;
-	background: #efefef;
-    padding: 0.25em 0.5em;
-    margin: 20px;
-    width: 200px;
+
     align-self: center;
     justify-self: center;
+
+    background: #ddd;
+	padding: 0.25em 0.5em;
+	border-right: 2px solid #999;
+	border-radius: 0.25em;
+    border-bottom: 2px solid #999;
+    margin: 2em;
+    width: 250px;
 }
 
 @media screen and (max-width: 600px) {
