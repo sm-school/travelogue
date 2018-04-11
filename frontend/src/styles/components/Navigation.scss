@@ -50,3 +50,25 @@
 		list-style-type: none;
 	}
 }
+
+@media only screen and (max-width: 600px) {
+    .navigation__brand {
+        font-size: 1.5rem;
+        padding-left: 15px;
+    }
+
+    .navigation_link_wrapper {
+        padding: 0rem;
+    }
+¸
+    .navigation__ul {
+        a {
+            color: #FFF;
+        }
+        li {
+            padding: 0 0rem;
+            display: inline-flex;
+            list-style-type: none;
+        }
+    }
+}
