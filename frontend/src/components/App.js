@@ -31,23 +31,7 @@ class App extends React.Component {
 				<Main>
 					<Route component={ConnectedRouterContainer} />
 					<Switch>
-						<Route path="/image/:imageId" component={ImageComponent} />
-						<Route exact path="/dashboard" component={DashboardContainer} />
-						<Route exact path="/login" component={LoginContainer} />
-						<Route exact path="/map" render={ (props) => (
-							<MapContainer
-								latitude={51.5261053} longitude={-0.0834954} zoom={17}
-								points={ [
-									[ 51.5261053, -0.0834954, 'Constructor Labs' ],
-									[ 51.5271053, -0.0844954, 'Not Constructor Labs' ],
-								] }
-							/>
-						) } />
-						<Route exact path="/register" component={RegisterContainer} />
-						<Route path="/trip/:tripId" component={TripContainer} />
-						<Route exact path="/profile" component={Profile} />
 						<Route exact path="/" component={Launchpage} />
-						<Redirect from='/logout' to='/' />
 						<Route path="/*" component={NotFound} />
 					</Switch>
 				</Main>

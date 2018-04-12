@@ -22,8 +22,8 @@ const Launchpage = () => {
 				<div className="background-image" style={divStyle}/>
 				<div className="hero-content-area">
 					<h1>Photo sharing, but better</h1>
-					<h3 id="tag">Secure cloud storage. Built in location & landmark recognition.</h3>
-					<a href="/register" className="button-register">Start sharing now!</a>
+					<h3 id="tag">Secure cloud storage. Built in location &amp; landmark recognition.</h3>
+					<h2 id="tag">Coming mid April </h2>
 				</div>
 			</section>
 			<section2 className="blurb">
@@ -34,7 +34,6 @@ const Launchpage = () => {
                     making photo sharing even more fun! Upload your photos to our cloud
                     and we'll do the rest!
 				</p>
-				<a href="/register" className="button-register">It's free to use!</a>
 			</section2>
 			<section3 className="footer">
 				<p>

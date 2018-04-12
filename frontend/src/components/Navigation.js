@@ -34,9 +34,6 @@ class Navigation extends React.Component {
 					<Link className="navigation__brand" to={
 						this.props.user.loggedIn ? '/dashboard' : '/'
 					}>Travelogue</Link>
-					<ul className="navigation__ul">
-						{this.renderNavLinks(this.props.user)}
-					</ul>
 				</div>
 			</nav>
 		);
