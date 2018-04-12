@@ -47,3 +47,23 @@
 .landmarks_list li a:hover {
 	border: 1px solid #999;
 }
+
+@media only screen and (max-width: 600px) {
+
+.image_frame {
+	height: 300px;
+	object-fit: scale-down;
+    border: none;
+}
+
+.image_frame img {
+    border: none;
+}
+
+.metadata {
+	width: 300px;
+	margin: 0 auto;
+}
+
+
+}

@@ -39,7 +39,9 @@ class Trip extends React.Component {
 				<ul className="trip_images">
 					{tripImages}
 				</ul>
-				{tripLandmarks}
+				<div className="landmarks">
+					{tripLandmarks}
+				</div>
 			</div>
 		);
 	}

@@ -8,14 +8,13 @@
 .dashboard-title {
     grid-column-start: 2;
     grid-row-start: 1;
-    padding: 1.5em;
     align-self: center;
     justify-self: center;
 }
 
 .drag-area {
 	margin-bottom: 1em;
-	border: 5px dashed #999;
+	border: 5px dashed rgb(27, 190, 255);
 	border-radius: 1em;
 	width: 10em;
 	height: 10em;
@@ -29,18 +28,19 @@
 
 .upload-queue {
 	list-style-type: none;
-	width: 50%;
+    width: 50%;
+    grid-template-columns: 1fr 1fr;
+    display: grid;
 }
 
 .upload-queue li {
-	float: left;
-	margin-right: 0.5em;
+    display: grid;
+    padding: 2px;
 }
 
 .upload-queue li img {
 	width: 5em;
-	border-right: 2px solid #666;
-	border-bottom: 2px solid #666;
+	border: 2px solid #666;
 }
 
 .uploader button {

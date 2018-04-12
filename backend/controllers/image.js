@@ -46,7 +46,7 @@ function storeImage ( { user, imageData } ) {
 	console.log('Storing', s3_id, 'for', user.username);
 	const accountId = user.id;
 
-	const tripId = 1; // until we build feature
+	const tripId = 2; // until we build feature
 
 	const sql = `
 	INSERT INTO image
