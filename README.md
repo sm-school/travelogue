@@ -45,3 +45,6 @@ And featuring:
 
 * [Mapbox](https://mapbox.com/), [Leaflet](http://leafletjs.com/), and
 [react-leaflet](https://react-leaflet.js.org/)
+
+Our [slide deck from demo day](https://docs.google.com/presentation/d/10eq2VjrIyKM9Cw14j01Z-kIfpjOyhN3O5xK7SmHIOPM/)
+is online to see too.
